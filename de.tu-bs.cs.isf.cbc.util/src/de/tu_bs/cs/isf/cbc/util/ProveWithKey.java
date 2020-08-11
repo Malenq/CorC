@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -40,12 +41,14 @@ import de.tu_bs.cs.isf.cbc.cbcmodel.Rename;
 import de.tu_bs.cs.isf.cbc.cbcmodel.Renaming;
 import de.tu_bs.cs.isf.cbc.cbcmodel.VariableKind;
 import de.tu_bs.cs.isf.cbc.cbcmodel.Variant;
+import de.tu_bs.cs.isf.cbc.cbcmodel.MethodClass;
 import de.uka.ilkd.key.control.KeYEnvironment;
 import de.uka.ilkd.key.gui.MainWindow;
 import de.uka.ilkd.key.java.abstraction.KeYJavaType;
 import de.uka.ilkd.key.logic.op.IObserverFunction;
 import de.uka.ilkd.key.proof.Goal;
 import de.uka.ilkd.key.proof.Proof;
+import de.uka.ilkd.key.proof.Statistics;
 import de.uka.ilkd.key.proof.init.ProofInputException;
 import de.uka.ilkd.key.proof.io.ProblemLoaderException;
 import de.uka.ilkd.key.settings.ChoiceSettings;
@@ -59,22 +62,22 @@ public class ProveWithKey {
 	public static final String REGEX_ORIGINAL = "original";
 	public static final String REGEX_RESULT = "\\\\result";
 
-	public static boolean proveStatementWithKey(AbstractStatement statement, JavaVariables vars, GlobalConditions conds,
-			Renaming renaming, EList<ProductVariant> variants, URI uri, IProgressMonitor monitor) {
+	public static boolean proveStatementWithKey(AbstractStatement statement, JavaVariables vars, GlobalConditions conds, boolean returnStatement,
+			boolean inlining, Renaming renaming, MethodClass javaClass, EList<ProductVariant> variants, URI uri, IProgressMonitor monitor) {
 		if (variants == null || variants.size() == 0) {
-			File location = createProveStatementWithKey(statement, vars, conds, renaming, null, uri, 0, true);
+			File location = createProveStatementWithKey(statement, vars, conds, renaming, javaClass, null, uri, 0, true, returnStatement);
 			Console.println("Verify Pre -> {Statement} Post");
-			return proveWithKey(location, monitor);
+			return proveWithKey(location, monitor, inlining);
 		} else {
 			boolean proven = true;
 			for (int i = 0; i < variants.size(); i++) {
 				ProductVariant variant = (ProductVariant) variants.get(i);
 				List<String> refinements = Lists.newArrayList(variant.getRefinementChain().split(","));
-				File location = createProveStatementWithKey(statement, vars, conds, renaming, refinements, uri, i,
-						true);
+				File location = createProveStatementWithKey(statement, vars, conds, renaming, javaClass, refinements, uri, i,
+						true, returnStatement);
 				Console.println("Verify Pre -> {Statement} Post");
 
-				if (!proveWithKey(location, monitor)) {
+				if (!proveWithKey(location, monitor, inlining)) {
 					proven = false;
 				}
 			}
@@ -85,28 +88,30 @@ public class ProveWithKey {
 	public static boolean proveStatementWithKey2(String className, AbstractStatement statement, JavaVariables vars, GlobalConditions conds, Renaming renaming, URI uri, IProgressMonitor monitor) {
 		File location = createProveStatementWithKey2(className, statement, vars, conds, renaming, uri, 0, true);
 		Console.println("Verify Pre -> {Statement} Post");
-		return proveWithKey(location, monitor);
+		return proveWithKey(location, monitor, false);
 	}
 
 	public static File createProveStatementWithKey(AbstractStatement statement, JavaVariables vars,
-			GlobalConditions conds, Renaming renaming, List<String> refinements, URI uri, int numberFile,
-			boolean override) {
+			GlobalConditions conds, Renaming renaming, MethodClass javaClass,List<String> refinements, URI uri, int numberFile,
+			boolean override, boolean returnStatement) {
 		FileUtil.setApplicationUri(uri);
 		String programVariablesString = "";
 		String conditionArraysCreated = "";
 		JavaVariable returnVariable = null;
 		if (vars != null) {
 			for (JavaVariable var : vars.getVariables()) {
-				programVariablesString += var.getName() + "; ";
-				// if variable is an Array add <created> condition for key
-				if (var.getName().contains("[]")) {
-					String varName = var.getName().substring(var.getName().indexOf(" ") + 1);
-					conditionArraysCreated += " & " + varName + ".<created>=TRUE";
-				}
 				if (var.getKind() == VariableKind.RETURN) {
 					returnVariable = var;
+				} else {
+					if(var.getKind() != VariableKind.GLOBAL) {  
+						programVariablesString += var.getName() + "; ";
+						// if variable is an Array add <created> condition for key
+						if (var.getName().contains("[]")) {
+							String varName = var.getName().substring(var.getName().indexOf(" ") + 1);
+							conditionArraysCreated += " & " + varName + ".<created>=TRUE";
+						}
+					}
 				}
-
 			}
 		}
 
@@ -140,7 +145,7 @@ public class ProveWithKey {
 					Parser.KEYWORD_JML_POST, returnVariable, vars);
 		}
 
-		List<String> unmodifiedVariables = Parser.getUnmodifiedVars(modifiables, vars.getVariables());
+		List<String> unmodifiedVariables = Parser.getUnmodifiedVars(modifiables, vars.getVariables());//what if a glob var is in another diagram defined?
 
 		if (pre == null || pre.length() == 0) {
 			pre = "true";
@@ -156,6 +161,7 @@ public class ProveWithKey {
 			stat = useRenamingStatement(renaming, stat);
 		}
 
+		unmodifiedVariables = unmodifiedVariables.stream().distinct().collect(Collectors.toList());
 		for (String var : unmodifiedVariables) {
 			String varName = var.substring(var.indexOf(" ") + 1);
 			programVariablesString += var + "_old; ";
@@ -175,18 +181,42 @@ public class ProveWithKey {
 				String className = FileUtil.generateComposedClass(thisProject, refinements, vars);
 				stat = stat.replaceFirst("original", className + ".generated_" + splittedRefinement[1]);
 			}
+		} 
+		
+		if(returnStatement) {
+			stat = ";";
 		}
 
-		String problem = "\\javaSource \"" + thisProject.getLocation() + "/\";" + "\\include \"helper.key\";"
-				+ "\\programVariables {" + programVariablesString + " Heap heapAtPre;}" + "\\problem {(" + pre + " "
-				+ globalConditionsString + conditionArraysCreated + " & wellFormed(heap) ) -> {heapAtPre := heap"
+		stat = stat.replace("this.", "self.");
+		pre = pre.replace("this.", "self.");
+		post = post.replace("this.", "self.");
+		globalConditionsString = globalConditionsString.replace("this.", "self.");
+	
+
+		/*String problem = "\\javaSource \"" + thisProject.getLocation() + "/\";" + "\\include \"helper.key\";"
+				+ "\\programVariables {" + programVariablesString + javaClass.getMethodClass() +" self; Heap heapAtPre;}" + "\\problem {(" + pre + " "
+				+ globalConditionsString + conditionArraysCreated + " & self.<created>=TRUE & " + javaClass.getMethodClass() + "::exactInstance(self)=TRUE &  !self = null & self.<inv>"
+						+ "& wellFormed(heap)) -> {heapAtPre := heap"//
+				+ assignmentString + "} \\<{" + stat + "}\\> (" + post + ")}";*/
+		
+		String problem = "\\javaSource \"" + thisProject.getLocation() + "/\";" + "\\include \"helper.key\";"//& source.<inv> & source.<created>=TRUE & destination.<inv> & destination.<created>=TRUE
+				+ "\\programVariables {" + programVariablesString + javaClass.getMethodClass() +" self; Heap heapAtPre;}" + "\\problem {(" + pre + " "//& a.<inv> & a.<created>=TRUE//& self.appl.<inv> & self.appl.<created>=TRUE& self.appl.account.<inv> & self.appl.account.<created>=TRUE
+				+ globalConditionsString + conditionArraysCreated + " & self.<created>=TRUE & " + javaClass.getMethodClass() + "::exactInstance(self)=TRUE &  !self = null & self.<inv> "//self.appl.<inv> & self.appl.account.<inv> &  self.appl.<created>=TRUE & self.appl.account.<created>=TRUE"
+						+ "& wellFormed(heap)) -> {heapAtPre := heap"//
 				+ assignmentString + "} \\<{" + stat + "}\\> (" + post + ")}";
 
+		problem = problem.replaceAll("static", "");
+		problem = problem.replaceAll("return", "");
+		
+		Console.println("============================");
+		Console.println(problem);
+		Console.println("============================");
+		
 		String location = thisProject.getLocation() + "/src/prove" + uri.trimFileExtension().lastSegment();
 		File keyFile = FileUtil.writeFile(problem, location, numberFile, override);
 		return keyFile;
 	}
-	
+
 	public static File createProveStatementWithKey2(String className, AbstractStatement statement, JavaVariables vars,
 			GlobalConditions conds, Renaming renaming, URI uri, int numberFile,
 			boolean override) {
@@ -235,11 +265,16 @@ public class ProveWithKey {
 			stat = useRenamingStatement(renaming, stat);
 		}
 
+/*		String problem = "\\javaSource \"" + thisProject.getLocation() + "/\";" + "\\include \"helper.key\";"
+				+ "\\programVariables {" + programVariablesString + " Heap heapAtPre;}" + "\\problem {(" + pre + " "
+				+ globalConditionsString + conditionArraysCreated + " & wellFormed(heap) & self != null & self.<inv> & self.<created> = TRUE & " + className +   "::exactInstance(self)=TRUE) -> {heapAtPre := heap"
+				+ assignmentString + "} \\<{" + stat + "}\\> (" + post + " & self.<inv>)}";*/
+
 		String problem = "\\javaSource \"" + thisProject.getLocation() + "/\";" + "\\include \"helper.key\";"
 				+ "\\programVariables {" + programVariablesString + " Heap heapAtPre;}" + "\\problem {(" + pre + " "
 				+ globalConditionsString + conditionArraysCreated + " & wellFormed(heap) & self != null & self.<inv> & self.<created> = TRUE & " + className +   "::exactInstance(self)=TRUE) -> {heapAtPre := heap"
 				+ assignmentString + "} \\<{" + stat + "}\\> (" + post + " & self.<inv>)}";
-
+		
 		String location = thisProject.getLocation() + "/src/prove" + uri.trimFileExtension().lastSegment();
 		File keyFile = writeFile(problem, location, numberFile, override);
 		return keyFile;
@@ -487,8 +522,8 @@ public class ProveWithKey {
 		return null;
 	}
 
-	public static boolean proveWithKey(File location, IProgressMonitor monitor) {
-		Proof proof = createKeyProof(location, monitor);
+	public static boolean proveWithKey(File location, IProgressMonitor monitor, boolean inlining) {
+		Proof proof = createKeyProof(location, monitor, inlining);
 		if (proof != null) {
 			// Show proof result
 			boolean closed = proof.openGoals().isEmpty();
@@ -539,23 +574,25 @@ public class ProveWithKey {
 		return toRename;
 	}
 
-	public static boolean provePreWithKey(Condition invariant, Condition preCondition, JavaVariables vars,
+	public static boolean provePreWithKey(Condition invariant, Condition preCondition, JavaVariables vars, MethodClass javaClass,
 			GlobalConditions conds, Renaming renaming, URI uri, IProgressMonitor monitor) {
-		File location = createProvePreWithKey(invariant, preCondition, vars, conds, renaming, uri, 0, true);
+		File location = createProvePreWithKey(invariant, preCondition, vars, javaClass, conds, renaming, uri, 0, true);
 		Console.println("Verify Pre -> Invariant");
-		return proveWithKey(location, monitor);
+		return proveWithKey(location, monitor, false);
 	}
 
-	public static File createProvePreWithKey(Condition invariant, Condition preCondition, JavaVariables vars,
+	public static File createProvePreWithKey(Condition invariant, Condition preCondition, JavaVariables vars, MethodClass javaClass,
 			GlobalConditions conds, Renaming renaming, URI uri, int numberFile, boolean override) {
 
 		String programVariablesString = "";
 		if (vars != null) {
 			for (JavaVariable var : vars.getVariables()) {
-				programVariablesString += var.getName() + "; ";
+				if(var.getKind() != VariableKind.GLOBAL) {  
+					programVariablesString += var.getName() + "; ";					
+				}
 			}
 		}
-
+		
 		String globalConditionsString = "";
 		if (conds != null) {
 			for (Condition cond : conds.getConditions()) {
@@ -566,7 +603,6 @@ public class ProveWithKey {
 		}
 
 		IProject thisProject = FileUtil.getProject(uri);
-
 		String preString = Parser.getConditionFromCondition(preCondition.getName());
 		String invariantString = invariant.getName();
 
@@ -583,23 +619,38 @@ public class ProveWithKey {
 			invariantString = useRenamingCondition(renaming, invariantString);
 		}
 
-		String problem = "\\javaSource \"" + thisProject.getLocation() + "/\";" + "\\include \"helper.key\";"
-				+ "\\programVariables {" + programVariablesString + " Heap heapAtPre;}" + "\\problem {(" + preString
-				+ " " + globalConditionsString + ") -> {heapAtPre := heap} (" + invariantString + ")}";
+		preString = preString.replace("this.", "self.");
+		globalConditionsString = globalConditionsString.replace("this.", "self.");
+		invariantString = invariantString.replace("this.", "self.");
 
+				  
+				//conditionArraysCreated + " & self.<created> = TRUE & " + javaClass.getMethodClass() + "::exactInstance(self)=TRUE &  !self = null & self.<inv> "
+					//	+ "& wellFormed(heap)) -> {heapAtPre := heap"//
+				//+ assignmentString + "} \\<{" + stat + "}\\> (" + post + ")}";
+		
+		String problem = "\\javaSource \"" + thisProject.getLocation() + "/\";" + "\\include \"helper.key\";"
+				+ "\\programVariables {" + programVariablesString + javaClass.getMethodClass() + " self; Heap heapAtPre;}" 
+				+ "\\problem {(" + preString + " " + globalConditionsString + " & self.<created> = TRUE &" + javaClass.getMethodClass() + 
+				"::exactInstance(self)=TRUE &  !self = null & self.<inv> & wellFormed(heap)) -> {heapAtPre := heap} (" 
+				+ invariantString + ")}";
+		/*String problem = "\\javaSource \"" + thisProject.getLocation() + "/\";" + "\\include \"helper.key\";"
+				+ "\\programVariables {" + programVariablesString + javaClass.getMethodClass() + " self; Heap heapAtPre;}" 
+				+ "\\problem {(" + preString + " " + globalConditionsString + ") -> {heapAtPre := heap} (" 
+				+ invariantString + ")}";*/
+		Console.println(problem);
 		String location = thisProject.getLocation() + "/src/prove" + uri.trimFileExtension().lastSegment();
 		File keyFile = FileUtil.writeFile(problem, location, numberFile, override);
 		return keyFile;
 	}
 
-	public static boolean provePostWithKey(Condition invariant, Condition guard, Condition postCondition,
+	public static boolean provePostWithKey(Condition invariant, Condition guard, Condition postCondition, MethodClass javaClass,
 			JavaVariables vars, GlobalConditions conds, Renaming renaming, URI uri, IProgressMonitor monitor) {
-		File location = createProvePostWithKey(invariant, guard, postCondition, vars, conds, renaming, uri, 0, true);
+		File location = createProvePostWithKey(invariant, guard, postCondition, javaClass, vars, conds, renaming, uri, 0, true);
 		Console.println("Verify (Invariant & !Guard) -> Post");
-		return proveWithKey(location, monitor);
+		return proveWithKey(location, monitor, false);
 	}
 
-	public static File createProvePostWithKey(Condition invariant, Condition guard, Condition postCondition,
+	public static File createProvePostWithKey(Condition invariant, Condition guard, Condition postCondition, MethodClass javaClass,
 			JavaVariables vars, GlobalConditions conds, Renaming renaming, URI uri, int numberFile, boolean override) {
 
 		String programVariablesString = "";
@@ -641,23 +692,26 @@ public class ProveWithKey {
 		}
 
 		String problem = "\\javaSource \"" + thisProject.getLocation() + "/\";" + "\\include \"helper.key\";"
-				+ "\\programVariables {" + programVariablesString + " Heap heapAtPre;}" + "\\problem {("
-				+ invariantString + " & !(" + guardString + ") " + globalConditionsString + ") -> {heapAtPre := heap} ("
+				+ "\\programVariables {" + programVariablesString + javaClass.getMethodClass() + " self; Heap heapAtPre;}" + "\\problem {("
+				+ invariantString + " & !(" + guardString + ") " + globalConditionsString +  " & self.<created> = TRUE &" + javaClass.getMethodClass() + 
+				"::exactInstance(self)=TRUE &  !self = null & self.<inv>) -> {heapAtPre := heap} ("
 				+ postString + ")}";
 
+		problem = problem.replace("this.", "self.");
+		
 		String location = thisProject.getLocation() + "/src/prove" + uri.trimFileExtension().lastSegment();
 		File keyFile = FileUtil.writeFile(problem, location, numberFile, override);
 		return keyFile;
 	}
 
-	public static boolean provePreSelWithKey(EList<Condition> guards, Condition preCondition, JavaVariables vars,
+	public static boolean provePreSelWithKey(EList<Condition> guards, Condition preCondition, JavaVariables vars, MethodClass javaClass, 
 			GlobalConditions conds, Renaming renaming, URI uri, IProgressMonitor monitor) {
-		File location = createProvePreSelWithKey(guards, preCondition, vars, conds, renaming, uri, 0, true);
+		File location = createProvePreSelWithKey(guards, preCondition, vars, javaClass, conds, renaming, uri, 0, true);
 		Console.println("Verify Pre -> GvGvG...");
-		return proveWithKey(location, monitor);
+		return proveWithKey(location, monitor, false);
 	}
 
-	public static File createProvePreSelWithKey(EList<Condition> guards, Condition preCondition, JavaVariables vars,
+	public static File createProvePreSelWithKey(EList<Condition> guards, Condition preCondition, JavaVariables vars, MethodClass javaClass,
 			GlobalConditions conds, Renaming renaming, URI uri, int numberFile, boolean override) {
 		String programVariablesString = "";
 		if (vars != null) {
@@ -700,8 +754,11 @@ public class ProveWithKey {
 		}
 
 		String problem = "\\javaSource \"" + thisProject.getLocation() + "/\";" + "\\include \"helper.key\";"
-				+ "\\programVariables {" + programVariablesString + "}" + "\\problem {(" + preString
-				+ globalConditionsString + ") -> (" + guardString + ")}";
+				+ "\\programVariables {" + programVariablesString +javaClass.getMethodClass() + " self;}" + "\\problem {(" + preString
+				+ globalConditionsString + " & self.<created> = TRUE &" + javaClass.getMethodClass() + 
+				"::exactInstance(self)=TRUE &  !self = null & self.<inv>) -> (" + guardString + ")}";
+		
+		problem = problem.replace("this.", "self.");
 
 		String location = thisProject.getLocation() + "/src/prove" + uri.trimFileExtension().lastSegment();
 		File keyFile = FileUtil.writeFile(problem, location, numberFile, override);
@@ -712,7 +769,7 @@ public class ProveWithKey {
 			GlobalConditions conds, Renaming renaming, URI uri, IProgressMonitor monitor) {
 		File location = createProveVariantWithKey(code, invariant, vars, conds, renaming, uri, 0, true);
 		Console.println("Verify Pre -> {WhileStatement} (true)");
-		return proveWithKey(location, monitor);
+		return proveWithKey(location, monitor, false);
 	}
 
 	public static File createProveVariantWithKey(String code, Condition invariant, JavaVariables vars,
@@ -755,15 +812,15 @@ public class ProveWithKey {
 		return keyFile;
 	}
 
-	public static boolean proveVariant2WithKey(String code, Condition invariant, Condition guard, Variant variant,
+	public static boolean proveVariant2WithKey(String code, Condition invariant, Condition guard, Variant variant, MethodClass javaClass,
 			JavaVariables vars, GlobalConditions conds, Renaming renaming, URI uri, IProgressMonitor monitor) {
-		File location = createProveVariant2WithKey(code, invariant, guard, variant, vars, conds, renaming, uri, 0,
+		File location = createProveVariant2WithKey(code, invariant, guard, variant, javaClass, vars, conds, renaming, uri, 0,
 				true);
 		Console.println("Verify Pre -> {WhileStatement} (variant<variant0 & variant >= 0)");
-		return proveWithKey(location, monitor);
+		return proveWithKey(location, monitor, false);
 	}
 
-	public static File createProveVariant2WithKey(String code, Condition invariant, Condition guard, Variant variant,
+	public static File createProveVariant2WithKey(String code, Condition invariant, Condition guard, Variant variant, MethodClass javaClass,
 			JavaVariables vars, GlobalConditions conds, Renaming renaming, URI uri, int numberFile, boolean override) {
 		String programVariablesString = "";
 		if (vars != null) {
@@ -805,11 +862,14 @@ public class ProveWithKey {
 		String variantString = variant.getName();
 
 		String problem = "\\javaSource \"" + thisProject.getLocation() + "/\";" + "\\include \"helper.key\";"
-				+ "\\programVariables {" + programVariablesString + " Heap heapAtPre;}" + "\\problem {("
-				+ invariantString + " & " + guardString + globalConditionsString + ") ->{variant := " + variantString
+				+ "\\programVariables {" + programVariablesString + javaClass.getMethodClass() + " self; Heap heapAtPre;}" + "\\problem {("
+				+ invariantString + " & " + guardString + globalConditionsString + " & self.<created> = TRUE &" + javaClass.getMethodClass() + 
+				"::exactInstance(self)=TRUE &  !self = null & self.<inv>) ->{variant := " + variantString
 				+ " || heapAtPre := heap} \\<{" + code + "}\\> ((" + variantString + ") <variant & " + variantString
 				+ ">=0)}";
 
+		problem = problem.replace("this.", "self.");
+		
 		String location = thisProject.getLocation() + "/src/prove" + uri.trimFileExtension().lastSegment();
 		File keyFile = FileUtil.writeFile(problem, location, numberFile, override);
 		return keyFile;
@@ -819,14 +879,14 @@ public class ProveWithKey {
 			GlobalConditions conds, Renaming renaming, URI uri, IProgressMonitor monitor) {
 		File location = createProvePreImplPreWithKey(preParent, preChild, vars, conds, renaming, uri, 0, true);
 		Console.println("Verify PreParent -> PreChild");
-		return proveWithKey(location, monitor);
+		return proveWithKey(location, monitor, false);
 	}
 
 	public static boolean provePostImplPostWithKey(Condition postParent, Condition postChild, JavaVariables vars,
 			GlobalConditions conds, Renaming renaming, URI uri, IProgressMonitor monitor) {
 		File location = createProvePreImplPreWithKey(postChild, postParent, vars, conds, renaming, uri, 0, true);
 		Console.println("Verify PostChild -> PostParent");
-		return proveWithKey(location, monitor);
+		return proveWithKey(location, monitor, false);
 	}
 
 	public static File createProvePreImplPreWithKey(Condition preParent, Condition preChild, JavaVariables vars,
@@ -881,7 +941,7 @@ public class ProveWithKey {
 			de.tu_bs.cs.isf.taxonomy.model.taxonomy.Renaming renaming, URI uri, IProgressMonitor monitor) {
 		File location = createProvePreImplPreWithKey(preParent, preChild, vars, conds, renaming, uri, 0, true);
 		Console.println("Verify PreParent -> PreChild");
-		return proveWithKey(location, monitor);
+		return proveWithKey(location, monitor, false);
 	}
 
 	public static boolean provePostImplPostWithKey(String postParent, String postChild,
@@ -890,7 +950,7 @@ public class ProveWithKey {
 			de.tu_bs.cs.isf.taxonomy.model.taxonomy.Renaming renaming, URI uri, IProgressMonitor monitor) {
 		File location = createProvePreImplPreWithKey(postChild, postParent, vars, conds, renaming, uri, 0, true);
 		Console.println("Verify PostChild -> PostParent");
-		return proveWithKey(location, monitor);
+		return proveWithKey(location, monitor, false);
 	}
 
 	public static File createProvePreImplPreWithKey(String preParent, String preChild,
@@ -948,14 +1008,14 @@ public class ProveWithKey {
 
 	}
 
-	public static boolean proveMethodFormulaWithKey(Condition second, Condition first, List<JavaVariable> vars,
+	public static boolean proveMethodFormulaWithKey(Condition second, Condition first, String javaClass, List<JavaVariable> vars,
 			List<Condition> conds, List<Rename> renaming, URI uri, IProgressMonitor monitor) {
-		File location = createProveMethodFormulaWithKey(second, first, vars, conds, renaming, uri, 0, true);
+		File location = createProveMethodFormulaWithKey(second, first, vars, javaClass, conds, renaming, uri, 0, true);
 		Console.println("Verify Condition -> Condition");
-		return proveWithKey(location, monitor);
+		return proveWithKey(location, monitor, false);
 	}
 
-	public static File createProveMethodFormulaWithKey(Condition second, Condition first, List<JavaVariable> vars,
+	public static File createProveMethodFormulaWithKey(Condition second, Condition first, List<JavaVariable> vars, String javaClass,
 			List<Condition> conds, List<Rename> renaming, URI uri, int numberFile, boolean override) {
 
 		String programVariablesString = "";
@@ -986,6 +1046,13 @@ public class ProveWithKey {
 			secondString = "true";
 		}
 
+		if(firstString.contains("modifiable(")) {
+			firstString = firstString.substring(firstString.indexOf(';') + 1);
+		}
+		if(secondString.contains("modifiable(")) {
+			secondString = secondString.substring(secondString.indexOf(';') + 1);
+		}
+		
 		if (renaming != null) {
 			globalConditionsString = useRenamingCondition(renaming, globalConditionsString);
 			firstString = useRenamingCondition(renaming, firstString);
@@ -993,9 +1060,19 @@ public class ProveWithKey {
 		}
 
 		String problem = "\\javaSource \"" + thisProject.getLocation() + "/\";" + "\\include \"helper.key\";"
-				+ "\\programVariables {" + programVariablesString + " Heap heapAtPre;}" + "\\problem {(" + firstString
+				+ "\\programVariables {" + programVariablesString + javaClass + " self; Heap heapAtPre;}" + "\\problem {(" + firstString
 				+ " " + globalConditionsString + ") -> {heapAtPre := heap} (" + secondString + ")}";
-
+		
+		problem = problem.replaceAll("this.", "self.");
+		
+		/*String problem2 = "\\javaSource \"" + thisProject.getLocation() + "/\";" + "\\include \"helper.key\";"
+				+ "\\programVariables {" + programVariablesString + javaClass + " self; Heap heapAtPre;}" 
+				+ "\\problem {(" + preString + " " + globalConditionsString + " & self.<created> = TRUE &" + javaClass.getMethodClass() + 
+				"::exactInstance(self)=TRUE &  !self = null & self.<inv> & wellFormed(heap)) -> {heapAtPre := heap} (" 
+				+ invariantString + ")}";*/
+		
+		
+		Console.println(problem);
 		String location = thisProject.getLocation() + "/src/prove" + uri.trimFileExtension().lastSegment();
 		File keyFile = FileUtil.writeFile(problem, location, numberFile, override);
 		return keyFile;
@@ -1053,7 +1130,7 @@ public class ProveWithKey {
 	}
 
 	public static String createWPWithKey(File location, IProgressMonitor monitor) {
-		Proof proof = createKeyProof(location, monitor);
+		Proof proof = createKeyProof(location, monitor, false);
 		if (proof != null) {
 			String wp = "";
 			Iterator<Goal> it = proof.openGoals().iterator();
@@ -1095,7 +1172,7 @@ public class ProveWithKey {
 		return "";
 	}
 
-	private static Proof createKeyProof(File location, IProgressMonitor monitor) {
+	private static Proof createKeyProof(File location, IProgressMonitor monitor, boolean inlining) {
 		Proof proof = null;
 		List<File> classPaths = null; // Optionally: Additional specifications
 										// for API classes
@@ -1121,15 +1198,18 @@ public class ProveWithKey {
 			proof = env.getLoadedProof();
 			// Set proof strategy options
 			StrategyProperties sp = proof.getSettings().getStrategySettings().getActiveStrategyProperties();
-			sp.setProperty(StrategyProperties.METHOD_OPTIONS_KEY, StrategyProperties.METHOD_CONTRACT);
+			if(inlining)
+				sp.setProperty(StrategyProperties.METHOD_OPTIONS_KEY, StrategyProperties.METHOD_EXPAND);
+			else
+				sp.setProperty(StrategyProperties.METHOD_OPTIONS_KEY, StrategyProperties.METHOD_CONTRACT);//METHOD_EXPAND
 			sp.setProperty(StrategyProperties.LOOP_OPTIONS_KEY, StrategyProperties.LOOP_EXPAND);
 			sp.setProperty(StrategyProperties.DEP_OPTIONS_KEY, StrategyProperties.DEP_ON);
-			sp.setProperty(StrategyProperties.QUERY_OPTIONS_KEY, StrategyProperties.QUERY_RESTRICTED);// StrategyProperties.QUERY_ON
+			sp.setProperty(StrategyProperties.QUERY_OPTIONS_KEY, StrategyProperties.QUERY_RESTRICTED);//
 			sp.setProperty(StrategyProperties.NON_LIN_ARITH_OPTIONS_KEY, StrategyProperties.NON_LIN_ARITH_DEF_OPS);
 			sp.setProperty(StrategyProperties.STOPMODE_OPTIONS_KEY, StrategyProperties.STOPMODE_NONCLOSE);
 			proof.getSettings().getStrategySettings().setActiveStrategyProperties(sp);
 			// Make sure that the new options are used
-			int maxSteps = 20000;
+			int maxSteps = Integer.MAX_VALUE;
 			ProofSettings.DEFAULT_SETTINGS.getStrategySettings().setMaxSteps(maxSteps);
 			ProofSettings.DEFAULT_SETTINGS.getStrategySettings().setActiveStrategyProperties(sp);
 			proof.getSettings().getStrategySettings().setMaxSteps(maxSteps);
@@ -1154,6 +1234,13 @@ public class ProveWithKey {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			Statistics s = proof.getStatistics();
+			if(inlining)
+				Console.println("Inlining");
+			else
+				Console.println("Contracting");
+			Console.println("Statistics: \n\t nodes: " + s.nodes + "\n\t rule apps: " + s.totalRuleApps
+					+ "\n\t time in Millis: " + s.timeInMillis );
 		} catch (ProblemLoaderException e) {
 			Console.println("Exception at '" + e.getCause() + "'");
 			e.printStackTrace();

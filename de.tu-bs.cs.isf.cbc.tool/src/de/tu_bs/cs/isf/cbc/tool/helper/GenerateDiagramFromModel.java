@@ -37,6 +37,7 @@ import de.tu_bs.cs.isf.cbc.cbcmodel.CbCFormula;
 import de.tu_bs.cs.isf.cbc.cbcmodel.CompositionStatement;
 import de.tu_bs.cs.isf.cbc.cbcmodel.GlobalConditions;
 import de.tu_bs.cs.isf.cbc.cbcmodel.JavaVariables;
+import de.tu_bs.cs.isf.cbc.cbcmodel.MethodClass;
 import de.tu_bs.cs.isf.cbc.cbcmodel.Renaming;
 import de.tu_bs.cs.isf.cbc.cbcmodel.SelectionStatement;
 import de.tu_bs.cs.isf.cbc.cbcmodel.SmallRepetitionStatement;
@@ -52,6 +53,7 @@ public class GenerateDiagramFromModel {
 		JavaVariables vars = null;
 		GlobalConditions conds = null;
 		Renaming renaming = null;
+		//MethodClass javaClass = null;
 		for (EObject content : resource.getContents()) {
 			if (content instanceof CbCFormula) {
 				formula = (CbCFormula) content;
@@ -61,7 +63,9 @@ public class GenerateDiagramFromModel {
 				conds = (GlobalConditions) content;
 			} else if (content instanceof Renaming) {
 				renaming = (Renaming) content;
-			}
+			} /*else if(content instanceof MethodClasses) {
+				classes = (MethodClasses) content;
+			}*/
 		}
 		ResourceSet resourceSet = new ResourceSetImpl();
 		URI uri = resource.getURI().trimFileExtension();
@@ -81,9 +85,11 @@ public class GenerateDiagramFromModel {
 		if (vars != null)
 			addElement(featureProvider, vars, diagram, 600, 20);
 		if (conds != null)
-		addElement(featureProvider, conds, diagram, 600, 220);
+			addElement(featureProvider, conds, diagram, 600, 220);
 		if (renaming != null)
-		addElement(featureProvider, renaming, diagram, 600, 420);
+			addElement(featureProvider, renaming, diagram, 600, 420);
+		//if(javaClass != null)
+			//addElement(featureProvider, javaClass, diagram, 600, 20);
 		
 		try {
 			diagramResource.save(Collections.EMPTY_MAP);

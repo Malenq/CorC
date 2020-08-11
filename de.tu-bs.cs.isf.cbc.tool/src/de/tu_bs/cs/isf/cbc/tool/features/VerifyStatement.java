@@ -8,6 +8,7 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 
 import de.tu_bs.cs.isf.cbc.cbcmodel.AbstractStatement;
+import de.tu_bs.cs.isf.cbc.cbcmodel.MethodClass;
 import de.tu_bs.cs.isf.cbc.cbcmodel.CbCFormula;
 import de.tu_bs.cs.isf.cbc.cbcmodel.GlobalConditions;
 import de.tu_bs.cs.isf.cbc.cbcmodel.JavaVariables;
@@ -74,12 +75,17 @@ public class VerifyStatement extends MyAbstractAsynchronousCustomFeature {
 		if (pes != null && pes.length == 1) {
 			Object bo = getBusinessObjectForPictogramElement(pes[0]);
 			if (bo instanceof AbstractStatement) {
+				boolean returnStatement = false;
+				if(bo instanceof ReturnStatement) {
+					returnStatement = true;
+				}
 				AbstractStatement statement = (AbstractStatement) bo;
 				JavaVariables vars = null;
 				GlobalConditions conds = null;
 				Renaming renaming = null;
 				EList<ProductVariant> variants = null;
 				CbCFormula formula = null;
+				MethodClass javaClass = null;
 				for (Shape shape : getDiagram().getChildren()) {
 					Object obj = getBusinessObjectForPictogramElement(shape);
 					if (obj instanceof JavaVariables) {
@@ -93,12 +99,14 @@ public class VerifyStatement extends MyAbstractAsynchronousCustomFeature {
 						variants = methodRef.getProductvariants();
 					} else if (obj instanceof CbCFormula) {
 						formula = (CbCFormula) obj;
+					} else if(obj instanceof MethodClass) {
+						javaClass = (MethodClass) obj;
 					}
 				}
 				boolean prove = false;
 
 				if (CompareMethodBodies.readAndTestMethodBodyWithJaMoPP2(statement.getName())) {
-					prove = ProveWithKey.proveStatementWithKey(statement, vars, conds, renaming, variants,
+					prove = ProveWithKey.proveStatementWithKey(statement, vars, conds, returnStatement, false, renaming, javaClass, variants,
 							getDiagram().eResource().getURI(), monitor);
 				} else {
 					Console.println("Statement is not in correct format.");

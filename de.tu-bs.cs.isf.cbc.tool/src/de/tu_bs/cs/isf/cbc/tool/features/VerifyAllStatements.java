@@ -14,8 +14,10 @@ import de.tu_bs.cs.isf.cbc.cbcmodel.CompositionStatement;
 import de.tu_bs.cs.isf.cbc.cbcmodel.Condition;
 import de.tu_bs.cs.isf.cbc.cbcmodel.GlobalConditions;
 import de.tu_bs.cs.isf.cbc.cbcmodel.JavaVariables;
+import de.tu_bs.cs.isf.cbc.cbcmodel.MethodClass;
 import de.tu_bs.cs.isf.cbc.cbcmodel.ProductVariant;
 import de.tu_bs.cs.isf.cbc.cbcmodel.Renaming;
+import de.tu_bs.cs.isf.cbc.cbcmodel.ReturnStatement;
 import de.tu_bs.cs.isf.cbc.cbcmodel.RepetitionStatement;
 import de.tu_bs.cs.isf.cbc.cbcmodel.SelectionStatement;
 import de.tu_bs.cs.isf.cbc.cbcmodel.SmallRepetitionStatement;
@@ -63,6 +65,8 @@ public class VerifyAllStatements extends MyAbstractAsynchronousCustomFeature {
 		Renaming renaming = null;
 		CbCFormula formula = null;
 		GlobalConditions conds = null;
+		MethodClass javaClass = null;
+		
 		for (Shape shape : getDiagram().getChildren()) {
 			Object obj = getBusinessObjectForPictogramElement(shape);
 			if (obj instanceof JavaVariables) {
@@ -73,11 +77,15 @@ public class VerifyAllStatements extends MyAbstractAsynchronousCustomFeature {
 				formula = (CbCFormula) obj;
 			} else if (obj instanceof GlobalConditions) {
 				conds = (GlobalConditions) obj;
+			} else if(obj instanceof MethodClass) {
+				javaClass = (MethodClass) obj;
 			}
 		}
 		AbstractStatement statement = formula.getStatement();
 		boolean prove = false;
-		prove = proveChildStatement(statement.getRefinement(), vars, conds, renaming, getDiagram().eResource().getURI(), null);	
+		if(conds == null)
+			Console.println("NUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUL");
+		prove = proveChildStatement(statement.getRefinement(), vars, conds, renaming, javaClass, getDiagram().eResource().getURI(), null);	
 		if (prove) {
 			statement.setProven(true);
 		} else {
@@ -87,20 +95,28 @@ public class VerifyAllStatements extends MyAbstractAsynchronousCustomFeature {
     }
     
     
-    private static boolean proveChildStatement(AbstractStatement statement, JavaVariables vars, GlobalConditions conds, Renaming renaming, URI uri, IProgressMonitor monitor) {
+    private static boolean proveChildStatement(AbstractStatement statement, JavaVariables vars, GlobalConditions conds, Renaming renaming,
+    		MethodClass javaClass, URI uri, IProgressMonitor monitor) {
 		boolean prove = false;
 		 if (statement instanceof SmallRepetitionStatement) {
-			prove = proveSmallReptitionStatement(statement, vars, conds, renaming, uri, monitor);
+			prove = proveSmallReptitionStatement(statement, vars, conds, renaming, javaClass, uri, monitor);
 		} else if (statement instanceof CompositionStatement) {
-			prove = proveCompositionStatement(statement, vars, conds, renaming, uri, monitor);
+			prove = proveCompositionStatement(statement, vars, conds, renaming, javaClass, uri, monitor);
 		} else if (statement instanceof Composition3Statement) {
-			prove = proveComposition3Statement(statement, vars, conds, renaming, uri, monitor);
+			prove = proveComposition3Statement(statement, vars, conds, renaming, javaClass, uri, monitor);
 		} else if (statement instanceof SelectionStatement) {
-			prove = proveSelectionStatement(statement, vars, conds, renaming, uri, monitor);
+			prove = proveSelectionStatement(statement, vars, conds, renaming, javaClass, uri, monitor);
 		} else if (statement instanceof RepetitionStatement) {
-			prove = proveRepetitionStatement(statement, vars, conds, renaming, uri, monitor);
+			prove = proveRepetitionStatement(statement, vars, conds, renaming, javaClass, uri, monitor);
+		} else if(statement instanceof ReturnStatement) {
+			Console.println("+++++++++++++++++++++++++++++++++Return Statement++++++++++++++++++++++++++++++++++");
+			prove = proveAbstractStatement(statement, vars, conds, true, renaming, javaClass, uri, monitor);
+		} else if(statement.getComment() != null) {
+			Console.println("+++++++++++++++++++++++++++++++++Return Statement++++++++++++++++++++++++++++++++++");
+			if(statement.getComment().equals("returnStatement"))
+				prove = proveAbstractStatement(statement, vars, conds, true, renaming, javaClass, uri, monitor);
 		} else if (statement instanceof AbstractStatement) {
-			prove = proveAbstractStatement(statement, vars, conds, renaming, uri, monitor);
+			prove = proveAbstractStatement(statement, vars, conds, false, renaming, javaClass, uri, monitor);
 		}
 		return prove;
 	}
@@ -135,63 +151,64 @@ public class VerifyAllStatements extends MyAbstractAsynchronousCustomFeature {
 //	}
 //	return null;
     
-    private static boolean proveCompositionStatement(AbstractStatement statement, JavaVariables vars, GlobalConditions conds, Renaming renaming, URI uri, IProgressMonitor monitor) {
+    private static boolean proveCompositionStatement(AbstractStatement statement, JavaVariables vars, GlobalConditions conds, Renaming renaming, 
+    		MethodClass javaClass,URI uri, IProgressMonitor monitor) {
     	boolean prove1, prove2 = false;
     	CompositionStatement compositionStatement = (CompositionStatement) statement;
     	if (compositionStatement.getFirstStatement().getRefinement() != null) {
-    		prove1 = proveChildStatement(compositionStatement.getFirstStatement().getRefinement(), vars, conds, renaming, uri, monitor);
+    		prove1 = proveChildStatement(compositionStatement.getFirstStatement().getRefinement(), vars, conds, renaming, javaClass, uri, monitor);
     	} else {
-    		prove1 = proveChildStatement(compositionStatement.getFirstStatement(), vars, conds, renaming, uri, monitor);
+    		prove1 = proveChildStatement(compositionStatement.getFirstStatement(), vars, conds, renaming, javaClass, uri, monitor);
     	}
     	if (compositionStatement.getSecondStatement().getRefinement() != null) {
-    		prove2 = proveChildStatement(compositionStatement.getSecondStatement().getRefinement(), vars, conds, renaming, uri, monitor);
+    		prove2 = proveChildStatement(compositionStatement.getSecondStatement().getRefinement(), vars, conds, renaming, javaClass, uri, monitor);
     	} else {
-    		prove2 = proveChildStatement(compositionStatement.getSecondStatement(), vars, conds, renaming, uri, monitor);
+    		prove2 = proveChildStatement(compositionStatement.getSecondStatement(), vars, conds, renaming, javaClass, uri, monitor);
     	}
     	if (prove1 && prove2 && true)  {
     		statement.setProven(true);
     	} else {
-    		statement.setProven(false);
+    		statement.setProven(false);//
     	}
 		return (prove1 && prove2 && true);
     }
     
-    private static boolean proveComposition3Statement(AbstractStatement statement, JavaVariables vars, GlobalConditions conds, Renaming renaming, URI uri, IProgressMonitor monitor) {
+    private static boolean proveComposition3Statement(AbstractStatement statement, JavaVariables vars, GlobalConditions conds, Renaming renaming, MethodClass javaClass, URI uri, IProgressMonitor monitor) {
     	boolean prove1, prove2, prove3 = false;
     	Composition3Statement compositionStatement = (Composition3Statement) statement;
     	if (compositionStatement.getFirstStatement().getRefinement() != null) {
-    		prove1 = proveChildStatement(compositionStatement.getFirstStatement().getRefinement(), vars, conds, renaming, uri, monitor);
+    		prove1 = proveChildStatement(compositionStatement.getFirstStatement().getRefinement(), vars, conds, renaming, javaClass, uri, monitor);
     	} else {
-    		prove1 = proveChildStatement(compositionStatement.getFirstStatement(), vars, conds, renaming, uri, monitor);
+    		prove1 = proveChildStatement(compositionStatement.getFirstStatement(), vars, conds, renaming, javaClass, uri, monitor);
     	}
     	if (compositionStatement.getSecondStatement().getRefinement() != null) {
-    		prove2 = proveChildStatement(compositionStatement.getSecondStatement().getRefinement(), vars, conds, renaming, uri, monitor);
+    		prove2 = proveChildStatement(compositionStatement.getSecondStatement().getRefinement(), vars, conds, renaming, javaClass, uri, monitor);
     	} else {
-    		prove2 = proveChildStatement(compositionStatement.getSecondStatement(), vars, conds, renaming, uri, null);
+    		prove2 = proveChildStatement(compositionStatement.getSecondStatement(), vars, conds, renaming, javaClass, uri, null);
     	}
     	if (compositionStatement.getThirdStatement().getRefinement() != null) {
-    		prove3 = proveChildStatement(compositionStatement.getThirdStatement().getRefinement(), vars, conds, renaming, uri, monitor);
+    		prove3 = proveChildStatement(compositionStatement.getThirdStatement().getRefinement(), vars, conds, renaming, javaClass, uri, monitor);
     	} else {
-    		prove3 = proveChildStatement(compositionStatement.getThirdStatement(), vars, conds, renaming, uri, monitor);
+    		prove3 = proveChildStatement(compositionStatement.getThirdStatement(), vars, conds, renaming, javaClass, uri, monitor);
     	}
     	if (prove1 && prove2 && prove3 && true) {
 			statement.setProven(true);
 		} else {
-			statement.setProven(false);
+			statement.setProven(false);//
 		}
 		return (prove1 && prove2 && prove3 && true);
     }
 
-	private static boolean proveAbstractStatement(AbstractStatement statement, JavaVariables vars, GlobalConditions conds, 
-			Renaming renaming, URI uri, IProgressMonitor monitor) {
+	private static boolean proveAbstractStatement(AbstractStatement statement, JavaVariables vars, GlobalConditions conds, boolean returnStatement,
+			Renaming renaming, MethodClass javaClass, URI uri, IProgressMonitor monitor) {
 		if (!statement.isProven()) {
 			boolean prove = false;
 			EList<ProductVariant> variants = null;
-			prove = ProveWithKey.proveStatementWithKey(statement, vars, conds, renaming, variants, uri, monitor);
+			prove = ProveWithKey.proveStatementWithKey(statement, vars, conds, returnStatement, false, renaming, javaClass, variants, uri, monitor);
 			if (prove) {
 				statement.setProven(true);
 			} else {
-				statement.setProven(false);
+				statement.setProven(false);//
 			}
 	    	return prove;
 		} else {
@@ -200,24 +217,25 @@ public class VerifyAllStatements extends MyAbstractAsynchronousCustomFeature {
 		}
     }
     
-    private static boolean proveSelectionStatement(AbstractStatement statement, JavaVariables vars, GlobalConditions conds, Renaming renaming, URI uri, IProgressMonitor monitor) {
+    private static boolean proveSelectionStatement(AbstractStatement statement, JavaVariables vars, GlobalConditions conds, Renaming renaming, 
+    		MethodClass javaClass, URI uri, IProgressMonitor monitor) {
     	boolean prove = true;
     	SelectionStatement selectionStatement = (SelectionStatement) statement;
 		for (AbstractStatement childStatement : selectionStatement.getCommands()) {
-			prove = (proveChildStatement(childStatement.getRefinement(), vars, conds, renaming, uri, monitor) && prove && true);
+			prove = (proveChildStatement(childStatement.getRefinement(), vars, conds, renaming, javaClass, uri, monitor) && prove && true);
 		}
 		boolean provePre = selectionStatement.isPreProve();
 		if (!(selectionStatement.isProven() && provePre && true)) {
 			if (!selectionStatement.isPreProve()) {
 				EList<Condition> guards = selectionStatement.getGuards();
 				Condition preCondition = selectionStatement.getParent().getPreCondition();
-				provePre = ProveWithKey.provePreSelWithKey(guards, preCondition, vars, conds, renaming, uri, null);
+				provePre = ProveWithKey.provePreSelWithKey(guards, preCondition, vars, javaClass, conds, renaming, uri, null);
 				selectionStatement.setPreProve(provePre);
 			}
 			if (provePre && prove && true) {
 				selectionStatement.setProven(true);
 			} else {
-				selectionStatement.setProven(false);
+				selectionStatement.setProven(false);//
 			}
 			return (prove && provePre && true);
     	} else {
@@ -226,34 +244,38 @@ public class VerifyAllStatements extends MyAbstractAsynchronousCustomFeature {
     	}
     }
 
-	private static boolean proveRepetitionStatement(AbstractStatement statement, JavaVariables vars, GlobalConditions conds, Renaming renaming, URI uri, IProgressMonitor monitor) {
+	private static boolean proveRepetitionStatement(AbstractStatement statement, JavaVariables vars, GlobalConditions conds, Renaming renaming,
+			MethodClass javaClass, URI uri, IProgressMonitor monitor) {
 		boolean prove = true;
 		boolean provePre, provePost, proveVar = false;
 		RepetitionStatement repStatement = (RepetitionStatement) statement;
+
 		if (repStatement.getLoopStatement().getRefinement() != null) {
-			prove = (proveChildStatement(repStatement.getLoopStatement().getRefinement(), vars, conds, renaming, uri, monitor) && true);
+			prove = (proveChildStatement(repStatement.getLoopStatement().getRefinement(), vars, conds, renaming, javaClass, uri, monitor) && true);
 		}
 		if (repStatement.getStartStatement().getRefinement() != null) {
-			prove = (proveChildStatement(repStatement.getStartStatement().getRefinement(), vars, conds, renaming, uri, monitor) && prove && true);
+			prove = (proveChildStatement(repStatement.getStartStatement().getRefinement(), vars, conds, renaming, javaClass, uri, monitor) && prove && true);
 		}
 		if (repStatement.getEndStatement().getRefinement() != null) {
-			prove = (proveChildStatement(repStatement.getEndStatement().getRefinement(), vars, conds, renaming, uri, monitor) && prove && true);
+			prove = (proveChildStatement(repStatement.getEndStatement().getRefinement(), vars, conds, renaming, javaClass, uri, monitor) && prove && true);
 		}
 		if (!(repStatement.isVariantProven() && repStatement.isProven()) && true) {
 			Condition invariant = repStatement.getInvariant();
 			Condition preCondition = repStatement.getPreCondition();
+			if(preCondition == null)
+				Console.println("NULLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL888888888888888888");
 			Condition guard = repStatement.getGuard();
 			Condition postCondition = repStatement.getPostCondition();
-			String code = ConstructCodeBlock.constructCodeBlockAndVerify(statement);
+			String code = ConstructCodeBlock.constructCodeBlockAndVerify3(statement);
 			Variant variant = repStatement.getVariant();
-			provePre = ProveWithKey.provePreWithKey(invariant, preCondition, vars, conds, renaming, uri, monitor);
-			provePost = ProveWithKey.provePostWithKey(invariant, guard, postCondition, vars, conds, renaming, uri, monitor);
-			proveVar = ProveWithKey.proveVariant2WithKey(code, invariant, guard, variant, vars, conds, renaming, uri, monitor);
+			provePre = ProveWithKey.provePreWithKey(invariant, preCondition, vars, javaClass,conds, renaming, uri, monitor);
+			provePost = ProveWithKey.provePostWithKey(invariant, guard, postCondition, javaClass, vars, conds, renaming, uri, monitor);
+			proveVar = ProveWithKey.proveVariant2WithKey(code, invariant, guard, variant, javaClass, vars, conds, renaming, uri, monitor);
 			repStatement.setVariantProven(proveVar);
 			if (prove && provePre && provePost && proveVar && true) {
 				statement.setProven(true);
 			} else {
-				statement.setProven(false);
+				statement.setProven(false);//
 			}	
 	    	return (provePre && provePost && proveVar && true);
 		} else {
@@ -263,11 +285,12 @@ public class VerifyAllStatements extends MyAbstractAsynchronousCustomFeature {
 		}
     }
 	
-	private static boolean proveSmallReptitionStatement(AbstractStatement statement, JavaVariables vars, GlobalConditions conds, Renaming renaming, URI uri, IProgressMonitor monitor) {
+	private static boolean proveSmallReptitionStatement(AbstractStatement statement, JavaVariables vars, GlobalConditions conds, Renaming renaming, 
+			MethodClass javaClass, URI uri, IProgressMonitor monitor) {
 		SmallRepetitionStatement repStatement = (SmallRepetitionStatement) statement;
 		boolean prove = true;
 		if (repStatement.getLoopStatement().getRefinement() != null) {
-			prove = (proveChildStatement(repStatement.getLoopStatement().getRefinement(), vars, conds, renaming, uri, null) && prove && true);
+			prove = (proveChildStatement(repStatement.getLoopStatement().getRefinement(), vars, conds, renaming, javaClass, uri, null) && prove && true);
 		}
 		boolean provePre = repStatement.isPreProven();
 		boolean provePost = repStatement.isPostProven();
@@ -280,21 +303,21 @@ public class VerifyAllStatements extends MyAbstractAsynchronousCustomFeature {
 			String code = ConstructCodeBlock.constructCodeBlockAndVerify(statement);
 			Variant variant = repStatement.getVariant();
 			if (!provePre) {
-				provePre = ProveWithKey.provePreWithKey(invariant, preCondition, vars, conds, renaming, uri, monitor);
+				provePre = ProveWithKey.provePreWithKey(invariant, preCondition, vars, javaClass, conds, renaming, uri, monitor);
 				repStatement.setPreProven(provePre);
 			}
 			if (!provePost) {
-				provePost = ProveWithKey.provePostWithKey(invariant, guard, postCondition, vars, conds, renaming, uri, monitor);
+				provePost = ProveWithKey.provePostWithKey(invariant, guard, postCondition, javaClass, vars, conds, renaming, uri, monitor);
 				repStatement.setPostProven(provePost);
 			}
 			if (!proveVar) {
-				proveVar = ProveWithKey.proveVariant2WithKey(code, invariant, guard, variant, vars, conds, renaming, uri, monitor);
+				proveVar = ProveWithKey.proveVariant2WithKey(code, invariant, guard, variant, javaClass, vars, conds, renaming, uri, monitor);
 				repStatement.setVariantProven(proveVar);	
 			}
 			if (prove && provePre && provePost && proveVar) {
 				repStatement.setProven(true);
 			} else {
-				repStatement.setProven(false);
+				repStatement.setProven(false);//
 			} 
 	    	return prove;
 		} else {

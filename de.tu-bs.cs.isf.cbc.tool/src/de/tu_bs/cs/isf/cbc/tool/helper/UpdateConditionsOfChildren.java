@@ -202,7 +202,7 @@ public class UpdateConditionsOfChildren {
 				childStatement.getPreCondition()
 						.setName(modifiablePreParent + "(" + preCondParent + ") & (" + childGuard.getName() + ")");
 				childStatement.getPostCondition().setName(postParent.getName());
-
+				
 				if (childStatement.getRefinement() != null) {
 					updateRefinedStatement(childStatement, childStatement.getRefinement());
 				}

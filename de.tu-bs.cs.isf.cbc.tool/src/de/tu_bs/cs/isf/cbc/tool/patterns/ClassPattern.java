@@ -7,6 +7,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.graphiti.features.IReason;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.context.ICreateContext;
+import org.eclipse.graphiti.features.context.IDeleteContext;
 import org.eclipse.graphiti.features.context.IDirectEditingContext;
 import org.eclipse.graphiti.features.impl.Reason;
 import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
@@ -30,140 +31,131 @@ import org.eclipse.graphiti.services.IPeCreateService;
 import org.eclipse.graphiti.util.PredefinedColoredAreas;
 
 import de.tu_bs.cs.isf.cbc.cbcmodel.CbcmodelFactory;
-import de.tu_bs.cs.isf.cbc.cbcmodel.Method;
+import de.tu_bs.cs.isf.cbc.cbcmodel.MethodClass;
 import de.tu_bs.cs.isf.cbc.tool.model.CbcModelUtil;
 
-/**
- * Class that creates the graphical representation of Methods
- * @author Tobias
- *
- */
-public class MethodPattern extends IdPattern implements IPattern {
 
-	private static final String ID_NAME_TEXT = "methodName";
-	private static final String ID_METHOD_TEXT = "methodNameMethod";
+public class ClassPattern extends IdPattern implements IPattern{
+
+	private static final String ID_NAME_TEXT = "className";
+	private static final String ID_CLASS_TEXT = "class";
 	private static final String ID_MAIN_RECTANGLE = "mainRectangle";
 	//line:
 	private static final String ID_HOR1_LINE = "hor1Line";
-
-
-	/**
+	
+	/*
 	 * Constructor of the class
-	 */
-	public MethodPattern() {
+	 * */
+	public ClassPattern() {
 		super();
 	}
 	
-	@Override
 	public String getCreateName() {
-		return "Method";
+		return "Class Method";
 	}
 	
-	@Override
 	public String getCreateDescription() {
-		return "Create a Method.";
+		return "Create a class to a method.";
 	}
+	
 
 	@Override
 	public boolean isMainBusinessObjectApplicable(Object mainBusinessObject) {
-		return mainBusinessObject instanceof Method;
-	}
-
-	@Override
+		return mainBusinessObject instanceof MethodClass;
+	}	
+	
 	public boolean canCreate(ICreateContext context) {
-		Method method = null;
+		MethodClass javaClass = null;
 		for (Shape shape : getDiagram().getChildren()) {
 			Object obj = getBusinessObjectForPictogramElement(shape);
-			if (obj instanceof Method) {
-				method = (Method) obj;
+			if (obj instanceof MethodClass) {
+				javaClass = (MethodClass) obj;
 			}
 		}
-		if (method != null) return false;
+		if (javaClass != null)
+			return false;
 		return context.getTargetContainer() instanceof Diagram;
-	}
+	} 
 	
-	@Override
 	public Object[] create(ICreateContext context) {
-		Method method = CbcmodelFactory.eINSTANCE.createMethod();
-		method.setName("newMethod()");
-		
+		MethodClass javaClass = CbcmodelFactory.eINSTANCE.createMethodClass();
+		javaClass.setMethodClass("newMethodClass");
 		try {
-			CbcModelUtil.saveMethodToModelFile(method, getDiagram());
+			CbcModelUtil.saveClassToModelFile(javaClass, getDiagram());
 		} catch (CoreException | IOException e) {
 			e.printStackTrace();
 		}
-		
-		addGraphicalRepresentation(context, method);
-		return new Object[] { method };
-	}
 
-	@Override
+		addGraphicalRepresentation(context, javaClass);
+		return new Object[] { javaClass };
+	}
+	
 	public boolean canAdd(IAddContext context) {
+		//return false;
 		return super.canAdd(context) && context.getTargetContainer() instanceof Diagram;
 	}
-
+	
 	@Override
-	public PictogramElement doAdd(IAddContext context) {
-		
+	protected PictogramElement doAdd(IAddContext context) {
 		Diagram targetDiagram = (Diagram) context.getTargetContainer();
-		Method addedMethod = (Method) context.getNewObject();
+		MethodClass addedClass = (MethodClass) context.getNewObject();
 		IPeCreateService peCreateService = Graphiti.getPeCreateService();
 		IGaService gaService = Graphiti.getGaService();
 
 		int width = context.getWidth() <= 0 ? 200 : context.getWidth();
-        int height = context.getHeight() <= 0 ? 100 : context.getHeight();
-        
-        Font headerFont = gaService.manageFont(getDiagram(), "Arial", 9, false, true);
-        
+		int height = context.getHeight() <= 0 ? 100 : context.getHeight();
+
+		Font headerFont = gaService.manageFont(getDiagram(), "Arial", 9, false, true);
+
 		// Main contents area
 		ContainerShape outerContainerShape = peCreateService.createContainerShape(targetDiagram, true);
 		RoundedRectangle mainRectangle = gaService.createRoundedRectangle(outerContainerShape, 20, 20);
 		mainRectangle.setFilled(true);
 		gaService.setRenderingStyle(mainRectangle, PredefinedColoredAreas.getBlueWhiteAdaptions());
 		setId(mainRectangle, ID_MAIN_RECTANGLE);
-		gaService.setLocationAndSize(mainRectangle,
-	            context.getX(), context.getY(), width, height);
+		gaService.setLocationAndSize(mainRectangle, context.getX(), context.getY(), width, height);
 
-        // create link and wire it
-        link(outerContainerShape, addedMethod);
+		// create link and wire it
+		link(outerContainerShape, addedClass);
 
 		// method name
-		Shape nameTextShape = peCreateService.createShape(outerContainerShape, false);
-		Text methodNameText = gaService.createText(nameTextShape, "");
-		setId(methodNameText, ID_NAME_TEXT);
-		methodNameText.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
-		methodNameText.setVerticalAlignment(Orientation.ALIGNMENT_CENTER);
+		Shape nameTextShape = peCreateService.createShape(outerContainerShape, true);
+		Text classNameText = gaService.createText(nameTextShape, "");
+		setId(classNameText, ID_NAME_TEXT);
+		classNameText.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
+		classNameText.setVerticalAlignment(Orientation.ALIGNMENT_CENTER);
 		
 		Shape textShapeMethod = peCreateService.createShape(outerContainerShape, false);
-		Text nameTextMethod = gaService.createText(textShapeMethod, "Methoda");
-		setId(nameTextMethod, ID_METHOD_TEXT);
+		Text nameTextMethod = gaService.createText(textShapeMethod, "Class Method");
+		setId(nameTextMethod, ID_CLASS_TEXT);
 		nameTextMethod.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 		nameTextMethod.setVerticalAlignment(Orientation.ALIGNMENT_CENTER);
 		nameTextMethod.setFont(headerFont);
 		
-		//line:
+		// line:
 		Shape hor1Shape = peCreateService.createShape(outerContainerShape, false);
 		Polyline hor1line = gaService.createPolyline(hor1Shape);
 		setId(hor1line, ID_HOR1_LINE);
 
-		link(outerContainerShape, addedMethod);
-		link(nameTextShape, addedMethod);
+		link(outerContainerShape, addedClass);
+		link(nameTextShape, addedClass);
 
 		return outerContainerShape;
+
 	}
 
 	@Override
 	protected boolean layout(IdLayoutContext context, String id) {
 		boolean changesDone = false;
-		
+
 		GraphicsAlgorithm mainRectangle = context.getRootPictogramElement().getGraphicsAlgorithm();
 		GraphicsAlgorithm ga = context.getGraphicsAlgorithm();
-		int thirdHeight = mainRectangle.getHeight() / 3; 
+		int thirdHeight = mainRectangle.getHeight() / 3;
 		
 		if (id.equals(ID_NAME_TEXT)) {
 			Graphiti.getGaService().setLocationAndSize(ga, 0, thirdHeight, mainRectangle.getWidth(), thirdHeight * 2);
 			changesDone = true;
-		} else if (id.equals(ID_METHOD_TEXT)) {
+		} else if (id.equals(ID_CLASS_TEXT)) {
 			Graphiti.getGaService().setLocationAndSize(ga, 0, 0, mainRectangle.getWidth(), thirdHeight);
 			changesDone = true;
 		} else if (id.equals(ID_HOR1_LINE)) {
@@ -177,64 +169,82 @@ public class MethodPattern extends IdPattern implements IPattern {
 
 		return changesDone;
 	}
-	
+
+	public boolean canUpdate(IdUpdateContext context) {
+        Object bo = getBusinessObjectForPictogramElement(context.getPictogramElement());
+        return (bo instanceof MethodClass);
+	}
+
 	@Override
 	protected IReason updateNeeded(IdUpdateContext context, String id) {
 		if (id.equals(ID_NAME_TEXT)) {
 			Text nameText = (Text) context.getGraphicsAlgorithm();
-			Method domainObject = (Method) context.getDomainObject();
-			if (domainObject.getName() == null || !domainObject.getName().equals(nameText.getValue())) {
-				return Reason.createTrueReason("Name differs. Expected: '" + domainObject.getName() + "'");
+			MethodClass domainObject = (MethodClass) context.getDomainObject();
+			if (domainObject.getMethodClass() == null || !domainObject.getMethodClass().equals(nameText.getValue())) {
+				return Reason.createTrueReason("Name differs. Expected: '" + domainObject.getMethodClass() + "'");
 			}
 		} 
 		return Reason.createFalseReason();
-	}
-
+	}	
+	
 	@Override
 	protected boolean update(IdUpdateContext context, String id) {
 		if (id.equals(ID_NAME_TEXT)) {
 			Text nameText = (Text) context.getGraphicsAlgorithm();
-			Method domainObject = (Method) context.getDomainObject();
-			nameText.setValue(domainObject.getName());
+			MethodClass domainObject = (MethodClass) context.getDomainObject();
+			nameText.setValue(domainObject.getMethodClass());
 			return true;
 		}
 		return false;
 	}
-
-	@Override
+	
 	public int getEditingType() {
-		return TYPE_TEXT;
+	    return TYPE_TEXT;
 	}
-
-	@Override
+	
 	public boolean canDirectEdit(IDirectEditingContext context) {
 		Object domainObject = getBusinessObjectForPictogramElement(context.getPictogramElement());
 		GraphicsAlgorithm ga = context.getGraphicsAlgorithm();
-		if (domainObject instanceof Method && ga instanceof Text) {
+		if (domainObject instanceof MethodClass && ga instanceof Text) {
 			return true;
 		}
 		return false;
 	}
-
-	@Override
+	
 	public String getInitialValue(IDirectEditingContext context) {
-		Method method = (Method) getBusinessObjectForPictogramElement(context.getPictogramElement());
-		return method.getName();
+		MethodClass signature = (MethodClass) getBusinessObjectForPictogramElement(context.getPictogramElement());
+		return signature.getMethodClass();
 	}
-
-	@Override
+	
 	public String checkValueValid(String value, IDirectEditingContext context) {
 		if (value == null || value.length() == 0) {
-			return "Method must not be empty";
+			return "MethodSignature must not be empty";
 		}
 		return null;
 	}
+	
 
-	@Override
 	public void setValue(String value, IDirectEditingContext context) {
-		Method method = (Method) getBusinessObjectForPictogramElement(context.getPictogramElement());
-		method.setName(value);
+		MethodClass method = (MethodClass) getBusinessObjectForPictogramElement(context.getPictogramElement());
+		method.setMethodClass(value);
 		updatePictogramElement(context.getPictogramElement());
 	}
+	
+	/*public void delete(IDeleteContext context) {
+		Shape shape = (Shape) context.getPictogramElement();
+		ContainerShape container = shape.getContainer();
+		
+		MethodClass variable = (MethodClass) getBusinessObjectForPictogramElement(context.getPictogramElement());
+		if (variable.eContainer() != null && variable.eContainer() instanceof MethodClass) {
+			int indexToDelete = getIndex(shape.getGraphicsAlgorithm());
+			
+			for (Shape childShape : container.getChildren()) {
+				if (getIndex(childShape.getGraphicsAlgorithm()) > indexToDelete) {
+					setIndex(childShape.getGraphicsAlgorithm(), getIndex(childShape.getGraphicsAlgorithm()) - 1);
+				}
+			}
+			super.delete(context);
+			layoutPictogramElement(container);
+		}
+	}*/
 }
-

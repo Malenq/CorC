@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -40,7 +41,7 @@ public class FileUtil {
 		}
 		return null;
 	}
-
+	
 	private static IFile traverseFolders(IContainer folder, String className) {
 		try {
 			IResource[] members = folder.members();
