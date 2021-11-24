@@ -16,6 +16,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.key_project.util.collection.ImmutableSet;
 
+import de.tu_bs.cs.isf.cbc.statistics.RHelper;
 import de.uka.ilkd.key.control.KeYEnvironment;
 import de.uka.ilkd.key.gui.MainWindow;
 import de.uka.ilkd.key.java.abstraction.KeYJavaType;
@@ -91,9 +92,10 @@ public class KeYInteraction {
 
 			// Show proof result
 			try {
+				// savToFile is a function by KeY
 				proof.saveToFile(location);
 				
-//				printStatistics(proof, inlining);
+				printStatistics(proof, inlining);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -204,7 +206,7 @@ public class KeYInteraction {
 		}
 	}
 	
-	private static void printStatistics(Proof proof, boolean inlining) {
+	private static void printStatistics(Proof proof, boolean inlining) throws IOException {
 		Statistics s = proof.getStatistics();
 		if(inlining)
 			Console.println("Inlining");
@@ -212,6 +214,13 @@ public class KeYInteraction {
 			Console.println("Contracting");
 		Console.println("Statistics: \n\t nodes: " + s.nodes //+ "\n\t rule apps: " + s.totalRuleApps
 				+ "\n\t time in Millis: " + s.timeInMillis );
+		
+		RHelper helper = new RHelper();
+		
+		String exampleFileString = helper.createStatisticFileString(s);
+		
+		helper.createStatisticFiles("test", exampleFileString);
+		
 	}
 
 }
