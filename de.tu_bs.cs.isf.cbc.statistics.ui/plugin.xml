@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="de.tu_bs.cs.isf.cbc.statistics.ui.OpenStatisticsViewHandler"
+            id="de.tu_bs.cs.isf.cbc.statistics.ui.view.statistics.command"
+            name="View corc statistics command">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="true"
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <command
+               commandId="de.tu_bs.cs.isf.cbc.statistics.ui.view.statistics.command"
+               id="de.tu_bs.cs.isf.cbc.statistics.ui.view.statistics.command.mapping"
+               label="View CorC Statistics"
+               style="push">
+            <!-- visibleWhen
+               checkEnabled="false">
+               <with
+                     variable="activeMenuSelection">
+                  <iterate
+                        ifEmpty="false">
+                     <adapt
+                           type="org.eclipse.core.resources.IProject">
+                     </adapt>
+                  </iterate>
+               </with>
+            </visibleWhen -->
+         </command>
+      </menuContribution>
+   </extension>
+
+</plugin>

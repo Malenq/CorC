@@ -58,6 +58,10 @@ public class RHelper {
 				writeToFile(errorFileLocation, textBuilder.toString(), true);
 			}
 		} catch (Exception e) {
+			String errorOutput = "Rscript not found. Please install and make sure to add to PATH variable.\n"
+					+ "  -> Eclipse may have to be restarted.";
+			System.out.println(errorOutput);
+			de.tu_bs.cs.isf.cbc.util.Console.println(errorOutput);
 			e.printStackTrace();
 		}
 
@@ -84,7 +88,7 @@ public class RHelper {
 	public String createStatisticFileString(Statistics statisticObject) {
 	
 		String emptyLine = "\r\n";
-		String pdfPath = "pdf(file=\"C:\\\\Users\\\\m-hor\\\\Desktop\\\\test.pdf\", height=10, width=15)\r\n";
+		String pdfPath = "pdf(file=\"C:\\\\Users\\\\Malle\\\\Desktop\\\\test.pdf\", height=10, width=15)\r\n";
 		
 		String xAxis = "y=c(12,15,28,17,18)\r\n";
 		String yAxis = "x=c(22,39,50,25,18)\r\n";

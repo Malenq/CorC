@@ -6,5 +6,6 @@ Bundle-Version: 1.0.0
 Automatic-Module-Name: de.tu_bs.cs.isf.cbc.statistics
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: org.eclipse.core.runtime,
- org.key_project.core.symbolic_execution
+ org.key_project.core.symbolic_execution,
+ de.tu-bs.cs.isf.cbc.util
 Export-Package: de.tu_bs.cs.isf.cbc.statistics
