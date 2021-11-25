@@ -1,11 +1,18 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Statistics
-Bundle-SymbolicName: de.tu_bs.cs.isf.cbc.statistics
+Bundle-Name: %pluginName
+Bundle-SymbolicName: de.tu_bs.cs.isf.cbc.statistics;singleton:=true
 Bundle-Version: 1.0.0
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
 Automatic-Module-Name: de.tu_bs.cs.isf.cbc.statistics
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
  org.key_project.core.symbolic_execution,
  de.tu-bs.cs.isf.cbc.util
-Export-Package: de.tu_bs.cs.isf.cbc.statistics
+Bundle-ActivationPolicy: lazy
+Export-Package: de.tu_bs.cs.isf.cbc.statistics,
+ de.tu_bs.cs.isf.cbc.statistics.impl,
+ de.tu_bs.cs.isf.cbc.statistics.util

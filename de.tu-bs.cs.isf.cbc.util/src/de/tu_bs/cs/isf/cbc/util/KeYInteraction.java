@@ -95,7 +95,11 @@ public class KeYInteraction {
 				// savToFile is a function by KeY
 				proof.saveToFile(location);
 				
-				printStatistics(proof, inlining);
+				//TODO: inlining may be important too 
+				RHelper helper = new RHelper();
+				helper.statisticDataCollector(proof);
+				
+//				printStatistics(proof, inlining);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -215,11 +219,11 @@ public class KeYInteraction {
 		Console.println("Statistics: \n\t nodes: " + s.nodes //+ "\n\t rule apps: " + s.totalRuleApps
 				+ "\n\t time in Millis: " + s.timeInMillis );
 		
-		RHelper helper = new RHelper();
-		
-		String exampleFileString = helper.createStatisticFileString(s);
-		
-		helper.createStatisticFiles("test", exampleFileString);
+//		RHelper helper = new RHelper();
+//		
+//		String exampleFileString = helper.createStatisticFileString(s, proof);
+//		
+//		helper.createStatisticFiles("test", exampleFileString);
 		
 	}
 

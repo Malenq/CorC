@@ -11,6 +11,7 @@ import java.nio.charset.StandardCharsets;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
 
+import de.uka.ilkd.key.proof.Proof;
 import de.uka.ilkd.key.proof.Statistics;
 
 public class RHelper {
@@ -85,7 +86,7 @@ public class RHelper {
 	}
 	
 	// TODO: input: some statistic data of the proofing process
-	public String createStatisticFileString(Statistics statisticObject) {
+	public String createStatisticFileString(Statistics statisticObject, Proof proof) {
 	
 		String emptyLine = "\r\n";
 		String pdfPath = "pdf(file=\"C:\\\\Users\\\\Malle\\\\Desktop\\\\test.pdf\", height=10, width=15)\r\n";
@@ -98,6 +99,12 @@ public class RHelper {
 		String fileString = pdfPath + emptyLine + xAxis + yAxis +  plotCommand;
 
 		return fileString;
+	}
+	
+	public void statisticDataCollector(Proof proof) {
+		
+		System.out.println("Data Collecor is called!");
+		
 	}
 
 }
