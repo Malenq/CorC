@@ -91,8 +91,8 @@ public class RHelper {
 		String emptyLine = "\r\n";
 		String pdfPath = "pdf(file=\"C:\\\\Users\\\\Malle\\\\Desktop\\\\test.pdf\", height=10, width=15)\r\n";
 		
-		String xAxis = "y=c(12,15,28,17,18)\r\n";
-		String yAxis = "x=c(22,39,50,25,18)\r\n";
+		String yAxis = "y=c(12,15,28,17,18)\r\n";
+		String xAxis = "x=c(22,39,50,25,18)\r\n";
 		
 		String plotCommand = "mean(y)\r\nmean(x)\r\nplot(x,y)";
 		
@@ -100,11 +100,13 @@ public class RHelper {
 
 		return fileString;
 	}
-	
-	public void statisticDataCollector(Proof proof) {
+
+	public void doSomethingToShow() {
 		
-		System.out.println("Data Collecor is called!");
-		
+		//TODO: get saved data (not saved jet)
+		//TODO: return PNG or so
 	}
+	
+
 
 }

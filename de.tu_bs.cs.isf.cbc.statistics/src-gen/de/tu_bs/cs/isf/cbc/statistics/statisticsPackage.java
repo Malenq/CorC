@@ -159,13 +159,49 @@ public interface statisticsPackage extends EPackage {
 	int STATISTICS_ENTRY_DATA = 2;
 
 	/**
+	 * The feature id for the '<em><b>Number Of Nodes</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATISTICS_ENTRY_DATA__NUMBER_OF_NODES = 0;
+
+	/**
+	 * The feature id for the '<em><b>Auto Mode Time In Millis</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATISTICS_ENTRY_DATA__AUTO_MODE_TIME_IN_MILLIS = 1;
+
+	/**
+	 * The feature id for the '<em><b>Time In Millis</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATISTICS_ENTRY_DATA__TIME_IN_MILLIS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Time Per Step In Millis</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATISTICS_ENTRY_DATA__TIME_PER_STEP_IN_MILLIS = 3;
+
+	/**
 	 * The number of structural features of the '<em>Statistics Entry Data</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATISTICS_ENTRY_DATA_FEATURE_COUNT = 0;
+	int STATISTICS_ENTRY_DATA_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Statistics Entry Data</em>' class.
@@ -252,6 +288,50 @@ public interface statisticsPackage extends EPackage {
 	EClass getStatisticsEntryData();
 
 	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getNumberOfNodes <em>Number Of Nodes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Number Of Nodes</em>'.
+	 * @see de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getNumberOfNodes()
+	 * @see #getStatisticsEntryData()
+	 * @generated
+	 */
+	EAttribute getStatisticsEntryData_NumberOfNodes();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getAutoModeTimeInMillis <em>Auto Mode Time In Millis</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Auto Mode Time In Millis</em>'.
+	 * @see de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getAutoModeTimeInMillis()
+	 * @see #getStatisticsEntryData()
+	 * @generated
+	 */
+	EAttribute getStatisticsEntryData_AutoModeTimeInMillis();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getTimeInMillis <em>Time In Millis</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Time In Millis</em>'.
+	 * @see de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getTimeInMillis()
+	 * @see #getStatisticsEntryData()
+	 * @generated
+	 */
+	EAttribute getStatisticsEntryData_TimeInMillis();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getTimePerStepInMillis <em>Time Per Step In Millis</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Time Per Step In Millis</em>'.
+	 * @see de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getTimePerStepInMillis()
+	 * @see #getStatisticsEntryData()
+	 * @generated
+	 */
+	EAttribute getStatisticsEntryData_TimePerStepInMillis();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -335,6 +415,38 @@ public interface statisticsPackage extends EPackage {
 		 * @generated
 		 */
 		EClass STATISTICS_ENTRY_DATA = eINSTANCE.getStatisticsEntryData();
+
+		/**
+		 * The meta object literal for the '<em><b>Number Of Nodes</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STATISTICS_ENTRY_DATA__NUMBER_OF_NODES = eINSTANCE.getStatisticsEntryData_NumberOfNodes();
+
+		/**
+		 * The meta object literal for the '<em><b>Auto Mode Time In Millis</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STATISTICS_ENTRY_DATA__AUTO_MODE_TIME_IN_MILLIS = eINSTANCE.getStatisticsEntryData_AutoModeTimeInMillis();
+
+		/**
+		 * The meta object literal for the '<em><b>Time In Millis</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STATISTICS_ENTRY_DATA__TIME_IN_MILLIS = eINSTANCE.getStatisticsEntryData_TimeInMillis();
+
+		/**
+		 * The meta object literal for the '<em><b>Time Per Step In Millis</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STATISTICS_ENTRY_DATA__TIME_PER_STEP_IN_MILLIS = eINSTANCE.getStatisticsEntryData_TimePerStepInMillis();
 
 	}
 

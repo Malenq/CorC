@@ -1,8 +1,6 @@
 package de.tu_bs.cs.isf.cbc.statistics.ui;
 
 
-import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
@@ -44,7 +42,7 @@ public class StatisticsDialog extends TitleAreaDialog {
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		browser.setLayoutData(gridData);
 		
-		String templateHTML = "Hello world!";
+		String templateHTML = HtmlHandler.getHtmlString();
 		browser.setText(templateHTML);
 
 		browser.setFocus();

@@ -14,5 +14,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="data" lowerBound="1" eType="#//StatisticsEntryData"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StatisticsEntryData"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StatisticsEntryData">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberOfNodes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="autoModeTimeInMillis" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeInMillis" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timePerStepInMillis" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+  </eClassifiers>
 </ecore:EPackage>

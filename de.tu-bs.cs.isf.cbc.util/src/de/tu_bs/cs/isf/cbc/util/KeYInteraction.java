@@ -16,6 +16,8 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.key_project.util.collection.ImmutableSet;
 
+import de.tu_bs.cs.isf.cbc.cbcmodel.CbCFormula;
+import de.tu_bs.cs.isf.cbc.statistics.DataCollector;
 import de.tu_bs.cs.isf.cbc.statistics.RHelper;
 import de.uka.ilkd.key.control.KeYEnvironment;
 import de.uka.ilkd.key.gui.MainWindow;
@@ -34,7 +36,7 @@ import de.uka.ilkd.key.util.MiscTools;
 
 public class KeYInteraction {
 	
-	public static Proof startKeyProof(File location, IProgressMonitor monitor, boolean inlining) {
+	public static Proof startKeyProof(File location, IProgressMonitor monitor, boolean inlining, CbCFormula formula) {
 		Proof proof = null;
 		List<File> classPaths = null; // Optionally: Additional specifications
 										// for API classes
@@ -96,8 +98,8 @@ public class KeYInteraction {
 				proof.saveToFile(location);
 				
 				//TODO: inlining may be important too 
-				RHelper helper = new RHelper();
-				helper.statisticDataCollector(proof);
+				DataCollector collector = new DataCollector();
+				collector.collectCorcStatistics(proof, formula);
 				
 //				printStatistics(proof, inlining);
 			} catch (IOException e) {

@@ -23,9 +23,9 @@ import de.tu_bs.cs.isf.cbc.cbcmodel.Condition;
 import de.tu_bs.cs.isf.cbc.cbcmodel.GlobalConditions;
 import de.tu_bs.cs.isf.cbc.cbcmodel.JavaVariable;
 import de.tu_bs.cs.isf.cbc.cbcmodel.JavaVariables;
-import de.tu_bs.cs.isf.cbc.cbcmodel.MethodClass;
 import de.tu_bs.cs.isf.cbc.cbcmodel.Renaming;
 import de.tu_bs.cs.isf.cbc.cbcmodel.Variant;
+import de.tu_bs.cs.isf.cbc.statistics.DataCollector;
 import de.uka.ilkd.key.proof.Goal;
 import de.uka.ilkd.key.proof.Proof;
 
@@ -425,14 +425,14 @@ public class ProveWithKey {
 	}
 
 	public boolean proveWithKey(File location, boolean inlining) {
-		return proveWithKey(location, monitor, inlining);	
+		return proveWithKey(location, monitor, inlining, formula);	
 	}
 	
-	public static boolean proveWithKey(File location, IProgressMonitor monitor, boolean inlining) {
+	public static boolean proveWithKey(File location, IProgressMonitor monitor, boolean inlining, CbCFormula formula) {
 		Proof proof = null;
 //		Console.clear();
 //		for (int i = 0; i <5; i++) {
-			proof = KeYInteraction.startKeyProof(location, null, inlining);
+			proof = KeYInteraction.startKeyProof(location, null, inlining, formula);
 //		}
 		if (proof != null) {
 			// Show proof result
@@ -543,7 +543,7 @@ public class ProveWithKey {
 	}
 
 	public String createWPWithKey(File location) {
-		Proof proof = KeYInteraction.startKeyProof(location, monitor, false);
+		Proof proof = KeYInteraction.startKeyProof(location, monitor, false, formula);
 		if (proof != null) {
 			String wp = "";
 			Iterator<Goal> it = proof.openGoals().iterator();

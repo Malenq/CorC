@@ -172,6 +172,42 @@ public class statisticsPackageImpl extends EPackageImpl implements statisticsPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getStatisticsEntryData_NumberOfNodes() {
+		return (EAttribute)statisticsEntryDataEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getStatisticsEntryData_AutoModeTimeInMillis() {
+		return (EAttribute)statisticsEntryDataEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getStatisticsEntryData_TimeInMillis() {
+		return (EAttribute)statisticsEntryDataEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getStatisticsEntryData_TimePerStepInMillis() {
+		return (EAttribute)statisticsEntryDataEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public statisticsFactory getstatisticsFactory() {
 		return (statisticsFactory)getEFactoryInstance();
 	}
@@ -204,6 +240,10 @@ public class statisticsPackageImpl extends EPackageImpl implements statisticsPac
 		createEReference(statisticsEntryEClass, STATISTICS_ENTRY__DATA);
 
 		statisticsEntryDataEClass = createEClass(STATISTICS_ENTRY_DATA);
+		createEAttribute(statisticsEntryDataEClass, STATISTICS_ENTRY_DATA__NUMBER_OF_NODES);
+		createEAttribute(statisticsEntryDataEClass, STATISTICS_ENTRY_DATA__AUTO_MODE_TIME_IN_MILLIS);
+		createEAttribute(statisticsEntryDataEClass, STATISTICS_ENTRY_DATA__TIME_IN_MILLIS);
+		createEAttribute(statisticsEntryDataEClass, STATISTICS_ENTRY_DATA__TIME_PER_STEP_IN_MILLIS);
 	}
 
 	/**
@@ -245,6 +285,10 @@ public class statisticsPackageImpl extends EPackageImpl implements statisticsPac
 		initEReference(getStatisticsEntry_Data(), this.getStatisticsEntryData(), null, "data", null, 1, 1, StatisticsEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(statisticsEntryDataEClass, StatisticsEntryData.class, "StatisticsEntryData", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getStatisticsEntryData_NumberOfNodes(), ecorePackage.getEInt(), "numberOfNodes", null, 0, 1, StatisticsEntryData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStatisticsEntryData_AutoModeTimeInMillis(), ecorePackage.getELong(), "autoModeTimeInMillis", null, 0, 1, StatisticsEntryData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStatisticsEntryData_TimeInMillis(), ecorePackage.getELong(), "timeInMillis", null, 0, 1, StatisticsEntryData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStatisticsEntryData_TimePerStepInMillis(), ecorePackage.getEFloat(), "timePerStepInMillis", null, 0, 1, StatisticsEntryData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
