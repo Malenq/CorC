@@ -101,6 +101,9 @@ public class KeYInteraction {
 				DataCollector collector = new DataCollector();
 				collector.collectCorcStatistics(proof, formula);
 				
+				RHelper helper = new RHelper();
+				helper.createStatisticFiles("test", helper.createStatistiFileString(proof));
+				
 //				printStatistics(proof, inlining);
 			} catch (IOException e) {
 				e.printStackTrace();

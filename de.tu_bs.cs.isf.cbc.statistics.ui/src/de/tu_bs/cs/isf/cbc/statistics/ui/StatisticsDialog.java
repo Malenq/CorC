@@ -1,6 +1,9 @@
 package de.tu_bs.cs.isf.cbc.statistics.ui;
 
 
+import java.util.List;
+
+import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
@@ -11,9 +14,13 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 
+import de.tu_bs.cs.isf.cbc.statistics.StatisticsDatabase;
+
 
 public class StatisticsDialog extends TitleAreaDialog {
-
+	
+	private List<?> paths = null;
+	
 	public StatisticsDialog(Shell parentShell) {
 		super(parentShell);
 	}
@@ -42,7 +49,10 @@ public class StatisticsDialog extends TitleAreaDialog {
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		browser.setLayoutData(gridData);
 		
-		String templateHTML = HtmlHandler.getHtmlString();
+		HtmlHandler htmlSite = new HtmlHandler();
+		htmlSite.setDiagramPaths(paths);
+		htmlSite.setData();
+		String templateHTML = htmlSite.getHtmlString();
 		browser.setText(templateHTML);
 
 		browser.setFocus();
@@ -66,5 +76,13 @@ public class StatisticsDialog extends TitleAreaDialog {
 	@Override
 	protected Point getInitialSize() {
 		return new Point(1200, 800);
+	}
+
+	public void setData(List<IFile> allDiagramFiles) {
+		
+		StatisticsDatabase.instance.getDataRelatedTo(allDiagramFiles);
+		
+		//TODO: now speak to RHelper an generate the statistic diagram PNG - will return a path (? if makes sense)
+		
 	}
 }

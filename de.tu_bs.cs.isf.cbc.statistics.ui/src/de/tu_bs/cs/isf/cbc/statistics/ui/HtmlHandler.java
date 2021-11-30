@@ -1,5 +1,7 @@
 package de.tu_bs.cs.isf.cbc.statistics.ui;
 
+import java.util.List;
+
 public class HtmlHandler {
 
 	//String with placeholder
@@ -8,8 +10,15 @@ public class HtmlHandler {
 	private String afterDiagrams = ""; 
 	
 
+	public void setDiagramPaths(List<?> paths) {
+		
+	}
 	
-	public static String getHtmlString() {
+	public void setData() {
+		
+	}
+	
+	public String getHtmlString() {
 		
 		return "<!DOCTYPE html>\r\n"
 				+ "<html lang=\"en\">\r\n"
@@ -53,7 +62,7 @@ public class HtmlHandler {
 				+ "        <hr class=\"horizontal-line\">\r\n"
 				+ "        <div class=\"inner-box\">\r\n"
 				+ "            <h2 class=\"text\">Generated Diagrams</h2>\r\n"
-				+ "            <img class=\"\" src=\"file:///D:/Uni/Bachelorarbeit/HTMLTemplateCode/test.jpg\">\r\n"
+				+ "            <img class=\"\" src=\"file:///D:/Uni/Bachelorarbeit/HTMLTemplateCode/test.png\">\r\n"
 				+ "        </div>\r\n"
 				+ "    </div>\r\n"
 				+ "</body>\r\n"

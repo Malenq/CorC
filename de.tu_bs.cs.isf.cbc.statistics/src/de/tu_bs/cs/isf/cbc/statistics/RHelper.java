@@ -85,26 +85,49 @@ public class RHelper {
 		myWriter.close();
 	}
 	
-	// TODO: input: some statistic data of the proofing process
-	public String createStatisticFileString(Statistics statisticObject, Proof proof) {
-	
-		String emptyLine = "\r\n";
-		String pdfPath = "pdf(file=\"C:\\\\Users\\\\Malle\\\\Desktop\\\\test.pdf\", height=10, width=15)\r\n";
+	public String createStatisticDummyFileString() {
 		
-		String yAxis = "y=c(12,15,28,17,18)\r\n";
+		String emptyLine = "\r\n";
+		String pdfPath = "png(filename=\"D:\\\\Uni\\\\Bachelorarbeit\\\\HTMLTemplateCode\\\\test.png\")\r\n";
+		
+		String yAxis = "cars <- c (1,3,6,4,20)\r\n";
 		String xAxis = "x=c(22,39,50,25,18)\r\n";
+		xAxis = "";
 		
 		String plotCommand = "mean(y)\r\nmean(x)\r\nplot(x,y)";
+		plotCommand = "barplot(cars)";
+		
+		String fileString = pdfPath + emptyLine + xAxis + yAxis +  plotCommand;
+
+		return fileString;
+	}
+	
+	public String createStatistiFileString(Proof proof) {
+	
+		Statistics keyStats = proof.getStatistics();
+		
+		String emptyLine = "\r\n";
+		String pdfPath = "png(filename=\"D:\\\\Uni\\\\Bachelorarbeit\\\\HTMLTemplateCode\\\\test.png\")\r\n";
+		
+		String xAxis = "rules <- c(" + keyStats.totalRuleApps + ")\r\n";
+		String yAxis = "time <- c(" + keyStats.autoModeTimeInMillis + ")\r\n";
+		
+		String plotCommand = "mean(rules)\r\nmean(time)\r\nplot(rules,time)";
 		
 		String fileString = pdfPath + emptyLine + xAxis + yAxis +  plotCommand;
 
 		return fileString;
 	}
 
-	public void doSomethingToShow() {
-		
+	public static void doSomethingToShow() {
 		//TODO: get saved data (not saved jet)
 		//TODO: return PNG or so
+		
+		RHelper helper = new RHelper();
+		// just yet only the dummy
+		String fileString = helper.createStatisticDummyFileString();
+		helper.createStatisticFiles("test", fileString);
+		
 	}
 	
 

@@ -1,5 +1,9 @@
 package de.tu_bs.cs.isf.cbc.statistics;
 
+import java.util.List;
+
+import org.eclipse.core.resources.IFile;
+
 public class StatisticsDatabase {
 	
 	public static StatisticsDatabase instance = new StatisticsDatabase();
@@ -19,7 +23,12 @@ public class StatisticsDatabase {
 		
 	}
 
-	private void saveRegistry () {
+	private void saveRegistry() {
 		// save registry to XML file
+	}
+
+	public void getDataRelatedTo(List<IFile> affectedFiles) {
+		// TODO Auto-generated method stub
+		
 	}
 }
