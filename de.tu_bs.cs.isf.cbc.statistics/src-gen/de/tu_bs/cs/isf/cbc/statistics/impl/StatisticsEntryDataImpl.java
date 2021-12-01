@@ -23,6 +23,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsEntryDataImpl#getAutoModeTimeInMillis <em>Auto Mode Time In Millis</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsEntryDataImpl#getTimeInMillis <em>Time In Millis</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsEntryDataImpl#getTimePerStepInMillis <em>Time Per Step In Millis</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsEntryDataImpl#getNumberOfBranches <em>Number Of Branches</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsEntryDataImpl#getTotalRuleApps <em>Total Rule Apps</em>}</li>
  * </ul>
  *
  * @generated
@@ -101,6 +103,43 @@ public class StatisticsEntryDataImpl extends MinimalEObjectImpl.Container implem
 	 * @ordered
 	 */
 	protected float timePerStepInMillis = TIME_PER_STEP_IN_MILLIS_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getNumberOfBranches() <em>Number Of Branches</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNumberOfBranches()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int NUMBER_OF_BRANCHES_EDEFAULT = 0;
+	/**
+	 * The cached value of the '{@link #getNumberOfBranches() <em>Number Of Branches</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNumberOfBranches()
+	 * @generated
+	 * @ordered
+	 */
+	protected int numberOfBranches = NUMBER_OF_BRANCHES_EDEFAULT;
+	/**
+	 * The default value of the '{@link #getTotalRuleApps() <em>Total Rule Apps</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTotalRuleApps()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int TOTAL_RULE_APPS_EDEFAULT = 0;
+	/**
+	 * The cached value of the '{@link #getTotalRuleApps() <em>Total Rule Apps</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTotalRuleApps()
+	 * @generated
+	 * @ordered
+	 */
+	protected int totalRuleApps = TOTAL_RULE_APPS_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -210,6 +249,48 @@ public class StatisticsEntryDataImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getNumberOfBranches() {
+		return numberOfBranches;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNumberOfBranches(int newNumberOfBranches) {
+		int oldNumberOfBranches = numberOfBranches;
+		numberOfBranches = newNumberOfBranches;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, statisticsPackage.STATISTICS_ENTRY_DATA__NUMBER_OF_BRANCHES, oldNumberOfBranches, numberOfBranches));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getTotalRuleApps() {
+		return totalRuleApps;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTotalRuleApps(int newTotalRuleApps) {
+		int oldTotalRuleApps = totalRuleApps;
+		totalRuleApps = newTotalRuleApps;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, statisticsPackage.STATISTICS_ENTRY_DATA__TOTAL_RULE_APPS, oldTotalRuleApps, totalRuleApps));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -221,6 +302,10 @@ public class StatisticsEntryDataImpl extends MinimalEObjectImpl.Container implem
 				return getTimeInMillis();
 			case statisticsPackage.STATISTICS_ENTRY_DATA__TIME_PER_STEP_IN_MILLIS:
 				return getTimePerStepInMillis();
+			case statisticsPackage.STATISTICS_ENTRY_DATA__NUMBER_OF_BRANCHES:
+				return getNumberOfBranches();
+			case statisticsPackage.STATISTICS_ENTRY_DATA__TOTAL_RULE_APPS:
+				return getTotalRuleApps();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -244,6 +329,12 @@ public class StatisticsEntryDataImpl extends MinimalEObjectImpl.Container implem
 				return;
 			case statisticsPackage.STATISTICS_ENTRY_DATA__TIME_PER_STEP_IN_MILLIS:
 				setTimePerStepInMillis((Float)newValue);
+				return;
+			case statisticsPackage.STATISTICS_ENTRY_DATA__NUMBER_OF_BRANCHES:
+				setNumberOfBranches((Integer)newValue);
+				return;
+			case statisticsPackage.STATISTICS_ENTRY_DATA__TOTAL_RULE_APPS:
+				setTotalRuleApps((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -269,6 +360,12 @@ public class StatisticsEntryDataImpl extends MinimalEObjectImpl.Container implem
 			case statisticsPackage.STATISTICS_ENTRY_DATA__TIME_PER_STEP_IN_MILLIS:
 				setTimePerStepInMillis(TIME_PER_STEP_IN_MILLIS_EDEFAULT);
 				return;
+			case statisticsPackage.STATISTICS_ENTRY_DATA__NUMBER_OF_BRANCHES:
+				setNumberOfBranches(NUMBER_OF_BRANCHES_EDEFAULT);
+				return;
+			case statisticsPackage.STATISTICS_ENTRY_DATA__TOTAL_RULE_APPS:
+				setTotalRuleApps(TOTAL_RULE_APPS_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -289,6 +386,10 @@ public class StatisticsEntryDataImpl extends MinimalEObjectImpl.Container implem
 				return timeInMillis != TIME_IN_MILLIS_EDEFAULT;
 			case statisticsPackage.STATISTICS_ENTRY_DATA__TIME_PER_STEP_IN_MILLIS:
 				return timePerStepInMillis != TIME_PER_STEP_IN_MILLIS_EDEFAULT;
+			case statisticsPackage.STATISTICS_ENTRY_DATA__NUMBER_OF_BRANCHES:
+				return numberOfBranches != NUMBER_OF_BRANCHES_EDEFAULT;
+			case statisticsPackage.STATISTICS_ENTRY_DATA__TOTAL_RULE_APPS:
+				return totalRuleApps != TOTAL_RULE_APPS_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -311,6 +412,10 @@ public class StatisticsEntryDataImpl extends MinimalEObjectImpl.Container implem
 		result.append(timeInMillis);
 		result.append(", timePerStepInMillis: ");
 		result.append(timePerStepInMillis);
+		result.append(", numberOfBranches: ");
+		result.append(numberOfBranches);
+		result.append(", totalRuleApps: ");
+		result.append(totalRuleApps);
 		result.append(')');
 		return result.toString();
 	}

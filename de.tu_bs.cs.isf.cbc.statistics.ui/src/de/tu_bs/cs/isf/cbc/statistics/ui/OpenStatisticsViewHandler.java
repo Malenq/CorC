@@ -47,7 +47,7 @@ public class OpenStatisticsViewHandler extends AbstractHandler {
 		}
 		
 		StatisticsDialog dialog = new StatisticsDialog(Display.getCurrent().getActiveShell());
-		dialog.setData(allDiagramFiles);
+//		dialog.setData(allDiagramFiles);
 		dialog.open();
 		
 		return null;

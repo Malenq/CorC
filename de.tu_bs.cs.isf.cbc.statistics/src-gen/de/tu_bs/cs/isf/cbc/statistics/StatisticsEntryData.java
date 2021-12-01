@@ -17,6 +17,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getAutoModeTimeInMillis <em>Auto Mode Time In Millis</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getTimeInMillis <em>Time In Millis</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getTimePerStepInMillis <em>Time Per Step In Millis</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getNumberOfBranches <em>Number Of Branches</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getTotalRuleApps <em>Total Rule Apps</em>}</li>
  * </ul>
  *
  * @see de.tu_bs.cs.isf.cbc.statistics.statisticsPackage#getStatisticsEntryData()
@@ -112,4 +114,48 @@ public interface StatisticsEntryData extends EObject {
 	 * @generated
 	 */
 	void setTimePerStepInMillis(float value);
+
+	/**
+	 * Returns the value of the '<em><b>Number Of Branches</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Number Of Branches</em>' attribute.
+	 * @see #setNumberOfBranches(int)
+	 * @see de.tu_bs.cs.isf.cbc.statistics.statisticsPackage#getStatisticsEntryData_NumberOfBranches()
+	 * @model
+	 * @generated
+	 */
+	int getNumberOfBranches();
+
+	/**
+	 * Sets the value of the '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getNumberOfBranches <em>Number Of Branches</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Number Of Branches</em>' attribute.
+	 * @see #getNumberOfBranches()
+	 * @generated
+	 */
+	void setNumberOfBranches(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Total Rule Apps</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Total Rule Apps</em>' attribute.
+	 * @see #setTotalRuleApps(int)
+	 * @see de.tu_bs.cs.isf.cbc.statistics.statisticsPackage#getStatisticsEntryData_TotalRuleApps()
+	 * @model
+	 * @generated
+	 */
+	int getTotalRuleApps();
+
+	/**
+	 * Sets the value of the '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getTotalRuleApps <em>Total Rule Apps</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Total Rule Apps</em>' attribute.
+	 * @see #getTotalRuleApps()
+	 * @generated
+	 */
+	void setTotalRuleApps(int value);
 } // StatisticsEntryData

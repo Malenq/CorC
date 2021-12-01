@@ -21,6 +21,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbcstatistics.ecore#//StatisticsEntryData/autoModeTimeInMillis"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbcstatistics.ecore#//StatisticsEntryData/timeInMillis"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbcstatistics.ecore#//StatisticsEntryData/timePerStepInMillis"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbcstatistics.ecore#//StatisticsEntryData/numberOfBranches"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbcstatistics.ecore#//StatisticsEntryData/totalRuleApps"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

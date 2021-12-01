@@ -43,7 +43,7 @@ public class RHelper {
 			return; // if this does not work ... well
 		}
 
-		// TODO: alter process information for builder -> Rscript is in PATH
+		// TODO: alter process information for builder -> RScript is in PATH
 		ProcessBuilder rProcessBuilder = new ProcessBuilder("Rscript", rFileLocation);
 		try {
 			Process rProcess = rProcessBuilder.start();
@@ -129,7 +129,4 @@ public class RHelper {
 		helper.createStatisticFiles("test", fileString);
 		
 	}
-	
-
-
 }

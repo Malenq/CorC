@@ -195,13 +195,31 @@ public interface statisticsPackage extends EPackage {
 	int STATISTICS_ENTRY_DATA__TIME_PER_STEP_IN_MILLIS = 3;
 
 	/**
+	 * The feature id for the '<em><b>Number Of Branches</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATISTICS_ENTRY_DATA__NUMBER_OF_BRANCHES = 4;
+
+	/**
+	 * The feature id for the '<em><b>Total Rule Apps</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATISTICS_ENTRY_DATA__TOTAL_RULE_APPS = 5;
+
+	/**
 	 * The number of structural features of the '<em>Statistics Entry Data</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATISTICS_ENTRY_DATA_FEATURE_COUNT = 4;
+	int STATISTICS_ENTRY_DATA_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>Statistics Entry Data</em>' class.
@@ -332,6 +350,28 @@ public interface statisticsPackage extends EPackage {
 	EAttribute getStatisticsEntryData_TimePerStepInMillis();
 
 	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getNumberOfBranches <em>Number Of Branches</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Number Of Branches</em>'.
+	 * @see de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getNumberOfBranches()
+	 * @see #getStatisticsEntryData()
+	 * @generated
+	 */
+	EAttribute getStatisticsEntryData_NumberOfBranches();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getTotalRuleApps <em>Total Rule Apps</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Total Rule Apps</em>'.
+	 * @see de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getTotalRuleApps()
+	 * @see #getStatisticsEntryData()
+	 * @generated
+	 */
+	EAttribute getStatisticsEntryData_TotalRuleApps();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -447,6 +487,22 @@ public interface statisticsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute STATISTICS_ENTRY_DATA__TIME_PER_STEP_IN_MILLIS = eINSTANCE.getStatisticsEntryData_TimePerStepInMillis();
+
+		/**
+		 * The meta object literal for the '<em><b>Number Of Branches</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STATISTICS_ENTRY_DATA__NUMBER_OF_BRANCHES = eINSTANCE.getStatisticsEntryData_NumberOfBranches();
+
+		/**
+		 * The meta object literal for the '<em><b>Total Rule Apps</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STATISTICS_ENTRY_DATA__TOTAL_RULE_APPS = eINSTANCE.getStatisticsEntryData_TotalRuleApps();
 
 	}
 

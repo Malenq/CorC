@@ -208,6 +208,24 @@ public class statisticsPackageImpl extends EPackageImpl implements statisticsPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getStatisticsEntryData_NumberOfBranches() {
+		return (EAttribute)statisticsEntryDataEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getStatisticsEntryData_TotalRuleApps() {
+		return (EAttribute)statisticsEntryDataEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public statisticsFactory getstatisticsFactory() {
 		return (statisticsFactory)getEFactoryInstance();
 	}
@@ -244,6 +262,8 @@ public class statisticsPackageImpl extends EPackageImpl implements statisticsPac
 		createEAttribute(statisticsEntryDataEClass, STATISTICS_ENTRY_DATA__AUTO_MODE_TIME_IN_MILLIS);
 		createEAttribute(statisticsEntryDataEClass, STATISTICS_ENTRY_DATA__TIME_IN_MILLIS);
 		createEAttribute(statisticsEntryDataEClass, STATISTICS_ENTRY_DATA__TIME_PER_STEP_IN_MILLIS);
+		createEAttribute(statisticsEntryDataEClass, STATISTICS_ENTRY_DATA__NUMBER_OF_BRANCHES);
+		createEAttribute(statisticsEntryDataEClass, STATISTICS_ENTRY_DATA__TOTAL_RULE_APPS);
 	}
 
 	/**
@@ -289,6 +309,8 @@ public class statisticsPackageImpl extends EPackageImpl implements statisticsPac
 		initEAttribute(getStatisticsEntryData_AutoModeTimeInMillis(), ecorePackage.getELong(), "autoModeTimeInMillis", null, 0, 1, StatisticsEntryData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getStatisticsEntryData_TimeInMillis(), ecorePackage.getELong(), "timeInMillis", null, 0, 1, StatisticsEntryData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getStatisticsEntryData_TimePerStepInMillis(), ecorePackage.getEFloat(), "timePerStepInMillis", null, 0, 1, StatisticsEntryData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStatisticsEntryData_NumberOfBranches(), ecorePackage.getEInt(), "numberOfBranches", null, 0, 1, StatisticsEntryData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStatisticsEntryData_TotalRuleApps(), ecorePackage.getEInt(), "totalRuleApps", null, 0, 1, StatisticsEntryData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
