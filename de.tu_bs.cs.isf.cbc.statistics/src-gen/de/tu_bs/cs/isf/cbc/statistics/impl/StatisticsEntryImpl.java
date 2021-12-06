@@ -2,15 +2,15 @@
  */
 package de.tu_bs.cs.isf.cbc.statistics.impl;
 
+import de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping;
+import de.tu_bs.cs.isf.cbc.statistics.StatisticsData;
 import de.tu_bs.cs.isf.cbc.statistics.StatisticsEntry;
-import de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData;
 import de.tu_bs.cs.isf.cbc.statistics.statisticsPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -24,44 +24,13 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsEntryImpl#getKeyFilePath <em>Key File Path</em>}</li>
- *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsEntryImpl#getCorcElement <em>Corc Element</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsEntryImpl#getData <em>Data</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsEntryImpl#getMapping <em>Mapping</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class StatisticsEntryImpl extends MinimalEObjectImpl.Container implements StatisticsEntry {
-	/**
-	 * The default value of the '{@link #getKeyFilePath() <em>Key File Path</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getKeyFilePath()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String KEY_FILE_PATH_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getKeyFilePath() <em>Key File Path</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getKeyFilePath()
-	 * @generated
-	 * @ordered
-	 */
-	protected String keyFilePath = KEY_FILE_PATH_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getCorcElement() <em>Corc Element</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCorcElement()
-	 * @generated
-	 * @ordered
-	 */
-	protected EObject corcElement;
-
 	/**
 	 * The cached value of the '{@link #getData() <em>Data</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -70,7 +39,17 @@ public class StatisticsEntryImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 * @ordered
 	 */
-	protected StatisticsEntryData data;
+	protected StatisticsData data;
+
+	/**
+	 * The cached value of the '{@link #getMapping() <em>Mapping</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMapping()
+	 * @generated
+	 * @ordered
+	 */
+	protected CorcKeyMapping mapping;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -96,66 +75,7 @@ public class StatisticsEntryImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getKeyFilePath() {
-		return keyFilePath;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setKeyFilePath(String newKeyFilePath) {
-		String oldKeyFilePath = keyFilePath;
-		keyFilePath = newKeyFilePath;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, statisticsPackage.STATISTICS_ENTRY__KEY_FILE_PATH, oldKeyFilePath, keyFilePath));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EObject getCorcElement() {
-		if (corcElement != null && corcElement.eIsProxy()) {
-			InternalEObject oldCorcElement = (InternalEObject)corcElement;
-			corcElement = eResolveProxy(oldCorcElement);
-			if (corcElement != oldCorcElement) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, statisticsPackage.STATISTICS_ENTRY__CORC_ELEMENT, oldCorcElement, corcElement));
-			}
-		}
-		return corcElement;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EObject basicGetCorcElement() {
-		return corcElement;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setCorcElement(EObject newCorcElement) {
-		EObject oldCorcElement = corcElement;
-		corcElement = newCorcElement;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, statisticsPackage.STATISTICS_ENTRY__CORC_ELEMENT, oldCorcElement, corcElement));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StatisticsEntryData getData() {
+	public StatisticsData getData() {
 		return data;
 	}
 
@@ -164,8 +84,8 @@ public class StatisticsEntryImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetData(StatisticsEntryData newData, NotificationChain msgs) {
-		StatisticsEntryData oldData = data;
+	public NotificationChain basicSetData(StatisticsData newData, NotificationChain msgs) {
+		StatisticsData oldData = data;
 		data = newData;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, statisticsPackage.STATISTICS_ENTRY__DATA, oldData, newData);
@@ -179,7 +99,7 @@ public class StatisticsEntryImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setData(StatisticsEntryData newData) {
+	public void setData(StatisticsData newData) {
 		if (newData != data) {
 			NotificationChain msgs = null;
 			if (data != null)
@@ -198,11 +118,56 @@ public class StatisticsEntryImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public CorcKeyMapping getMapping() {
+		return mapping;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetMapping(CorcKeyMapping newMapping, NotificationChain msgs) {
+		CorcKeyMapping oldMapping = mapping;
+		mapping = newMapping;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, statisticsPackage.STATISTICS_ENTRY__MAPPING, oldMapping, newMapping);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMapping(CorcKeyMapping newMapping) {
+		if (newMapping != mapping) {
+			NotificationChain msgs = null;
+			if (mapping != null)
+				msgs = ((InternalEObject)mapping).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - statisticsPackage.STATISTICS_ENTRY__MAPPING, null, msgs);
+			if (newMapping != null)
+				msgs = ((InternalEObject)newMapping).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - statisticsPackage.STATISTICS_ENTRY__MAPPING, null, msgs);
+			msgs = basicSetMapping(newMapping, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, statisticsPackage.STATISTICS_ENTRY__MAPPING, newMapping, newMapping));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case statisticsPackage.STATISTICS_ENTRY__DATA:
 				return basicSetData(null, msgs);
+			case statisticsPackage.STATISTICS_ENTRY__MAPPING:
+				return basicSetMapping(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -215,13 +180,10 @@ public class StatisticsEntryImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case statisticsPackage.STATISTICS_ENTRY__KEY_FILE_PATH:
-				return getKeyFilePath();
-			case statisticsPackage.STATISTICS_ENTRY__CORC_ELEMENT:
-				if (resolve) return getCorcElement();
-				return basicGetCorcElement();
 			case statisticsPackage.STATISTICS_ENTRY__DATA:
 				return getData();
+			case statisticsPackage.STATISTICS_ENTRY__MAPPING:
+				return getMapping();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -234,14 +196,11 @@ public class StatisticsEntryImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case statisticsPackage.STATISTICS_ENTRY__KEY_FILE_PATH:
-				setKeyFilePath((String)newValue);
-				return;
-			case statisticsPackage.STATISTICS_ENTRY__CORC_ELEMENT:
-				setCorcElement((EObject)newValue);
-				return;
 			case statisticsPackage.STATISTICS_ENTRY__DATA:
-				setData((StatisticsEntryData)newValue);
+				setData((StatisticsData)newValue);
+				return;
+			case statisticsPackage.STATISTICS_ENTRY__MAPPING:
+				setMapping((CorcKeyMapping)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -255,14 +214,11 @@ public class StatisticsEntryImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case statisticsPackage.STATISTICS_ENTRY__KEY_FILE_PATH:
-				setKeyFilePath(KEY_FILE_PATH_EDEFAULT);
-				return;
-			case statisticsPackage.STATISTICS_ENTRY__CORC_ELEMENT:
-				setCorcElement((EObject)null);
-				return;
 			case statisticsPackage.STATISTICS_ENTRY__DATA:
-				setData((StatisticsEntryData)null);
+				setData((StatisticsData)null);
+				return;
+			case statisticsPackage.STATISTICS_ENTRY__MAPPING:
+				setMapping((CorcKeyMapping)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -276,30 +232,12 @@ public class StatisticsEntryImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case statisticsPackage.STATISTICS_ENTRY__KEY_FILE_PATH:
-				return KEY_FILE_PATH_EDEFAULT == null ? keyFilePath != null : !KEY_FILE_PATH_EDEFAULT.equals(keyFilePath);
-			case statisticsPackage.STATISTICS_ENTRY__CORC_ELEMENT:
-				return corcElement != null;
 			case statisticsPackage.STATISTICS_ENTRY__DATA:
 				return data != null;
+			case statisticsPackage.STATISTICS_ENTRY__MAPPING:
+				return mapping != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (keyFilePath: ");
-		result.append(keyFilePath);
-		result.append(')');
-		return result.toString();
 	}
 
 } //StatisticsEntryImpl

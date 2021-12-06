@@ -20,7 +20,7 @@ public class VerifyThread extends Thread {
 	public void run() {
 		for (IFile iFile : fileList) {
 			File file = iFile.getLocation().toFile();
-			ProveWithKey.proveWithKey(file, null, false, null);
+			ProveWithKey.proveWithKey(file, null, false, null, null);
 		}
     }
 

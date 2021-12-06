@@ -76,8 +76,12 @@ public class statisticsAdapterFactory extends AdapterFactoryImpl {
 				return createStatisticsEntryAdapter();
 			}
 			@Override
-			public Adapter caseStatisticsEntryData(StatisticsEntryData object) {
-				return createStatisticsEntryDataAdapter();
+			public Adapter caseStatisticsData(StatisticsData object) {
+				return createStatisticsDataAdapter();
+			}
+			@Override
+			public Adapter caseCorcKeyMapping(CorcKeyMapping object) {
+				return createCorcKeyMappingAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -128,16 +132,30 @@ public class statisticsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData <em>Statistics Entry Data</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData <em>Statistics Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData
+	 * @see de.tu_bs.cs.isf.cbc.statistics.StatisticsData
 	 * @generated
 	 */
-	public Adapter createStatisticsEntryDataAdapter() {
+	public Adapter createStatisticsDataAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping <em>Corc Key Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping
+	 * @generated
+	 */
+	public Adapter createCorcKeyMappingAdapter() {
 		return null;
 	}
 

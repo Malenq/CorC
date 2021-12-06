@@ -104,31 +104,22 @@ public interface statisticsPackage extends EPackage {
 	int STATISTICS_ENTRY = 1;
 
 	/**
-	 * The feature id for the '<em><b>Key File Path</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATISTICS_ENTRY__KEY_FILE_PATH = 0;
-
-	/**
-	 * The feature id for the '<em><b>Corc Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATISTICS_ENTRY__CORC_ELEMENT = 1;
-
-	/**
 	 * The feature id for the '<em><b>Data</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATISTICS_ENTRY__DATA = 2;
+	int STATISTICS_ENTRY__DATA = 0;
+
+	/**
+	 * The feature id for the '<em><b>Mapping</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATISTICS_ENTRY__MAPPING = 1;
 
 	/**
 	 * The number of structural features of the '<em>Statistics Entry</em>' class.
@@ -137,7 +128,7 @@ public interface statisticsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATISTICS_ENTRY_FEATURE_COUNT = 3;
+	int STATISTICS_ENTRY_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Statistics Entry</em>' class.
@@ -149,14 +140,14 @@ public interface statisticsPackage extends EPackage {
 	int STATISTICS_ENTRY_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsEntryDataImpl <em>Statistics Entry Data</em>}' class.
+	 * The meta object id for the '{@link de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsDataImpl <em>Statistics Data</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsEntryDataImpl
-	 * @see de.tu_bs.cs.isf.cbc.statistics.impl.statisticsPackageImpl#getStatisticsEntryData()
+	 * @see de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsDataImpl
+	 * @see de.tu_bs.cs.isf.cbc.statistics.impl.statisticsPackageImpl#getStatisticsData()
 	 * @generated
 	 */
-	int STATISTICS_ENTRY_DATA = 2;
+	int STATISTICS_DATA = 2;
 
 	/**
 	 * The feature id for the '<em><b>Number Of Nodes</b></em>' attribute.
@@ -165,7 +156,7 @@ public interface statisticsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATISTICS_ENTRY_DATA__NUMBER_OF_NODES = 0;
+	int STATISTICS_DATA__NUMBER_OF_NODES = 0;
 
 	/**
 	 * The feature id for the '<em><b>Auto Mode Time In Millis</b></em>' attribute.
@@ -174,7 +165,7 @@ public interface statisticsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATISTICS_ENTRY_DATA__AUTO_MODE_TIME_IN_MILLIS = 1;
+	int STATISTICS_DATA__AUTO_MODE_TIME_IN_MILLIS = 1;
 
 	/**
 	 * The feature id for the '<em><b>Time In Millis</b></em>' attribute.
@@ -183,7 +174,7 @@ public interface statisticsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATISTICS_ENTRY_DATA__TIME_IN_MILLIS = 2;
+	int STATISTICS_DATA__TIME_IN_MILLIS = 2;
 
 	/**
 	 * The feature id for the '<em><b>Time Per Step In Millis</b></em>' attribute.
@@ -192,7 +183,7 @@ public interface statisticsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATISTICS_ENTRY_DATA__TIME_PER_STEP_IN_MILLIS = 3;
+	int STATISTICS_DATA__TIME_PER_STEP_IN_MILLIS = 3;
 
 	/**
 	 * The feature id for the '<em><b>Number Of Branches</b></em>' attribute.
@@ -201,7 +192,7 @@ public interface statisticsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATISTICS_ENTRY_DATA__NUMBER_OF_BRANCHES = 4;
+	int STATISTICS_DATA__NUMBER_OF_BRANCHES = 4;
 
 	/**
 	 * The feature id for the '<em><b>Total Rule Apps</b></em>' attribute.
@@ -210,25 +201,98 @@ public interface statisticsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATISTICS_ENTRY_DATA__TOTAL_RULE_APPS = 5;
+	int STATISTICS_DATA__TOTAL_RULE_APPS = 5;
 
 	/**
-	 * The number of structural features of the '<em>Statistics Entry Data</em>' class.
+	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATISTICS_ENTRY_DATA_FEATURE_COUNT = 6;
+	int STATISTICS_DATA__TIMESTAMP = 6;
 
 	/**
-	 * The number of operations of the '<em>Statistics Entry Data</em>' class.
+	 * The number of structural features of the '<em>Statistics Data</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATISTICS_ENTRY_DATA_OPERATION_COUNT = 0;
+	int STATISTICS_DATA_FEATURE_COUNT = 7;
+
+	/**
+	 * The number of operations of the '<em>Statistics Data</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATISTICS_DATA_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link de.tu_bs.cs.isf.cbc.statistics.impl.CorcKeyMappingImpl <em>Corc Key Mapping</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.tu_bs.cs.isf.cbc.statistics.impl.CorcKeyMappingImpl
+	 * @see de.tu_bs.cs.isf.cbc.statistics.impl.statisticsPackageImpl#getCorcKeyMapping()
+	 * @generated
+	 */
+	int CORC_KEY_MAPPING = 3;
+
+	/**
+	 * The feature id for the '<em><b>Key File Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CORC_KEY_MAPPING__KEY_FILE_PATH = 0;
+
+	/**
+	 * The feature id for the '<em><b>Key Proof Problem Hash Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CORC_KEY_MAPPING__KEY_PROOF_PROBLEM_HASH_VALUE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Corc Element Formula</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CORC_KEY_MAPPING__CORC_ELEMENT_FORMULA = 2;
+
+	/**
+	 * The feature id for the '<em><b>Corc Element Statement</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CORC_KEY_MAPPING__CORC_ELEMENT_STATEMENT = 3;
+
+	/**
+	 * The number of structural features of the '<em>Corc Key Mapping</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CORC_KEY_MAPPING_FEATURE_COUNT = 4;
+
+	/**
+	 * The number of operations of the '<em>Corc Key Mapping</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CORC_KEY_MAPPING_OPERATION_COUNT = 0;
 
 
 	/**
@@ -263,28 +327,6 @@ public interface statisticsPackage extends EPackage {
 	EClass getStatisticsEntry();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntry#getKeyFilePath <em>Key File Path</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Key File Path</em>'.
-	 * @see de.tu_bs.cs.isf.cbc.statistics.StatisticsEntry#getKeyFilePath()
-	 * @see #getStatisticsEntry()
-	 * @generated
-	 */
-	EAttribute getStatisticsEntry_KeyFilePath();
-
-	/**
-	 * Returns the meta object for the reference '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntry#getCorcElement <em>Corc Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Corc Element</em>'.
-	 * @see de.tu_bs.cs.isf.cbc.statistics.StatisticsEntry#getCorcElement()
-	 * @see #getStatisticsEntry()
-	 * @generated
-	 */
-	EReference getStatisticsEntry_CorcElement();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntry#getData <em>Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -296,80 +338,156 @@ public interface statisticsPackage extends EPackage {
 	EReference getStatisticsEntry_Data();
 
 	/**
-	 * Returns the meta object for class '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData <em>Statistics Entry Data</em>}'.
+	 * Returns the meta object for the containment reference '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntry#getMapping <em>Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Statistics Entry Data</em>'.
-	 * @see de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData
+	 * @return the meta object for the containment reference '<em>Mapping</em>'.
+	 * @see de.tu_bs.cs.isf.cbc.statistics.StatisticsEntry#getMapping()
+	 * @see #getStatisticsEntry()
 	 * @generated
 	 */
-	EClass getStatisticsEntryData();
+	EReference getStatisticsEntry_Mapping();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getNumberOfNodes <em>Number Of Nodes</em>}'.
+	 * Returns the meta object for class '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData <em>Statistics Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Statistics Data</em>'.
+	 * @see de.tu_bs.cs.isf.cbc.statistics.StatisticsData
+	 * @generated
+	 */
+	EClass getStatisticsData();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getNumberOfNodes <em>Number Of Nodes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Number Of Nodes</em>'.
-	 * @see de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getNumberOfNodes()
-	 * @see #getStatisticsEntryData()
+	 * @see de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getNumberOfNodes()
+	 * @see #getStatisticsData()
 	 * @generated
 	 */
-	EAttribute getStatisticsEntryData_NumberOfNodes();
+	EAttribute getStatisticsData_NumberOfNodes();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getAutoModeTimeInMillis <em>Auto Mode Time In Millis</em>}'.
+	 * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getAutoModeTimeInMillis <em>Auto Mode Time In Millis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Auto Mode Time In Millis</em>'.
-	 * @see de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getAutoModeTimeInMillis()
-	 * @see #getStatisticsEntryData()
+	 * @see de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getAutoModeTimeInMillis()
+	 * @see #getStatisticsData()
 	 * @generated
 	 */
-	EAttribute getStatisticsEntryData_AutoModeTimeInMillis();
+	EAttribute getStatisticsData_AutoModeTimeInMillis();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getTimeInMillis <em>Time In Millis</em>}'.
+	 * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getTimeInMillis <em>Time In Millis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Time In Millis</em>'.
-	 * @see de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getTimeInMillis()
-	 * @see #getStatisticsEntryData()
+	 * @see de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getTimeInMillis()
+	 * @see #getStatisticsData()
 	 * @generated
 	 */
-	EAttribute getStatisticsEntryData_TimeInMillis();
+	EAttribute getStatisticsData_TimeInMillis();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getTimePerStepInMillis <em>Time Per Step In Millis</em>}'.
+	 * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getTimePerStepInMillis <em>Time Per Step In Millis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Time Per Step In Millis</em>'.
-	 * @see de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getTimePerStepInMillis()
-	 * @see #getStatisticsEntryData()
+	 * @see de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getTimePerStepInMillis()
+	 * @see #getStatisticsData()
 	 * @generated
 	 */
-	EAttribute getStatisticsEntryData_TimePerStepInMillis();
+	EAttribute getStatisticsData_TimePerStepInMillis();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getNumberOfBranches <em>Number Of Branches</em>}'.
+	 * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getNumberOfBranches <em>Number Of Branches</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Number Of Branches</em>'.
-	 * @see de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getNumberOfBranches()
-	 * @see #getStatisticsEntryData()
+	 * @see de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getNumberOfBranches()
+	 * @see #getStatisticsData()
 	 * @generated
 	 */
-	EAttribute getStatisticsEntryData_NumberOfBranches();
+	EAttribute getStatisticsData_NumberOfBranches();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getTotalRuleApps <em>Total Rule Apps</em>}'.
+	 * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getTotalRuleApps <em>Total Rule Apps</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Total Rule Apps</em>'.
-	 * @see de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getTotalRuleApps()
-	 * @see #getStatisticsEntryData()
+	 * @see de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getTotalRuleApps()
+	 * @see #getStatisticsData()
 	 * @generated
 	 */
-	EAttribute getStatisticsEntryData_TotalRuleApps();
+	EAttribute getStatisticsData_TotalRuleApps();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getTimestamp <em>Timestamp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Timestamp</em>'.
+	 * @see de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getTimestamp()
+	 * @see #getStatisticsData()
+	 * @generated
+	 */
+	EAttribute getStatisticsData_Timestamp();
+
+	/**
+	 * Returns the meta object for class '{@link de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping <em>Corc Key Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Corc Key Mapping</em>'.
+	 * @see de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping
+	 * @generated
+	 */
+	EClass getCorcKeyMapping();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping#getKeyFilePath <em>Key File Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Key File Path</em>'.
+	 * @see de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping#getKeyFilePath()
+	 * @see #getCorcKeyMapping()
+	 * @generated
+	 */
+	EAttribute getCorcKeyMapping_KeyFilePath();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping#getKeyProofProblemHashValue <em>Key Proof Problem Hash Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Key Proof Problem Hash Value</em>'.
+	 * @see de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping#getKeyProofProblemHashValue()
+	 * @see #getCorcKeyMapping()
+	 * @generated
+	 */
+	EAttribute getCorcKeyMapping_KeyProofProblemHashValue();
+
+	/**
+	 * Returns the meta object for the reference '{@link de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping#getCorcElementFormula <em>Corc Element Formula</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Corc Element Formula</em>'.
+	 * @see de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping#getCorcElementFormula()
+	 * @see #getCorcKeyMapping()
+	 * @generated
+	 */
+	EReference getCorcKeyMapping_CorcElementFormula();
+
+	/**
+	 * Returns the meta object for the reference '{@link de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping#getCorcElementStatement <em>Corc Element Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Corc Element Statement</em>'.
+	 * @see de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping#getCorcElementStatement()
+	 * @see #getCorcKeyMapping()
+	 * @generated
+	 */
+	EReference getCorcKeyMapping_CorcElementStatement();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -423,22 +541,6 @@ public interface statisticsPackage extends EPackage {
 		EClass STATISTICS_ENTRY = eINSTANCE.getStatisticsEntry();
 
 		/**
-		 * The meta object literal for the '<em><b>Key File Path</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute STATISTICS_ENTRY__KEY_FILE_PATH = eINSTANCE.getStatisticsEntry_KeyFilePath();
-
-		/**
-		 * The meta object literal for the '<em><b>Corc Element</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STATISTICS_ENTRY__CORC_ELEMENT = eINSTANCE.getStatisticsEntry_CorcElement();
-
-		/**
 		 * The meta object literal for the '<em><b>Data</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -447,14 +549,22 @@ public interface statisticsPackage extends EPackage {
 		EReference STATISTICS_ENTRY__DATA = eINSTANCE.getStatisticsEntry_Data();
 
 		/**
-		 * The meta object literal for the '{@link de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsEntryDataImpl <em>Statistics Entry Data</em>}' class.
+		 * The meta object literal for the '<em><b>Mapping</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsEntryDataImpl
-		 * @see de.tu_bs.cs.isf.cbc.statistics.impl.statisticsPackageImpl#getStatisticsEntryData()
 		 * @generated
 		 */
-		EClass STATISTICS_ENTRY_DATA = eINSTANCE.getStatisticsEntryData();
+		EReference STATISTICS_ENTRY__MAPPING = eINSTANCE.getStatisticsEntry_Mapping();
+
+		/**
+		 * The meta object literal for the '{@link de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsDataImpl <em>Statistics Data</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsDataImpl
+		 * @see de.tu_bs.cs.isf.cbc.statistics.impl.statisticsPackageImpl#getStatisticsData()
+		 * @generated
+		 */
+		EClass STATISTICS_DATA = eINSTANCE.getStatisticsData();
 
 		/**
 		 * The meta object literal for the '<em><b>Number Of Nodes</b></em>' attribute feature.
@@ -462,7 +572,7 @@ public interface statisticsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute STATISTICS_ENTRY_DATA__NUMBER_OF_NODES = eINSTANCE.getStatisticsEntryData_NumberOfNodes();
+		EAttribute STATISTICS_DATA__NUMBER_OF_NODES = eINSTANCE.getStatisticsData_NumberOfNodes();
 
 		/**
 		 * The meta object literal for the '<em><b>Auto Mode Time In Millis</b></em>' attribute feature.
@@ -470,7 +580,7 @@ public interface statisticsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute STATISTICS_ENTRY_DATA__AUTO_MODE_TIME_IN_MILLIS = eINSTANCE.getStatisticsEntryData_AutoModeTimeInMillis();
+		EAttribute STATISTICS_DATA__AUTO_MODE_TIME_IN_MILLIS = eINSTANCE.getStatisticsData_AutoModeTimeInMillis();
 
 		/**
 		 * The meta object literal for the '<em><b>Time In Millis</b></em>' attribute feature.
@@ -478,7 +588,7 @@ public interface statisticsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute STATISTICS_ENTRY_DATA__TIME_IN_MILLIS = eINSTANCE.getStatisticsEntryData_TimeInMillis();
+		EAttribute STATISTICS_DATA__TIME_IN_MILLIS = eINSTANCE.getStatisticsData_TimeInMillis();
 
 		/**
 		 * The meta object literal for the '<em><b>Time Per Step In Millis</b></em>' attribute feature.
@@ -486,7 +596,7 @@ public interface statisticsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute STATISTICS_ENTRY_DATA__TIME_PER_STEP_IN_MILLIS = eINSTANCE.getStatisticsEntryData_TimePerStepInMillis();
+		EAttribute STATISTICS_DATA__TIME_PER_STEP_IN_MILLIS = eINSTANCE.getStatisticsData_TimePerStepInMillis();
 
 		/**
 		 * The meta object literal for the '<em><b>Number Of Branches</b></em>' attribute feature.
@@ -494,7 +604,7 @@ public interface statisticsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute STATISTICS_ENTRY_DATA__NUMBER_OF_BRANCHES = eINSTANCE.getStatisticsEntryData_NumberOfBranches();
+		EAttribute STATISTICS_DATA__NUMBER_OF_BRANCHES = eINSTANCE.getStatisticsData_NumberOfBranches();
 
 		/**
 		 * The meta object literal for the '<em><b>Total Rule Apps</b></em>' attribute feature.
@@ -502,7 +612,57 @@ public interface statisticsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute STATISTICS_ENTRY_DATA__TOTAL_RULE_APPS = eINSTANCE.getStatisticsEntryData_TotalRuleApps();
+		EAttribute STATISTICS_DATA__TOTAL_RULE_APPS = eINSTANCE.getStatisticsData_TotalRuleApps();
+
+		/**
+		 * The meta object literal for the '<em><b>Timestamp</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STATISTICS_DATA__TIMESTAMP = eINSTANCE.getStatisticsData_Timestamp();
+
+		/**
+		 * The meta object literal for the '{@link de.tu_bs.cs.isf.cbc.statistics.impl.CorcKeyMappingImpl <em>Corc Key Mapping</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.tu_bs.cs.isf.cbc.statistics.impl.CorcKeyMappingImpl
+		 * @see de.tu_bs.cs.isf.cbc.statistics.impl.statisticsPackageImpl#getCorcKeyMapping()
+		 * @generated
+		 */
+		EClass CORC_KEY_MAPPING = eINSTANCE.getCorcKeyMapping();
+
+		/**
+		 * The meta object literal for the '<em><b>Key File Path</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CORC_KEY_MAPPING__KEY_FILE_PATH = eINSTANCE.getCorcKeyMapping_KeyFilePath();
+
+		/**
+		 * The meta object literal for the '<em><b>Key Proof Problem Hash Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CORC_KEY_MAPPING__KEY_PROOF_PROBLEM_HASH_VALUE = eINSTANCE.getCorcKeyMapping_KeyProofProblemHashValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Corc Element Formula</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CORC_KEY_MAPPING__CORC_ELEMENT_FORMULA = eINSTANCE.getCorcKeyMapping_CorcElementFormula();
+
+		/**
+		 * The meta object literal for the '<em><b>Corc Element Statement</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CORC_KEY_MAPPING__CORC_ELEMENT_STATEMENT = eINSTANCE.getCorcKeyMapping_CorcElementStatement();
 
 	}
 

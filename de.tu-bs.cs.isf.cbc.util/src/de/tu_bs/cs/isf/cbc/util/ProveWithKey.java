@@ -425,14 +425,14 @@ public class ProveWithKey {
 	}
 
 	public boolean proveWithKey(File location, boolean inlining) {
-		return proveWithKey(location, monitor, inlining, formula);	
+		return proveWithKey(location, monitor, inlining, formula, statement);	
 	}
 	
-	public static boolean proveWithKey(File location, IProgressMonitor monitor, boolean inlining, CbCFormula formula) {
+	public static boolean proveWithKey(File location, IProgressMonitor monitor, boolean inlining, CbCFormula formula, AbstractStatement statement) {
 		Proof proof = null;
 //		Console.clear();
 //		for (int i = 0; i <5; i++) {
-			proof = KeYInteraction.startKeyProof(location, null, inlining, formula);
+			proof = KeYInteraction.startKeyProof(location, null, inlining, formula, statement);
 //		}
 		if (proof != null) {
 			// Show proof result
@@ -543,7 +543,7 @@ public class ProveWithKey {
 	}
 
 	public String createWPWithKey(File location) {
-		Proof proof = KeYInteraction.startKeyProof(location, monitor, false, formula);
+		Proof proof = KeYInteraction.startKeyProof(location, monitor, false, formula, statement);
 		if (proof != null) {
 			String wp = "";
 			Iterator<Goal> it = proof.openGoals().iterator();

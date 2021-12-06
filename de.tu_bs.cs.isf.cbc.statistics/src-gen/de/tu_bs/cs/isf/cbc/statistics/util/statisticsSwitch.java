@@ -78,9 +78,15 @@ public class statisticsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case statisticsPackage.STATISTICS_ENTRY_DATA: {
-				StatisticsEntryData statisticsEntryData = (StatisticsEntryData)theEObject;
-				T result = caseStatisticsEntryData(statisticsEntryData);
+			case statisticsPackage.STATISTICS_DATA: {
+				StatisticsData statisticsData = (StatisticsData)theEObject;
+				T result = caseStatisticsData(statisticsData);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case statisticsPackage.CORC_KEY_MAPPING: {
+				CorcKeyMapping corcKeyMapping = (CorcKeyMapping)theEObject;
+				T result = caseCorcKeyMapping(corcKeyMapping);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -119,17 +125,32 @@ public class statisticsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Statistics Entry Data</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Statistics Data</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Statistics Entry Data</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Statistics Data</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseStatisticsEntryData(StatisticsEntryData object) {
+	public T caseStatisticsData(StatisticsData object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Corc Key Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Corc Key Mapping</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCorcKeyMapping(CorcKeyMapping object) {
 		return null;
 	}
 

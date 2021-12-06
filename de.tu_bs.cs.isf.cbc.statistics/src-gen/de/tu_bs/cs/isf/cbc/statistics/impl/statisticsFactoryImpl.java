@@ -58,7 +58,8 @@ public class statisticsFactoryImpl extends EFactoryImpl implements statisticsFac
 		switch (eClass.getClassifierID()) {
 			case statisticsPackage.STATISTICS_REGISTRY: return createStatisticsRegistry();
 			case statisticsPackage.STATISTICS_ENTRY: return createStatisticsEntry();
-			case statisticsPackage.STATISTICS_ENTRY_DATA: return createStatisticsEntryData();
+			case statisticsPackage.STATISTICS_DATA: return createStatisticsData();
+			case statisticsPackage.CORC_KEY_MAPPING: return createCorcKeyMapping();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -89,9 +90,19 @@ public class statisticsFactoryImpl extends EFactoryImpl implements statisticsFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StatisticsEntryData createStatisticsEntryData() {
-		StatisticsEntryDataImpl statisticsEntryData = new StatisticsEntryDataImpl();
-		return statisticsEntryData;
+	public StatisticsData createStatisticsData() {
+		StatisticsDataImpl statisticsData = new StatisticsDataImpl();
+		return statisticsData;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CorcKeyMapping createCorcKeyMapping() {
+		CorcKeyMappingImpl corcKeyMapping = new CorcKeyMappingImpl();
+		return corcKeyMapping;
 	}
 
 	/**

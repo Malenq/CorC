@@ -40,13 +40,22 @@ public interface statisticsFactory extends EFactory {
 	StatisticsEntry createStatisticsEntry();
 
 	/**
-	 * Returns a new object of class '<em>Statistics Entry Data</em>'.
+	 * Returns a new object of class '<em>Statistics Data</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Statistics Entry Data</em>'.
+	 * @return a new object of class '<em>Statistics Data</em>'.
 	 * @generated
 	 */
-	StatisticsEntryData createStatisticsEntryData();
+	StatisticsData createStatisticsData();
+
+	/**
+	 * Returns a new object of class '<em>Corc Key Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Corc Key Mapping</em>'.
+	 * @generated
+	 */
+	CorcKeyMapping createCorcKeyMapping();
 
 	/**
 	 * Returns the package supported by this factory.

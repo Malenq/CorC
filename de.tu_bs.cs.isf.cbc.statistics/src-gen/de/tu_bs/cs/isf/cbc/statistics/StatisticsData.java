@@ -2,45 +2,47 @@
  */
 package de.tu_bs.cs.isf.cbc.statistics;
 
+import java.util.Date;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Statistics Entry Data</b></em>'.
+ * A representation of the model object '<em><b>Statistics Data</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getNumberOfNodes <em>Number Of Nodes</em>}</li>
- *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getAutoModeTimeInMillis <em>Auto Mode Time In Millis</em>}</li>
- *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getTimeInMillis <em>Time In Millis</em>}</li>
- *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getTimePerStepInMillis <em>Time Per Step In Millis</em>}</li>
- *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getNumberOfBranches <em>Number Of Branches</em>}</li>
- *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getTotalRuleApps <em>Total Rule Apps</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getNumberOfNodes <em>Number Of Nodes</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getAutoModeTimeInMillis <em>Auto Mode Time In Millis</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getTimeInMillis <em>Time In Millis</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getTimePerStepInMillis <em>Time Per Step In Millis</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getNumberOfBranches <em>Number Of Branches</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getTotalRuleApps <em>Total Rule Apps</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getTimestamp <em>Timestamp</em>}</li>
  * </ul>
  *
- * @see de.tu_bs.cs.isf.cbc.statistics.statisticsPackage#getStatisticsEntryData()
+ * @see de.tu_bs.cs.isf.cbc.statistics.statisticsPackage#getStatisticsData()
  * @model
  * @generated
  */
-public interface StatisticsEntryData extends EObject {
-
+public interface StatisticsData extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Number Of Nodes</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Number Of Nodes</em>' attribute.
 	 * @see #setNumberOfNodes(int)
-	 * @see de.tu_bs.cs.isf.cbc.statistics.statisticsPackage#getStatisticsEntryData_NumberOfNodes()
+	 * @see de.tu_bs.cs.isf.cbc.statistics.statisticsPackage#getStatisticsData_NumberOfNodes()
 	 * @model
 	 * @generated
 	 */
 	int getNumberOfNodes();
 
 	/**
-	 * Sets the value of the '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getNumberOfNodes <em>Number Of Nodes</em>}' attribute.
+	 * Sets the value of the '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getNumberOfNodes <em>Number Of Nodes</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Number Of Nodes</em>' attribute.
@@ -55,14 +57,14 @@ public interface StatisticsEntryData extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Auto Mode Time In Millis</em>' attribute.
 	 * @see #setAutoModeTimeInMillis(long)
-	 * @see de.tu_bs.cs.isf.cbc.statistics.statisticsPackage#getStatisticsEntryData_AutoModeTimeInMillis()
+	 * @see de.tu_bs.cs.isf.cbc.statistics.statisticsPackage#getStatisticsData_AutoModeTimeInMillis()
 	 * @model
 	 * @generated
 	 */
 	long getAutoModeTimeInMillis();
 
 	/**
-	 * Sets the value of the '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getAutoModeTimeInMillis <em>Auto Mode Time In Millis</em>}' attribute.
+	 * Sets the value of the '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getAutoModeTimeInMillis <em>Auto Mode Time In Millis</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Auto Mode Time In Millis</em>' attribute.
@@ -77,14 +79,14 @@ public interface StatisticsEntryData extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Time In Millis</em>' attribute.
 	 * @see #setTimeInMillis(long)
-	 * @see de.tu_bs.cs.isf.cbc.statistics.statisticsPackage#getStatisticsEntryData_TimeInMillis()
+	 * @see de.tu_bs.cs.isf.cbc.statistics.statisticsPackage#getStatisticsData_TimeInMillis()
 	 * @model
 	 * @generated
 	 */
 	long getTimeInMillis();
 
 	/**
-	 * Sets the value of the '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getTimeInMillis <em>Time In Millis</em>}' attribute.
+	 * Sets the value of the '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getTimeInMillis <em>Time In Millis</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Time In Millis</em>' attribute.
@@ -99,14 +101,14 @@ public interface StatisticsEntryData extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Time Per Step In Millis</em>' attribute.
 	 * @see #setTimePerStepInMillis(float)
-	 * @see de.tu_bs.cs.isf.cbc.statistics.statisticsPackage#getStatisticsEntryData_TimePerStepInMillis()
+	 * @see de.tu_bs.cs.isf.cbc.statistics.statisticsPackage#getStatisticsData_TimePerStepInMillis()
 	 * @model
 	 * @generated
 	 */
 	float getTimePerStepInMillis();
 
 	/**
-	 * Sets the value of the '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getTimePerStepInMillis <em>Time Per Step In Millis</em>}' attribute.
+	 * Sets the value of the '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getTimePerStepInMillis <em>Time Per Step In Millis</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Time Per Step In Millis</em>' attribute.
@@ -121,14 +123,14 @@ public interface StatisticsEntryData extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Number Of Branches</em>' attribute.
 	 * @see #setNumberOfBranches(int)
-	 * @see de.tu_bs.cs.isf.cbc.statistics.statisticsPackage#getStatisticsEntryData_NumberOfBranches()
+	 * @see de.tu_bs.cs.isf.cbc.statistics.statisticsPackage#getStatisticsData_NumberOfBranches()
 	 * @model
 	 * @generated
 	 */
 	int getNumberOfBranches();
 
 	/**
-	 * Sets the value of the '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getNumberOfBranches <em>Number Of Branches</em>}' attribute.
+	 * Sets the value of the '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getNumberOfBranches <em>Number Of Branches</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Number Of Branches</em>' attribute.
@@ -143,14 +145,14 @@ public interface StatisticsEntryData extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Total Rule Apps</em>' attribute.
 	 * @see #setTotalRuleApps(int)
-	 * @see de.tu_bs.cs.isf.cbc.statistics.statisticsPackage#getStatisticsEntryData_TotalRuleApps()
+	 * @see de.tu_bs.cs.isf.cbc.statistics.statisticsPackage#getStatisticsData_TotalRuleApps()
 	 * @model
 	 * @generated
 	 */
 	int getTotalRuleApps();
 
 	/**
-	 * Sets the value of the '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsEntryData#getTotalRuleApps <em>Total Rule Apps</em>}' attribute.
+	 * Sets the value of the '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getTotalRuleApps <em>Total Rule Apps</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Total Rule Apps</em>' attribute.
@@ -158,4 +160,27 @@ public interface StatisticsEntryData extends EObject {
 	 * @generated
 	 */
 	void setTotalRuleApps(int value);
-} // StatisticsEntryData
+
+	/**
+	 * Returns the value of the '<em><b>Timestamp</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Timestamp</em>' attribute.
+	 * @see #setTimestamp(Date)
+	 * @see de.tu_bs.cs.isf.cbc.statistics.statisticsPackage#getStatisticsData_Timestamp()
+	 * @model
+	 * @generated
+	 */
+	Date getTimestamp();
+
+	/**
+	 * Sets the value of the '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getTimestamp <em>Timestamp</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Timestamp</em>' attribute.
+	 * @see #getTimestamp()
+	 * @generated
+	 */
+	void setTimestamp(Date value);
+
+} // StatisticsData
