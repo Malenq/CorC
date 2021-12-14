@@ -48,6 +48,8 @@ public class ProveWithKey {
 	private String uri;
 	private CbCFormula formula;
 	private IFileUtil fileHandler;
+	// new field Malena BA
+	private String problem;
 	
 	public ProveWithKey(AbstractStatement statement, JavaVariables vars, GlobalConditions conds, Renaming renaming,
 			IProgressMonitor monitor, String uri, CbCFormula formula, IFileUtil fileHandler) {
@@ -110,13 +112,13 @@ public class ProveWithKey {
 		content.handleOld(formula, vars);
 		
 
-		String problem = content.getKeYStatementContent();	
+		problem = content.getKeYStatementContent();	
 
 		problem = problem.replaceAll("static", "");
 		problem = problem.replaceAll("return", ""); //TODO replace with correct handling of return
 		
 		String location = fileHandler.getLocationString(uri);
-		File keyFile = fileHandler.writeFile(problem, location, numberFile, override);
+		File keyFile = fileHandler.writeFile(problem, location, numberFile, override, statement);
 		return keyFile;
 	}
 	
@@ -425,14 +427,14 @@ public class ProveWithKey {
 	}
 
 	public boolean proveWithKey(File location, boolean inlining) {
-		return proveWithKey(location, monitor, inlining, formula, statement);	
+		return proveWithKey(location, monitor, inlining, formula, statement, problem);	
 	}
 	
-	public static boolean proveWithKey(File location, IProgressMonitor monitor, boolean inlining, CbCFormula formula, AbstractStatement statement) {
+	public static boolean proveWithKey(File location, IProgressMonitor monitor, boolean inlining, CbCFormula formula, AbstractStatement statement, String problem) {
 		Proof proof = null;
 //		Console.clear();
 //		for (int i = 0; i <5; i++) {
-			proof = KeYInteraction.startKeyProof(location, null, inlining, formula, statement);
+			proof = KeYInteraction.startKeyProof(location, null, inlining, formula, statement, problem);
 //		}
 		if (proof != null) {
 			// Show proof result
@@ -462,10 +464,12 @@ public class ProveWithKey {
 		content.addSelfForFields(vars);
 		content.addSelf(formula);
 		content.handleOld(formula, vars);
+		
+		problem = content.getKeYCImpliesCContent();
 
         //String location = fileHandler.getProjectLocation(uri) + uri.segment(uri.segmentCount()-3) + "/prove" + uri.trimFileExtension().lastSegment();
 		String location = fileHandler.getLocationString(uri);
-		File keyFile = fileHandler.writeFile(content.getKeYCImpliesCContent(), location, numberFile, override);
+		File keyFile = fileHandler.writeFile(problem, location, numberFile, override, statement);
 		return keyFile;
 	}
 
@@ -513,8 +517,10 @@ public class ProveWithKey {
 		content.addSelf(formula);
 		content.handleOld(formula, vars);
 		
+		problem = content.getKeYStatementContent();
+		
 		String location = fileHandler.getLocationString(uri);
-		File keyFile = fileHandler.writeFile(content.getKeYStatementContent(), location, numberFile, override);
+		File keyFile = fileHandler.writeFile(problem, location, numberFile, override, statement);
 		return keyFile;
 	}
 
@@ -537,13 +543,15 @@ public class ProveWithKey {
 		content.rename(renaming);
 		content.handleOld(formula, vars);
 		
+		problem = content.getKeYStatementContent();
+		
 		String location = fileHandler.getLocationString(uri);
-		File keyFile = fileHandler.writeFile(content.getKeYWPContent(), location, numberFile, override);
+		File keyFile = fileHandler.writeFile(problem, location, numberFile, override, statement);
 		return keyFile;
 	}
 
 	public String createWPWithKey(File location) {
-		Proof proof = KeYInteraction.startKeyProof(location, monitor, false, formula, statement);
+		Proof proof = KeYInteraction.startKeyProof(location, monitor, false, formula, statement, problem);
 		if (proof != null) {
 			String wp = "";
 			Iterator<Goal> it = proof.openGoals().iterator();

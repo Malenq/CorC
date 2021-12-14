@@ -37,7 +37,7 @@ import de.uka.ilkd.key.util.MiscTools;
 
 public class KeYInteraction {
 	
-	public static Proof startKeyProof(File location, IProgressMonitor monitor, boolean inlining, CbCFormula formula, AbstractStatement statement) {
+	public static Proof startKeyProof(File location, IProgressMonitor monitor, boolean inlining, CbCFormula formula, AbstractStatement statement, String problem) {
 		Proof proof = null;
 		List<File> classPaths = null; // Optionally: Additional specifications
 										// for API classes
@@ -100,7 +100,7 @@ public class KeYInteraction {
 				
 				//TODO: inlining may be important too 
 				DataCollector collector = new DataCollector();
-				collector.collectCorcStatistics(proof, formula, statement);
+				collector.collectCorcStatistics(proof, formula, statement, problem);
 				
 				RHelper helper = new RHelper();
 				helper.createStatisticFiles("test", helper.createStatistiFileString(proof));

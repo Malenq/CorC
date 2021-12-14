@@ -5,9 +5,9 @@ import java.util.List;
 public class HtmlHandler {
 
 	//String with placeholder
-	private String beforeEntrys = "";
-	private String betweenEntrysAndDiagrams = ""; 
-	private String afterDiagrams = ""; 
+//	private String beforeEntrys = "";
+//	private String betweenEntrysAndDiagrams = ""; 
+//	private String afterDiagrams = ""; 
 	
 
 	public void setDiagramPaths(List<?> paths) {

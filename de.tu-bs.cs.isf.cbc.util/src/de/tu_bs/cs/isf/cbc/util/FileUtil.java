@@ -27,6 +27,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
+import de.tu_bs.cs.isf.cbc.cbcmodel.AbstractStatement;
+import de.tu_bs.cs.isf.cbc.statistics.FileNameManager;
+
 public class FileUtil implements IFileUtil{
 	
 	String applicationUri;	
@@ -152,10 +155,16 @@ public class FileUtil implements IFileUtil{
 		return thisProject;
 	}
 	
-	public File writeFile(String problem, String location, int numberFile, boolean override) {
-		File keyFile = new File(location + "/prove" + numberFile + ".key");
+	public File writeFile(String problem, String location, int numberFile, boolean override, AbstractStatement statement) {
+		//TODO: implement file name, match through problem hash
+		// at this point hash is not already in database (this exact hash)
+		FileNameManager manager = new FileNameManager();
+		String keyFileName = manager.getFileName(problem, location, statement);
+		
+		File keyFile = new File(location + keyFileName + ".key");
+//		File keyFile = new File(location + "/prove" + numberFile + ".key");
 		File keyHelperFile = new File(location + "/helper.key");
-
+		
 		if (!keyFile.exists() || override) {
 			if (!keyHelperFile.exists()) {
 				try {
