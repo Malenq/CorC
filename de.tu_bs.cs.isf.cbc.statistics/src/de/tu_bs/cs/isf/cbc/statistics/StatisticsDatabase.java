@@ -3,14 +3,13 @@ package de.tu_bs.cs.isf.cbc.statistics;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -61,17 +60,20 @@ public class StatisticsDatabase {
 		}
 	}
 
-	public void getDataRelatedTo(List<IFile> affectedFiles) {
+	public List<StatisticsEntry> getEntriesRelatedTo(List<IFile> affectedFiles) {
 		// TODO: maybe save more redundant information to make it more robust
 		
 		// TODO: change method to get only one file and not multiple -> more clean
 		List<StatisticsEntry> data = new LinkedList<StatisticsEntry>();
 
 		for (IFile file : affectedFiles) {
+			System.out.println("File: " + file);
 			List<StatisticsEntry> entries = new LinkedList<StatisticsEntry>();
 			for (StatisticsEntry entry : registry.getEntries()) {
 				// TODO: mismatch: entry file is KeY file and affected files are diagrams
 				// TODO: check if CorcKeyMapping.getKeyFilePath() is null
+				
+				// TODO: replace entryPath with diagram name which is new in statistics model
 				String entryPath;
 				if (entry.getMapping().getKeyFilePath() != null) {
 					entryPath = entry.getMapping().getKeyFilePath().toString();
@@ -100,9 +102,27 @@ public class StatisticsDatabase {
 				}
 			}
 			
-			// now: if there are multiple entries: get the latest (time stamp)
-//			data.add(entries.get(entries.size()));
+			if(!entries.isEmpty()) {
+				data.add(getLatestEntry(entries));
+			}
+			
 		}
+		
+		return data;
 
+	}
+
+	private StatisticsEntry getLatestEntry(List<StatisticsEntry> entries) {
+		// TODO major mistake: latest wont work because there are more than one entry for one diagram as there also exists multiple key files for one diagram!
+		StatisticsEntry latest = entries.get(0);
+		for (StatisticsEntry entry : entries) {
+			Date entryDate = entry.getData().getTimestamp();
+			Date latestDate = latest.getData().getTimestamp();
+			
+			if (entryDate.after(latestDate)) {
+				latest = entry;
+			}
+		}
+		return latest;
 	}
 }

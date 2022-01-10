@@ -17,9 +17,10 @@ import de.uka.ilkd.key.proof.Proof;
 import de.uka.ilkd.key.proof.Statistics;
 
 public class DataCollector {
-	
-	// TODO: data is constantly saved -> implement something to clean database either:
-	// automatically (e.g. after a certain time) or 
+
+	// TODO: data is constantly saved -> implement something to clean database
+	// either:
+	// automatically (e.g. after a certain time) or
 	// manually (e.g. by clicking clean statistics within the context menu)
 
 	public void collectCorcStatistics(Proof proof, CbCFormula formula, AbstractStatement statement, String problem) {
@@ -36,11 +37,13 @@ public class DataCollector {
 			// set statistics to this entry
 			corcStatsEntry.setData(corcStatsData);
 			corcStatsEntry.setMapping(mapping);
-			
+
 //			String path = getWorkspaceRelatedPath(proof.getProofFile().getAbsolutePath());
-			
+
 			// set KeY file path mapping to this entry
 			mapping.setKeyFilePath(proof.getProofFile().getAbsolutePath());
+			// look up diagram name and set to mapping
+			mapping.setCorcDiagramName(getFolderName(proof.getProofFile().getAbsolutePath().toString()));
 			// set CorC elements mapping to this entry
 			mapping.setCorcElementFormula(formula);
 			mapping.setCorcElementStatement(statement);
@@ -56,11 +59,23 @@ public class DataCollector {
 			corcStatsData.setTotalRuleApps(keyStats.totalRuleApps);
 			Date date = new Date();
 			corcStatsData.setTimestamp(date);
-			
+
 			StatisticsDatabase.instance.saveToDatabase(corcStatsEntry);
 		} else {
 			System.out.println("Directly proven a KeY file. Statistics not collected!");
 		}
+	}
+
+	private String getFolderName(String keyFilePath) {
+		
+		int indexLastSeperatorEntry = keyFilePath.lastIndexOf(File.separator);
+		keyFilePath = keyFilePath.substring(0, indexLastSeperatorEntry);
+		// adding 6 because of prove string
+		indexLastSeperatorEntry = keyFilePath.lastIndexOf(File.separator) + 6;
+		
+		String diagramFolder = keyFilePath.substring(indexLastSeperatorEntry, keyFilePath.length());
+
+		return diagramFolder;
 	}
 
 //	private String getWorkspaceRelatedPath(String absolutePath) {

@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.CorcKeyMappingImpl#getKeyProofProblemHashValue <em>Key Proof Problem Hash Value</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.CorcKeyMappingImpl#getCorcElementFormula <em>Corc Element Formula</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.CorcKeyMappingImpl#getCorcElementStatement <em>Corc Element Statement</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.CorcKeyMappingImpl#getCorcDiagramName <em>Corc Diagram Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -90,6 +91,26 @@ public class CorcKeyMappingImpl extends MinimalEObjectImpl.Container implements 
 	 * @ordered
 	 */
 	protected EObject corcElementStatement;
+
+	/**
+	 * The default value of the '{@link #getCorcDiagramName() <em>Corc Diagram Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCorcDiagramName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String CORC_DIAGRAM_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getCorcDiagramName() <em>Corc Diagram Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCorcDiagramName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String corcDiagramName = CORC_DIAGRAM_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -233,6 +254,27 @@ public class CorcKeyMappingImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getCorcDiagramName() {
+		return corcDiagramName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCorcDiagramName(String newCorcDiagramName) {
+		String oldCorcDiagramName = corcDiagramName;
+		corcDiagramName = newCorcDiagramName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, statisticsPackage.CORC_KEY_MAPPING__CORC_DIAGRAM_NAME, oldCorcDiagramName, corcDiagramName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -246,6 +288,8 @@ public class CorcKeyMappingImpl extends MinimalEObjectImpl.Container implements 
 			case statisticsPackage.CORC_KEY_MAPPING__CORC_ELEMENT_STATEMENT:
 				if (resolve) return getCorcElementStatement();
 				return basicGetCorcElementStatement();
+			case statisticsPackage.CORC_KEY_MAPPING__CORC_DIAGRAM_NAME:
+				return getCorcDiagramName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -269,6 +313,9 @@ public class CorcKeyMappingImpl extends MinimalEObjectImpl.Container implements 
 				return;
 			case statisticsPackage.CORC_KEY_MAPPING__CORC_ELEMENT_STATEMENT:
 				setCorcElementStatement((EObject)newValue);
+				return;
+			case statisticsPackage.CORC_KEY_MAPPING__CORC_DIAGRAM_NAME:
+				setCorcDiagramName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -294,6 +341,9 @@ public class CorcKeyMappingImpl extends MinimalEObjectImpl.Container implements 
 			case statisticsPackage.CORC_KEY_MAPPING__CORC_ELEMENT_STATEMENT:
 				setCorcElementStatement((EObject)null);
 				return;
+			case statisticsPackage.CORC_KEY_MAPPING__CORC_DIAGRAM_NAME:
+				setCorcDiagramName(CORC_DIAGRAM_NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -314,6 +364,8 @@ public class CorcKeyMappingImpl extends MinimalEObjectImpl.Container implements 
 				return corcElementFormula != null;
 			case statisticsPackage.CORC_KEY_MAPPING__CORC_ELEMENT_STATEMENT:
 				return corcElementStatement != null;
+			case statisticsPackage.CORC_KEY_MAPPING__CORC_DIAGRAM_NAME:
+				return CORC_DIAGRAM_NAME_EDEFAULT == null ? corcDiagramName != null : !CORC_DIAGRAM_NAME_EDEFAULT.equals(corcDiagramName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -332,6 +384,8 @@ public class CorcKeyMappingImpl extends MinimalEObjectImpl.Container implements 
 		result.append(keyFilePath);
 		result.append(", keyProofProblemHashValue: ");
 		result.append(keyProofProblemHashValue);
+		result.append(", corcDiagramName: ");
+		result.append(corcDiagramName);
 		result.append(')');
 		return result.toString();
 	}

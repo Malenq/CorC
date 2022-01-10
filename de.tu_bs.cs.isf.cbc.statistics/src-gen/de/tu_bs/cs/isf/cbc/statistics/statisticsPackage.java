@@ -150,13 +150,22 @@ public interface statisticsPackage extends EPackage {
 	int STATISTICS_DATA = 2;
 
 	/**
+	 * The feature id for the '<em><b>Number Of Branches</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATISTICS_DATA__NUMBER_OF_BRANCHES = 0;
+
+	/**
 	 * The feature id for the '<em><b>Number Of Nodes</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATISTICS_DATA__NUMBER_OF_NODES = 0;
+	int STATISTICS_DATA__NUMBER_OF_NODES = 1;
 
 	/**
 	 * The feature id for the '<em><b>Auto Mode Time In Millis</b></em>' attribute.
@@ -165,34 +174,7 @@ public interface statisticsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATISTICS_DATA__AUTO_MODE_TIME_IN_MILLIS = 1;
-
-	/**
-	 * The feature id for the '<em><b>Time In Millis</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATISTICS_DATA__TIME_IN_MILLIS = 2;
-
-	/**
-	 * The feature id for the '<em><b>Time Per Step In Millis</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATISTICS_DATA__TIME_PER_STEP_IN_MILLIS = 3;
-
-	/**
-	 * The feature id for the '<em><b>Number Of Branches</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATISTICS_DATA__NUMBER_OF_BRANCHES = 4;
+	int STATISTICS_DATA__AUTO_MODE_TIME_IN_MILLIS = 2;
 
 	/**
 	 * The feature id for the '<em><b>Total Rule Apps</b></em>' attribute.
@@ -201,7 +183,25 @@ public interface statisticsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATISTICS_DATA__TOTAL_RULE_APPS = 5;
+	int STATISTICS_DATA__TOTAL_RULE_APPS = 3;
+
+	/**
+	 * The feature id for the '<em><b>Time In Millis</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATISTICS_DATA__TIME_IN_MILLIS = 4;
+
+	/**
+	 * The feature id for the '<em><b>Time Per Step In Millis</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATISTICS_DATA__TIME_PER_STEP_IN_MILLIS = 5;
 
 	/**
 	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
@@ -277,13 +277,22 @@ public interface statisticsPackage extends EPackage {
 	int CORC_KEY_MAPPING__CORC_ELEMENT_STATEMENT = 3;
 
 	/**
+	 * The feature id for the '<em><b>Corc Diagram Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CORC_KEY_MAPPING__CORC_DIAGRAM_NAME = 4;
+
+	/**
 	 * The number of structural features of the '<em>Corc Key Mapping</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CORC_KEY_MAPPING_FEATURE_COUNT = 4;
+	int CORC_KEY_MAPPING_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Corc Key Mapping</em>' class.
@@ -490,6 +499,17 @@ public interface statisticsPackage extends EPackage {
 	EReference getCorcKeyMapping_CorcElementStatement();
 
 	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping#getCorcDiagramName <em>Corc Diagram Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Corc Diagram Name</em>'.
+	 * @see de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping#getCorcDiagramName()
+	 * @see #getCorcKeyMapping()
+	 * @generated
+	 */
+	EAttribute getCorcKeyMapping_CorcDiagramName();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -663,6 +683,14 @@ public interface statisticsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CORC_KEY_MAPPING__CORC_ELEMENT_STATEMENT = eINSTANCE.getCorcKeyMapping_CorcElementStatement();
+
+		/**
+		 * The meta object literal for the '<em><b>Corc Diagram Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CORC_KEY_MAPPING__CORC_DIAGRAM_NAME = eINSTANCE.getCorcKeyMapping_CorcDiagramName();
 
 	}
 

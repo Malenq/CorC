@@ -286,13 +286,22 @@ public interface CbcmodelPackage extends EPackage {
 	int ABSTRACT_STATEMENT__COMMENT = 6;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_STATEMENT__ID = 7;
+
+	/**
 	 * The number of structural features of the '<em>Abstract Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_STATEMENT_FEATURE_COUNT = 7;
+	int ABSTRACT_STATEMENT_FEATURE_COUNT = 8;
 
 	/**
 	 * The number of operations of the '<em>Abstract Statement</em>' class.
@@ -375,6 +384,15 @@ public interface CbcmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int SKIP_STATEMENT__COMMENT = ABSTRACT_STATEMENT__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SKIP_STATEMENT__ID = ABSTRACT_STATEMENT__ID;
 
 	/**
 	 * The number of structural features of the '<em>Skip Statement</em>' class.
@@ -466,6 +484,15 @@ public interface CbcmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPOSITION_STATEMENT__COMMENT = ABSTRACT_STATEMENT__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITION_STATEMENT__ID = ABSTRACT_STATEMENT__ID;
 
 	/**
 	 * The feature id for the '<em><b>First Statement</b></em>' containment reference.
@@ -584,6 +611,15 @@ public interface CbcmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int SELECTION_STATEMENT__COMMENT = ABSTRACT_STATEMENT__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTION_STATEMENT__ID = ABSTRACT_STATEMENT__ID;
 
 	/**
 	 * The feature id for the '<em><b>Guards</b></em>' containment reference list.
@@ -741,6 +777,15 @@ public interface CbcmodelPackage extends EPackage {
 	int RETURN_STATEMENT__COMMENT = ABSTRACT_STATEMENT__COMMENT;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_STATEMENT__ID = ABSTRACT_STATEMENT__ID;
+
+	/**
 	 * The number of structural features of the '<em>Return Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -830,6 +875,15 @@ public interface CbcmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int SMALL_REPETITION_STATEMENT__COMMENT = ABSTRACT_STATEMENT__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SMALL_REPETITION_STATEMENT__ID = ABSTRACT_STATEMENT__ID;
 
 	/**
 	 * The feature id for the '<em><b>Loop Statement</b></em>' containment reference.
@@ -1298,6 +1352,15 @@ public interface CbcmodelPackage extends EPackage {
 	int STRENGTH_WEAK_STATEMENT__COMMENT = ABSTRACT_STATEMENT__COMMENT;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRENGTH_WEAK_STATEMENT__ID = ABSTRACT_STATEMENT__ID;
+
+	/**
 	 * The number of structural features of the '<em>Strength Weak Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1637,6 +1700,17 @@ public interface CbcmodelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getAbstractStatement_Comment();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.cbc.cbcmodel.AbstractStatement#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see de.tu_bs.cs.isf.cbc.cbcmodel.AbstractStatement#getId()
+	 * @see #getAbstractStatement()
+	 * @generated
+	 */
+	EAttribute getAbstractStatement_Id();
 
 	/**
 	 * Returns the meta object for class '{@link de.tu_bs.cs.isf.cbc.cbcmodel.SkipStatement <em>Skip Statement</em>}'.
@@ -2356,6 +2430,14 @@ public interface CbcmodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ABSTRACT_STATEMENT__COMMENT = eINSTANCE.getAbstractStatement_Comment();
+
+		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ABSTRACT_STATEMENT__ID = eINSTANCE.getAbstractStatement_Id();
 
 		/**
 		 * The meta object literal for the '{@link de.tu_bs.cs.isf.cbc.cbcmodel.impl.SkipStatementImpl <em>Skip Statement</em>}' class.

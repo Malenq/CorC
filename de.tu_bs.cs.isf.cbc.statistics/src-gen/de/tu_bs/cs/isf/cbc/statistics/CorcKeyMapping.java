@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping#getKeyProofProblemHashValue <em>Key Proof Problem Hash Value</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping#getCorcElementFormula <em>Corc Element Formula</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping#getCorcElementStatement <em>Corc Element Statement</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping#getCorcDiagramName <em>Corc Diagram Name</em>}</li>
  * </ul>
  *
  * @see de.tu_bs.cs.isf.cbc.statistics.statisticsPackage#getCorcKeyMapping()
@@ -111,5 +112,27 @@ public interface CorcKeyMapping extends EObject {
 	 * @generated
 	 */
 	void setCorcElementStatement(EObject value);
+
+	/**
+	 * Returns the value of the '<em><b>Corc Diagram Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Corc Diagram Name</em>' attribute.
+	 * @see #setCorcDiagramName(String)
+	 * @see de.tu_bs.cs.isf.cbc.statistics.statisticsPackage#getCorcKeyMapping_CorcDiagramName()
+	 * @model required="true"
+	 * @generated
+	 */
+	String getCorcDiagramName();
+
+	/**
+	 * Sets the value of the '{@link de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping#getCorcDiagramName <em>Corc Diagram Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Corc Diagram Name</em>' attribute.
+	 * @see #getCorcDiagramName()
+	 * @generated
+	 */
+	void setCorcDiagramName(String value);
 
 } // CorcKeyMapping

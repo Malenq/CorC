@@ -15,12 +15,12 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getNumberOfBranches <em>Number Of Branches</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getNumberOfNodes <em>Number Of Nodes</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getAutoModeTimeInMillis <em>Auto Mode Time In Millis</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getTotalRuleApps <em>Total Rule Apps</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getTimeInMillis <em>Time In Millis</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getTimePerStepInMillis <em>Time Per Step In Millis</em>}</li>
- *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getNumberOfBranches <em>Number Of Branches</em>}</li>
- *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getTotalRuleApps <em>Total Rule Apps</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getTimestamp <em>Timestamp</em>}</li>
  * </ul>
  *

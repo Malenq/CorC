@@ -16,12 +16,12 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cbcstatistics.ecore#//StatisticsEntry/mapping"/>
     </genClasses>
     <genClasses ecoreClass="cbcstatistics.ecore#//StatisticsData">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbcstatistics.ecore#//StatisticsData/numberOfBranches"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbcstatistics.ecore#//StatisticsData/numberOfNodes"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbcstatistics.ecore#//StatisticsData/autoModeTimeInMillis"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbcstatistics.ecore#//StatisticsData/totalRuleApps"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbcstatistics.ecore#//StatisticsData/timeInMillis"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbcstatistics.ecore#//StatisticsData/timePerStepInMillis"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbcstatistics.ecore#//StatisticsData/numberOfBranches"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbcstatistics.ecore#//StatisticsData/totalRuleApps"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbcstatistics.ecore#//StatisticsData/timestamp"/>
     </genClasses>
     <genClasses ecoreClass="cbcstatistics.ecore#//CorcKeyMapping">
@@ -29,6 +29,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbcstatistics.ecore#//CorcKeyMapping/keyProofProblemHashValue"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cbcstatistics.ecore#//CorcKeyMapping/corcElementFormula"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cbcstatistics.ecore#//CorcKeyMapping/corcElementStatement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbcstatistics.ecore#//CorcKeyMapping/corcDiagramName"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

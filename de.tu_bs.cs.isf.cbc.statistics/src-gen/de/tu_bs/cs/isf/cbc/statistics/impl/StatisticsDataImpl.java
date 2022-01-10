@@ -22,18 +22,38 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsDataImpl#getNumberOfBranches <em>Number Of Branches</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsDataImpl#getNumberOfNodes <em>Number Of Nodes</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsDataImpl#getAutoModeTimeInMillis <em>Auto Mode Time In Millis</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsDataImpl#getTotalRuleApps <em>Total Rule Apps</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsDataImpl#getTimeInMillis <em>Time In Millis</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsDataImpl#getTimePerStepInMillis <em>Time Per Step In Millis</em>}</li>
- *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsDataImpl#getNumberOfBranches <em>Number Of Branches</em>}</li>
- *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsDataImpl#getTotalRuleApps <em>Total Rule Apps</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsDataImpl#getTimestamp <em>Timestamp</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class StatisticsDataImpl extends MinimalEObjectImpl.Container implements StatisticsData {
+	/**
+	 * The default value of the '{@link #getNumberOfBranches() <em>Number Of Branches</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNumberOfBranches()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int NUMBER_OF_BRANCHES_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getNumberOfBranches() <em>Number Of Branches</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNumberOfBranches()
+	 * @generated
+	 * @ordered
+	 */
+	protected int numberOfBranches = NUMBER_OF_BRANCHES_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getNumberOfNodes() <em>Number Of Nodes</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -75,6 +95,26 @@ public class StatisticsDataImpl extends MinimalEObjectImpl.Container implements 
 	protected long autoModeTimeInMillis = AUTO_MODE_TIME_IN_MILLIS_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #getTotalRuleApps() <em>Total Rule Apps</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTotalRuleApps()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int TOTAL_RULE_APPS_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getTotalRuleApps() <em>Total Rule Apps</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTotalRuleApps()
+	 * @generated
+	 * @ordered
+	 */
+	protected int totalRuleApps = TOTAL_RULE_APPS_EDEFAULT;
+
+	/**
 	 * The default value of the '{@link #getTimeInMillis() <em>Time In Millis</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -113,46 +153,6 @@ public class StatisticsDataImpl extends MinimalEObjectImpl.Container implements 
 	 * @ordered
 	 */
 	protected float timePerStepInMillis = TIME_PER_STEP_IN_MILLIS_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getNumberOfBranches() <em>Number Of Branches</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNumberOfBranches()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int NUMBER_OF_BRANCHES_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getNumberOfBranches() <em>Number Of Branches</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNumberOfBranches()
-	 * @generated
-	 * @ordered
-	 */
-	protected int numberOfBranches = NUMBER_OF_BRANCHES_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getTotalRuleApps() <em>Total Rule Apps</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTotalRuleApps()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int TOTAL_RULE_APPS_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getTotalRuleApps() <em>Total Rule Apps</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTotalRuleApps()
-	 * @generated
-	 * @ordered
-	 */
-	protected int totalRuleApps = TOTAL_RULE_APPS_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getTimestamp() <em>Timestamp</em>}' attribute.
@@ -348,18 +348,18 @@ public class StatisticsDataImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case statisticsPackage.STATISTICS_DATA__NUMBER_OF_BRANCHES:
+				return getNumberOfBranches();
 			case statisticsPackage.STATISTICS_DATA__NUMBER_OF_NODES:
 				return getNumberOfNodes();
 			case statisticsPackage.STATISTICS_DATA__AUTO_MODE_TIME_IN_MILLIS:
 				return getAutoModeTimeInMillis();
+			case statisticsPackage.STATISTICS_DATA__TOTAL_RULE_APPS:
+				return getTotalRuleApps();
 			case statisticsPackage.STATISTICS_DATA__TIME_IN_MILLIS:
 				return getTimeInMillis();
 			case statisticsPackage.STATISTICS_DATA__TIME_PER_STEP_IN_MILLIS:
 				return getTimePerStepInMillis();
-			case statisticsPackage.STATISTICS_DATA__NUMBER_OF_BRANCHES:
-				return getNumberOfBranches();
-			case statisticsPackage.STATISTICS_DATA__TOTAL_RULE_APPS:
-				return getTotalRuleApps();
 			case statisticsPackage.STATISTICS_DATA__TIMESTAMP:
 				return getTimestamp();
 		}
@@ -374,23 +374,23 @@ public class StatisticsDataImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case statisticsPackage.STATISTICS_DATA__NUMBER_OF_BRANCHES:
+				setNumberOfBranches((Integer)newValue);
+				return;
 			case statisticsPackage.STATISTICS_DATA__NUMBER_OF_NODES:
 				setNumberOfNodes((Integer)newValue);
 				return;
 			case statisticsPackage.STATISTICS_DATA__AUTO_MODE_TIME_IN_MILLIS:
 				setAutoModeTimeInMillis((Long)newValue);
 				return;
+			case statisticsPackage.STATISTICS_DATA__TOTAL_RULE_APPS:
+				setTotalRuleApps((Integer)newValue);
+				return;
 			case statisticsPackage.STATISTICS_DATA__TIME_IN_MILLIS:
 				setTimeInMillis((Long)newValue);
 				return;
 			case statisticsPackage.STATISTICS_DATA__TIME_PER_STEP_IN_MILLIS:
 				setTimePerStepInMillis((Float)newValue);
-				return;
-			case statisticsPackage.STATISTICS_DATA__NUMBER_OF_BRANCHES:
-				setNumberOfBranches((Integer)newValue);
-				return;
-			case statisticsPackage.STATISTICS_DATA__TOTAL_RULE_APPS:
-				setTotalRuleApps((Integer)newValue);
 				return;
 			case statisticsPackage.STATISTICS_DATA__TIMESTAMP:
 				setTimestamp((Date)newValue);
@@ -407,23 +407,23 @@ public class StatisticsDataImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case statisticsPackage.STATISTICS_DATA__NUMBER_OF_BRANCHES:
+				setNumberOfBranches(NUMBER_OF_BRANCHES_EDEFAULT);
+				return;
 			case statisticsPackage.STATISTICS_DATA__NUMBER_OF_NODES:
 				setNumberOfNodes(NUMBER_OF_NODES_EDEFAULT);
 				return;
 			case statisticsPackage.STATISTICS_DATA__AUTO_MODE_TIME_IN_MILLIS:
 				setAutoModeTimeInMillis(AUTO_MODE_TIME_IN_MILLIS_EDEFAULT);
 				return;
+			case statisticsPackage.STATISTICS_DATA__TOTAL_RULE_APPS:
+				setTotalRuleApps(TOTAL_RULE_APPS_EDEFAULT);
+				return;
 			case statisticsPackage.STATISTICS_DATA__TIME_IN_MILLIS:
 				setTimeInMillis(TIME_IN_MILLIS_EDEFAULT);
 				return;
 			case statisticsPackage.STATISTICS_DATA__TIME_PER_STEP_IN_MILLIS:
 				setTimePerStepInMillis(TIME_PER_STEP_IN_MILLIS_EDEFAULT);
-				return;
-			case statisticsPackage.STATISTICS_DATA__NUMBER_OF_BRANCHES:
-				setNumberOfBranches(NUMBER_OF_BRANCHES_EDEFAULT);
-				return;
-			case statisticsPackage.STATISTICS_DATA__TOTAL_RULE_APPS:
-				setTotalRuleApps(TOTAL_RULE_APPS_EDEFAULT);
 				return;
 			case statisticsPackage.STATISTICS_DATA__TIMESTAMP:
 				setTimestamp(TIMESTAMP_EDEFAULT);
@@ -440,18 +440,18 @@ public class StatisticsDataImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case statisticsPackage.STATISTICS_DATA__NUMBER_OF_BRANCHES:
+				return numberOfBranches != NUMBER_OF_BRANCHES_EDEFAULT;
 			case statisticsPackage.STATISTICS_DATA__NUMBER_OF_NODES:
 				return numberOfNodes != NUMBER_OF_NODES_EDEFAULT;
 			case statisticsPackage.STATISTICS_DATA__AUTO_MODE_TIME_IN_MILLIS:
 				return autoModeTimeInMillis != AUTO_MODE_TIME_IN_MILLIS_EDEFAULT;
+			case statisticsPackage.STATISTICS_DATA__TOTAL_RULE_APPS:
+				return totalRuleApps != TOTAL_RULE_APPS_EDEFAULT;
 			case statisticsPackage.STATISTICS_DATA__TIME_IN_MILLIS:
 				return timeInMillis != TIME_IN_MILLIS_EDEFAULT;
 			case statisticsPackage.STATISTICS_DATA__TIME_PER_STEP_IN_MILLIS:
 				return timePerStepInMillis != TIME_PER_STEP_IN_MILLIS_EDEFAULT;
-			case statisticsPackage.STATISTICS_DATA__NUMBER_OF_BRANCHES:
-				return numberOfBranches != NUMBER_OF_BRANCHES_EDEFAULT;
-			case statisticsPackage.STATISTICS_DATA__TOTAL_RULE_APPS:
-				return totalRuleApps != TOTAL_RULE_APPS_EDEFAULT;
 			case statisticsPackage.STATISTICS_DATA__TIMESTAMP:
 				return TIMESTAMP_EDEFAULT == null ? timestamp != null : !TIMESTAMP_EDEFAULT.equals(timestamp);
 		}
@@ -468,18 +468,18 @@ public class StatisticsDataImpl extends MinimalEObjectImpl.Container implements 
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (numberOfNodes: ");
+		result.append(" (numberOfBranches: ");
+		result.append(numberOfBranches);
+		result.append(", numberOfNodes: ");
 		result.append(numberOfNodes);
 		result.append(", autoModeTimeInMillis: ");
 		result.append(autoModeTimeInMillis);
+		result.append(", totalRuleApps: ");
+		result.append(totalRuleApps);
 		result.append(", timeInMillis: ");
 		result.append(timeInMillis);
 		result.append(", timePerStepInMillis: ");
 		result.append(timePerStepInMillis);
-		result.append(", numberOfBranches: ");
-		result.append(numberOfBranches);
-		result.append(", totalRuleApps: ");
-		result.append(totalRuleApps);
 		result.append(", timestamp: ");
 		result.append(timestamp);
 		result.append(')');

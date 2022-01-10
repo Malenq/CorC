@@ -1,6 +1,7 @@
 package de.tu_bs.cs.isf.cbc.statistics.ui;
 
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
@@ -14,7 +15,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 
+import de.tu_bs.cs.isf.cbc.statistics.RHelper;
 import de.tu_bs.cs.isf.cbc.statistics.StatisticsDatabase;
+import de.tu_bs.cs.isf.cbc.statistics.StatisticsEntry;
 
 
 public class StatisticsDialog extends TitleAreaDialog {
@@ -80,7 +83,16 @@ public class StatisticsDialog extends TitleAreaDialog {
 
 	public void setData(List<IFile> allDiagramFiles) {
 		
-		StatisticsDatabase.instance.getDataRelatedTo(allDiagramFiles);
+		//TODO: if there is only one file: do not generate diagram
+		
+		List<StatisticsEntry> entries = new LinkedList<StatisticsEntry>();
+		
+		entries = StatisticsDatabase.instance.getEntriesRelatedTo(allDiagramFiles);
+		
+		RHelper helper = new RHelper();
+		helper.setStatisticsFileStringForDiagrams(entries);
+		helper.createStatisticDiagramFile("test");
+	
 		
 		//TODO: now speak to RHelper an generate the statistic diagram PNG - will return a path (? if makes sense)
 		

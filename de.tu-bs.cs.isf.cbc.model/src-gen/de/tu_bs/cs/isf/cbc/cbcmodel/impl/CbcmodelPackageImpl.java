@@ -467,6 +467,16 @@ public class CbcmodelPackageImpl extends EPackageImpl implements CbcmodelPackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getAbstractStatement_Id() {
+		return (EAttribute)abstractStatementEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getSkipStatement() {
 		return skipStatementEClass;
 	}
@@ -1003,6 +1013,7 @@ public class CbcmodelPackageImpl extends EPackageImpl implements CbcmodelPackage
 		createEReference(abstractStatementEClass, ABSTRACT_STATEMENT__PRE_CONDITION);
 		createEAttribute(abstractStatementEClass, ABSTRACT_STATEMENT__PROVEN);
 		createEAttribute(abstractStatementEClass, ABSTRACT_STATEMENT__COMMENT);
+		createEAttribute(abstractStatementEClass, ABSTRACT_STATEMENT__ID);
 
 		skipStatementEClass = createEClass(SKIP_STATEMENT);
 
@@ -1133,6 +1144,7 @@ public class CbcmodelPackageImpl extends EPackageImpl implements CbcmodelPackage
 		initEReference(getAbstractStatement_PreCondition(), this.getCondition(), null, "preCondition", null, 0, 1, AbstractStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractStatement_Proven(), ecorePackage.getEBoolean(), "proven", null, 0, 1, AbstractStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractStatement_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, AbstractStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractStatement_Id(), ecorePackage.getEString(), "id", null, 1, 1, AbstractStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(skipStatementEClass, SkipStatement.class, "SkipStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

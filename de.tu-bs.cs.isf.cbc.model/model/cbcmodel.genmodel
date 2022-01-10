@@ -45,6 +45,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cbcmodel.ecore#//AbstractStatement/preCondition"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbcmodel.ecore#//AbstractStatement/proven"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbcmodel.ecore#//AbstractStatement/comment"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute cbcmodel.ecore#//AbstractStatement/id"/>
     </genClasses>
     <genClasses ecoreClass="cbcmodel.ecore#//SkipStatement"/>
     <genClasses ecoreClass="cbcmodel.ecore#//CompositionStatement">

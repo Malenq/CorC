@@ -172,15 +172,6 @@ public class statisticsPackageImpl extends EPackageImpl implements statisticsPac
 	 * @generated
 	 */
 	public EAttribute getStatisticsData_NumberOfNodes() {
-		return (EAttribute)statisticsDataEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getStatisticsData_AutoModeTimeInMillis() {
 		return (EAttribute)statisticsDataEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -189,7 +180,7 @@ public class statisticsPackageImpl extends EPackageImpl implements statisticsPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getStatisticsData_TimeInMillis() {
+	public EAttribute getStatisticsData_AutoModeTimeInMillis() {
 		return (EAttribute)statisticsDataEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -198,16 +189,7 @@ public class statisticsPackageImpl extends EPackageImpl implements statisticsPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getStatisticsData_TimePerStepInMillis() {
-		return (EAttribute)statisticsDataEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getStatisticsData_NumberOfBranches() {
+	public EAttribute getStatisticsData_TimeInMillis() {
 		return (EAttribute)statisticsDataEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -216,8 +198,26 @@ public class statisticsPackageImpl extends EPackageImpl implements statisticsPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getStatisticsData_TotalRuleApps() {
+	public EAttribute getStatisticsData_TimePerStepInMillis() {
 		return (EAttribute)statisticsDataEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getStatisticsData_NumberOfBranches() {
+		return (EAttribute)statisticsDataEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getStatisticsData_TotalRuleApps() {
+		return (EAttribute)statisticsDataEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -279,6 +279,15 @@ public class statisticsPackageImpl extends EPackageImpl implements statisticsPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getCorcKeyMapping_CorcDiagramName() {
+		return (EAttribute)corcKeyMappingEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public statisticsFactory getstatisticsFactory() {
 		return (statisticsFactory)getEFactoryInstance();
 	}
@@ -310,12 +319,12 @@ public class statisticsPackageImpl extends EPackageImpl implements statisticsPac
 		createEReference(statisticsEntryEClass, STATISTICS_ENTRY__MAPPING);
 
 		statisticsDataEClass = createEClass(STATISTICS_DATA);
+		createEAttribute(statisticsDataEClass, STATISTICS_DATA__NUMBER_OF_BRANCHES);
 		createEAttribute(statisticsDataEClass, STATISTICS_DATA__NUMBER_OF_NODES);
 		createEAttribute(statisticsDataEClass, STATISTICS_DATA__AUTO_MODE_TIME_IN_MILLIS);
+		createEAttribute(statisticsDataEClass, STATISTICS_DATA__TOTAL_RULE_APPS);
 		createEAttribute(statisticsDataEClass, STATISTICS_DATA__TIME_IN_MILLIS);
 		createEAttribute(statisticsDataEClass, STATISTICS_DATA__TIME_PER_STEP_IN_MILLIS);
-		createEAttribute(statisticsDataEClass, STATISTICS_DATA__NUMBER_OF_BRANCHES);
-		createEAttribute(statisticsDataEClass, STATISTICS_DATA__TOTAL_RULE_APPS);
 		createEAttribute(statisticsDataEClass, STATISTICS_DATA__TIMESTAMP);
 
 		corcKeyMappingEClass = createEClass(CORC_KEY_MAPPING);
@@ -323,6 +332,7 @@ public class statisticsPackageImpl extends EPackageImpl implements statisticsPac
 		createEAttribute(corcKeyMappingEClass, CORC_KEY_MAPPING__KEY_PROOF_PROBLEM_HASH_VALUE);
 		createEReference(corcKeyMappingEClass, CORC_KEY_MAPPING__CORC_ELEMENT_FORMULA);
 		createEReference(corcKeyMappingEClass, CORC_KEY_MAPPING__CORC_ELEMENT_STATEMENT);
+		createEAttribute(corcKeyMappingEClass, CORC_KEY_MAPPING__CORC_DIAGRAM_NAME);
 	}
 
 	/**
@@ -363,12 +373,12 @@ public class statisticsPackageImpl extends EPackageImpl implements statisticsPac
 		initEReference(getStatisticsEntry_Mapping(), this.getCorcKeyMapping(), null, "mapping", null, 1, 1, StatisticsEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(statisticsDataEClass, StatisticsData.class, "StatisticsData", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getStatisticsData_NumberOfBranches(), ecorePackage.getEInt(), "numberOfBranches", null, 0, 1, StatisticsData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getStatisticsData_NumberOfNodes(), ecorePackage.getEInt(), "numberOfNodes", null, 0, 1, StatisticsData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getStatisticsData_AutoModeTimeInMillis(), ecorePackage.getELong(), "autoModeTimeInMillis", null, 0, 1, StatisticsData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStatisticsData_TotalRuleApps(), ecorePackage.getEInt(), "totalRuleApps", null, 0, 1, StatisticsData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getStatisticsData_TimeInMillis(), ecorePackage.getELong(), "timeInMillis", null, 0, 1, StatisticsData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getStatisticsData_TimePerStepInMillis(), ecorePackage.getEFloat(), "timePerStepInMillis", null, 0, 1, StatisticsData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getStatisticsData_NumberOfBranches(), ecorePackage.getEInt(), "numberOfBranches", null, 0, 1, StatisticsData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getStatisticsData_TotalRuleApps(), ecorePackage.getEInt(), "totalRuleApps", null, 0, 1, StatisticsData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getStatisticsData_Timestamp(), ecorePackage.getEDate(), "timestamp", null, 0, 1, StatisticsData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(corcKeyMappingEClass, CorcKeyMapping.class, "CorcKeyMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -376,6 +386,7 @@ public class statisticsPackageImpl extends EPackageImpl implements statisticsPac
 		initEAttribute(getCorcKeyMapping_KeyProofProblemHashValue(), ecorePackage.getEString(), "keyProofProblemHashValue", null, 0, 1, CorcKeyMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCorcKeyMapping_CorcElementFormula(), ecorePackage.getEObject(), null, "corcElementFormula", null, 1, 1, CorcKeyMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCorcKeyMapping_CorcElementStatement(), ecorePackage.getEObject(), null, "corcElementStatement", null, 1, 1, CorcKeyMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCorcKeyMapping_CorcDiagramName(), ecorePackage.getEString(), "corcDiagramName", null, 1, 1, CorcKeyMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

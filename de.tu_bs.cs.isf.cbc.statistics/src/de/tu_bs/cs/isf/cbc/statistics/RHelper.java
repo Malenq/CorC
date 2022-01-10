@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
@@ -17,8 +18,10 @@ import de.uka.ilkd.key.proof.Statistics;
 public class RHelper {
 	
 	private static final String PLUGIN_ID ="de.tu_bs.cs.isf.cbc.statistics";
+	// TODO: rCode should be set in constructor
+	private String rCode = "";
 
-	public void createStatisticFiles(String name, String rCode) {
+	public void createStatisticDiagramFile(String name) {
 		IPath pluginStateFolderPath = Platform.getStateLocation(Platform.getBundle(PLUGIN_ID));
 		File pluginStateFolder = pluginStateFolderPath.toFile();
 
@@ -102,7 +105,7 @@ public class RHelper {
 		return fileString;
 	}
 	
-	public String createStatistiFileString(Proof proof) {
+	public String createStatisticsFileString(Proof proof) {
 	
 		Statistics keyStats = proof.getStatistics();
 		
@@ -119,14 +122,33 @@ public class RHelper {
 		return fileString;
 	}
 
-	public static void doSomethingToShow() {
-		//TODO: get saved data (not saved jet)
-		//TODO: return PNG or so
+//	public static void doSomethingToShow() {
+//		//TODO: get saved data (not saved jet)
+//		//TODO: return PNG or so
+//		
+//		RHelper helper = new RHelper();
+//		// just yet only the dummy
+//		String fileString = helper.createStatisticDummyFileString();
+//		helper.createStatisticDiagramFile("test", fileString);
+//		
+//	}
+
+	
+	/**
+	 * Sets a diagram file String of multiple CorC diagrams.
+	 * 
+	 * @param entries 
+	 */
+	public void setStatisticsFileStringForDiagrams(List<StatisticsEntry> entries) {
+		// TODO Auto-generated method stub
+
+		// diagram names
+		String xAxis = "names <= c(";
+		for (StatisticsEntry entry : entries) {
+//			xAxis = xAxis + entry.getData()
+			//TODO: put diagram name into ecore model -> saves time too for previous oparations
+		}
 		
-		RHelper helper = new RHelper();
-		// just yet only the dummy
-		String fileString = helper.createStatisticDummyFileString();
-		helper.createStatisticFiles("test", fileString);
-		
+		rCode = "";
 	}
 }

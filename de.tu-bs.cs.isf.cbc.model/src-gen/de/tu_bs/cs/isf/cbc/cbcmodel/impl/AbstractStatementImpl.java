@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *   <li>{@link de.tu_bs.cs.isf.cbc.cbcmodel.impl.AbstractStatementImpl#getPreCondition <em>Pre Condition</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.cbcmodel.impl.AbstractStatementImpl#isProven <em>Proven</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.cbcmodel.impl.AbstractStatementImpl#getComment <em>Comment</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.cbc.cbcmodel.impl.AbstractStatementImpl#getId <em>Id</em>}</li>
  * </ul>
  *
  * @generated
@@ -126,6 +127,26 @@ public class AbstractStatementImpl extends MinimalEObjectImpl.Container implemen
 	 * @ordered
 	 */
 	protected String comment = COMMENT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
+	protected String id = ID_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -399,6 +420,29 @@ public class AbstractStatementImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
+	public String getId() {
+		return id;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setId(String newId) {
+		String oldId = id;
+		id = newId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CbcmodelPackage.ABSTRACT_STATEMENT__ID, oldId, id));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case CbcmodelPackage.ABSTRACT_STATEMENT__REFINEMENT:
@@ -469,6 +513,8 @@ public class AbstractStatementImpl extends MinimalEObjectImpl.Container implemen
 				return isProven();
 			case CbcmodelPackage.ABSTRACT_STATEMENT__COMMENT:
 				return getComment();
+			case CbcmodelPackage.ABSTRACT_STATEMENT__ID:
+				return getId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -501,6 +547,9 @@ public class AbstractStatementImpl extends MinimalEObjectImpl.Container implemen
 				return;
 			case CbcmodelPackage.ABSTRACT_STATEMENT__COMMENT:
 				setComment((String)newValue);
+				return;
+			case CbcmodelPackage.ABSTRACT_STATEMENT__ID:
+				setId((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -535,6 +584,9 @@ public class AbstractStatementImpl extends MinimalEObjectImpl.Container implemen
 			case CbcmodelPackage.ABSTRACT_STATEMENT__COMMENT:
 				setComment(COMMENT_EDEFAULT);
 				return;
+			case CbcmodelPackage.ABSTRACT_STATEMENT__ID:
+				setId(ID_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -561,6 +613,8 @@ public class AbstractStatementImpl extends MinimalEObjectImpl.Container implemen
 				return proven != PROVEN_EDEFAULT;
 			case CbcmodelPackage.ABSTRACT_STATEMENT__COMMENT:
 				return COMMENT_EDEFAULT == null ? comment != null : !COMMENT_EDEFAULT.equals(comment);
+			case CbcmodelPackage.ABSTRACT_STATEMENT__ID:
+				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -581,6 +635,8 @@ public class AbstractStatementImpl extends MinimalEObjectImpl.Container implemen
 		result.append(proven);
 		result.append(", comment: ");
 		result.append(comment);
+		result.append(", id: ");
+		result.append(id);
 		result.append(')');
 		return result.toString();
 	}
