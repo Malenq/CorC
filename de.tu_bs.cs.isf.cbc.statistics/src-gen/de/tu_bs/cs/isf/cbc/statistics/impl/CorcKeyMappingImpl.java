@@ -26,7 +26,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.CorcKeyMappingImpl#getKeyProofProblemHashValue <em>Key Proof Problem Hash Value</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.CorcKeyMappingImpl#getCorcElementFormula <em>Corc Element Formula</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.CorcKeyMappingImpl#getCorcElementStatement <em>Corc Element Statement</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.CorcKeyMappingImpl#getCorcElementId <em>Corc Element Id</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.CorcKeyMappingImpl#getCorcDiagramName <em>Corc Diagram Name</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.CorcKeyMappingImpl#getCorcDiagramPath <em>Corc Diagram Path</em>}</li>
  * </ul>
  *
  * @generated
@@ -93,6 +95,26 @@ public class CorcKeyMappingImpl extends MinimalEObjectImpl.Container implements 
 	protected EObject corcElementStatement;
 
 	/**
+	 * The default value of the '{@link #getCorcElementId() <em>Corc Element Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCorcElementId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String CORC_ELEMENT_ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getCorcElementId() <em>Corc Element Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCorcElementId()
+	 * @generated
+	 * @ordered
+	 */
+	protected String corcElementId = CORC_ELEMENT_ID_EDEFAULT;
+
+	/**
 	 * The default value of the '{@link #getCorcDiagramName() <em>Corc Diagram Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -111,6 +133,26 @@ public class CorcKeyMappingImpl extends MinimalEObjectImpl.Container implements 
 	 * @ordered
 	 */
 	protected String corcDiagramName = CORC_DIAGRAM_NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getCorcDiagramPath() <em>Corc Diagram Path</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCorcDiagramPath()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String CORC_DIAGRAM_PATH_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getCorcDiagramPath() <em>Corc Diagram Path</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCorcDiagramPath()
+	 * @generated
+	 * @ordered
+	 */
+	protected String corcDiagramPath = CORC_DIAGRAM_PATH_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -275,6 +317,48 @@ public class CorcKeyMappingImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getCorcDiagramPath() {
+		return corcDiagramPath;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCorcDiagramPath(String newCorcDiagramPath) {
+		String oldCorcDiagramPath = corcDiagramPath;
+		corcDiagramPath = newCorcDiagramPath;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, statisticsPackage.CORC_KEY_MAPPING__CORC_DIAGRAM_PATH, oldCorcDiagramPath, corcDiagramPath));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getCorcElementId() {
+		return corcElementId;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCorcElementId(String newCorcElementId) {
+		String oldCorcElementId = corcElementId;
+		corcElementId = newCorcElementId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, statisticsPackage.CORC_KEY_MAPPING__CORC_ELEMENT_ID, oldCorcElementId, corcElementId));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -288,8 +372,12 @@ public class CorcKeyMappingImpl extends MinimalEObjectImpl.Container implements 
 			case statisticsPackage.CORC_KEY_MAPPING__CORC_ELEMENT_STATEMENT:
 				if (resolve) return getCorcElementStatement();
 				return basicGetCorcElementStatement();
+			case statisticsPackage.CORC_KEY_MAPPING__CORC_ELEMENT_ID:
+				return getCorcElementId();
 			case statisticsPackage.CORC_KEY_MAPPING__CORC_DIAGRAM_NAME:
 				return getCorcDiagramName();
+			case statisticsPackage.CORC_KEY_MAPPING__CORC_DIAGRAM_PATH:
+				return getCorcDiagramPath();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -314,8 +402,14 @@ public class CorcKeyMappingImpl extends MinimalEObjectImpl.Container implements 
 			case statisticsPackage.CORC_KEY_MAPPING__CORC_ELEMENT_STATEMENT:
 				setCorcElementStatement((EObject)newValue);
 				return;
+			case statisticsPackage.CORC_KEY_MAPPING__CORC_ELEMENT_ID:
+				setCorcElementId((String)newValue);
+				return;
 			case statisticsPackage.CORC_KEY_MAPPING__CORC_DIAGRAM_NAME:
 				setCorcDiagramName((String)newValue);
+				return;
+			case statisticsPackage.CORC_KEY_MAPPING__CORC_DIAGRAM_PATH:
+				setCorcDiagramPath((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -341,8 +435,14 @@ public class CorcKeyMappingImpl extends MinimalEObjectImpl.Container implements 
 			case statisticsPackage.CORC_KEY_MAPPING__CORC_ELEMENT_STATEMENT:
 				setCorcElementStatement((EObject)null);
 				return;
+			case statisticsPackage.CORC_KEY_MAPPING__CORC_ELEMENT_ID:
+				setCorcElementId(CORC_ELEMENT_ID_EDEFAULT);
+				return;
 			case statisticsPackage.CORC_KEY_MAPPING__CORC_DIAGRAM_NAME:
 				setCorcDiagramName(CORC_DIAGRAM_NAME_EDEFAULT);
+				return;
+			case statisticsPackage.CORC_KEY_MAPPING__CORC_DIAGRAM_PATH:
+				setCorcDiagramPath(CORC_DIAGRAM_PATH_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -364,8 +464,12 @@ public class CorcKeyMappingImpl extends MinimalEObjectImpl.Container implements 
 				return corcElementFormula != null;
 			case statisticsPackage.CORC_KEY_MAPPING__CORC_ELEMENT_STATEMENT:
 				return corcElementStatement != null;
+			case statisticsPackage.CORC_KEY_MAPPING__CORC_ELEMENT_ID:
+				return CORC_ELEMENT_ID_EDEFAULT == null ? corcElementId != null : !CORC_ELEMENT_ID_EDEFAULT.equals(corcElementId);
 			case statisticsPackage.CORC_KEY_MAPPING__CORC_DIAGRAM_NAME:
 				return CORC_DIAGRAM_NAME_EDEFAULT == null ? corcDiagramName != null : !CORC_DIAGRAM_NAME_EDEFAULT.equals(corcDiagramName);
+			case statisticsPackage.CORC_KEY_MAPPING__CORC_DIAGRAM_PATH:
+				return CORC_DIAGRAM_PATH_EDEFAULT == null ? corcDiagramPath != null : !CORC_DIAGRAM_PATH_EDEFAULT.equals(corcDiagramPath);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -384,8 +488,12 @@ public class CorcKeyMappingImpl extends MinimalEObjectImpl.Container implements 
 		result.append(keyFilePath);
 		result.append(", keyProofProblemHashValue: ");
 		result.append(keyProofProblemHashValue);
+		result.append(", corcElementId: ");
+		result.append(corcElementId);
 		result.append(", corcDiagramName: ");
 		result.append(corcDiagramName);
+		result.append(", corcDiagramPath: ");
+		result.append(corcDiagramPath);
 		result.append(')');
 		return result.toString();
 	}

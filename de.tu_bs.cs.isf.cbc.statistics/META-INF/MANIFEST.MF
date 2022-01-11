@@ -14,7 +14,9 @@ Require-Bundle: org.eclipse.core.runtime,
  de.tu-bs.cs.isf.cbc.util,
  de.tu-bs.cs.isf.cbc.model,
  org.eclipse.core.resources,
- com.google.guava
+ com.google.guava,
+ org.eclipse.jface,
+ org.eclipse.ui.workbench
 Bundle-ActivationPolicy: lazy
 Export-Package: de.tu_bs.cs.isf.cbc.statistics,
  de.tu_bs.cs.isf.cbc.statistics.impl,

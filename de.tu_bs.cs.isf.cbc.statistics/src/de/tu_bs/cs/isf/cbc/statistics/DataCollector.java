@@ -1,13 +1,8 @@
 package de.tu_bs.cs.isf.cbc.statistics;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
-
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Platform;
 
 import com.google.common.hash.Hashing;
 
@@ -23,7 +18,8 @@ public class DataCollector {
 	// automatically (e.g. after a certain time) or
 	// manually (e.g. by clicking clean statistics within the context menu)
 
-	public void collectCorcStatistics(Proof proof, CbCFormula formula, AbstractStatement statement, String problem) {
+	public void collectCorcStatistics(Proof proof, CbCFormula formula, AbstractStatement statement, String problem,
+			String uri) {
 		// TODO: if formula is null -> only a KeY file is proven: no diagram in direct
 		// relation
 		if (formula != null) {
@@ -47,6 +43,14 @@ public class DataCollector {
 			// set CorC elements mapping to this entry
 			mapping.setCorcElementFormula(formula);
 			mapping.setCorcElementStatement(statement);
+			// for old models because id for abstract statements in cbcmodel is new
+			if (statement.getId() == null || statement.getId().isEmpty()) {
+				throw new RuntimeException(
+						"Error: Statistics Data Collector - Please right click on the Diagram within the project explorer to add IDs.");
+			} else {
+				mapping.setCorcElementId(statement.getId());
+			}
+			mapping.setCorcDiagramPath(uri);
 			// set KeY file hash value
 			mapping.setKeyProofProblemHashValue(hashValue);
 
@@ -67,12 +71,12 @@ public class DataCollector {
 	}
 
 	private String getFolderName(String keyFilePath) {
-		
+
 		int indexLastSeperatorEntry = keyFilePath.lastIndexOf(File.separator);
 		keyFilePath = keyFilePath.substring(0, indexLastSeperatorEntry);
 		// adding 6 because of prove string
 		indexLastSeperatorEntry = keyFilePath.lastIndexOf(File.separator) + 6;
-		
+
 		String diagramFolder = keyFilePath.substring(indexLastSeperatorEntry, keyFilePath.length());
 
 		return diagramFolder;

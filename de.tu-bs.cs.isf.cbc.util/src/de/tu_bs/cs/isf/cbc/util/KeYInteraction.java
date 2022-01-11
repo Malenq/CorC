@@ -19,7 +19,6 @@ import org.key_project.util.collection.ImmutableSet;
 import de.tu_bs.cs.isf.cbc.cbcmodel.AbstractStatement;
 import de.tu_bs.cs.isf.cbc.cbcmodel.CbCFormula;
 import de.tu_bs.cs.isf.cbc.statistics.DataCollector;
-import de.tu_bs.cs.isf.cbc.statistics.RHelper;
 import de.uka.ilkd.key.control.KeYEnvironment;
 import de.uka.ilkd.key.gui.MainWindow;
 import de.uka.ilkd.key.java.abstraction.KeYJavaType;
@@ -37,7 +36,7 @@ import de.uka.ilkd.key.util.MiscTools;
 
 public class KeYInteraction {
 	
-	public static Proof startKeyProof(File location, IProgressMonitor monitor, boolean inlining, CbCFormula formula, AbstractStatement statement, String problem) {
+	public static Proof startKeyProof(File location, IProgressMonitor monitor, boolean inlining, CbCFormula formula, AbstractStatement statement, String problem, String uri) {
 		Proof proof = null;
 		List<File> classPaths = null; // Optionally: Additional specifications
 										// for API classes
@@ -98,9 +97,13 @@ public class KeYInteraction {
 				// savToFile is a function by KeY
 				proof.saveToFile(location);
 				
-				//TODO: inlining may be important too 
-				DataCollector collector = new DataCollector();
-				collector.collectCorcStatistics(proof, formula, statement, problem);
+				try {
+					//TODO: inlining may be important too 
+					DataCollector collector = new DataCollector();
+					collector.collectCorcStatistics(proof, formula, statement, problem, uri);
+				} catch (RuntimeException e) {
+					de.tu_bs.cs.isf.cbc.util.Console.println("Error: Statistical data collection failed. Please add Ids by right click on diagram in project explorer.");
+				}
 				
 //				RHelper helper = new RHelper();
 //				helper.createStatisticDiagramFile("test", helper.createStatisticsFileString(proof));

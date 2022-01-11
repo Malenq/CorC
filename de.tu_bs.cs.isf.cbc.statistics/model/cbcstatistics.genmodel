@@ -29,7 +29,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbcstatistics.ecore#//CorcKeyMapping/keyProofProblemHashValue"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cbcstatistics.ecore#//CorcKeyMapping/corcElementFormula"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cbcstatistics.ecore#//CorcKeyMapping/corcElementStatement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbcstatistics.ecore#//CorcKeyMapping/corcElementId"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbcstatistics.ecore#//CorcKeyMapping/corcDiagramName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbcstatistics.ecore#//CorcKeyMapping/corcDiagramPath"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

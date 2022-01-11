@@ -87,7 +87,9 @@ public class StatisticsDialog extends TitleAreaDialog {
 		
 		List<StatisticsEntry> entries = new LinkedList<StatisticsEntry>();
 		
-		entries = StatisticsDatabase.instance.getEntriesRelatedTo(allDiagramFiles);
+		for (IFile file : allDiagramFiles) {
+			entries.addAll(StatisticsDatabase.instance.getEntriesRelatedTo(file));
+		}
 		
 		RHelper helper = new RHelper();
 		helper.setStatisticsFileStringForDiagrams(entries);

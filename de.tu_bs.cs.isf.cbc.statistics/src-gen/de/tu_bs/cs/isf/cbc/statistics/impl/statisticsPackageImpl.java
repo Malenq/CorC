@@ -280,6 +280,24 @@ public class statisticsPackageImpl extends EPackageImpl implements statisticsPac
 	 * @generated
 	 */
 	public EAttribute getCorcKeyMapping_CorcDiagramName() {
+		return (EAttribute)corcKeyMappingEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCorcKeyMapping_CorcDiagramPath() {
+		return (EAttribute)corcKeyMappingEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCorcKeyMapping_CorcElementId() {
 		return (EAttribute)corcKeyMappingEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -332,7 +350,9 @@ public class statisticsPackageImpl extends EPackageImpl implements statisticsPac
 		createEAttribute(corcKeyMappingEClass, CORC_KEY_MAPPING__KEY_PROOF_PROBLEM_HASH_VALUE);
 		createEReference(corcKeyMappingEClass, CORC_KEY_MAPPING__CORC_ELEMENT_FORMULA);
 		createEReference(corcKeyMappingEClass, CORC_KEY_MAPPING__CORC_ELEMENT_STATEMENT);
+		createEAttribute(corcKeyMappingEClass, CORC_KEY_MAPPING__CORC_ELEMENT_ID);
 		createEAttribute(corcKeyMappingEClass, CORC_KEY_MAPPING__CORC_DIAGRAM_NAME);
+		createEAttribute(corcKeyMappingEClass, CORC_KEY_MAPPING__CORC_DIAGRAM_PATH);
 	}
 
 	/**
@@ -386,7 +406,9 @@ public class statisticsPackageImpl extends EPackageImpl implements statisticsPac
 		initEAttribute(getCorcKeyMapping_KeyProofProblemHashValue(), ecorePackage.getEString(), "keyProofProblemHashValue", null, 0, 1, CorcKeyMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCorcKeyMapping_CorcElementFormula(), ecorePackage.getEObject(), null, "corcElementFormula", null, 1, 1, CorcKeyMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCorcKeyMapping_CorcElementStatement(), ecorePackage.getEObject(), null, "corcElementStatement", null, 1, 1, CorcKeyMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCorcKeyMapping_CorcElementId(), ecorePackage.getEString(), "corcElementId", null, 1, 1, CorcKeyMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCorcKeyMapping_CorcDiagramName(), ecorePackage.getEString(), "corcDiagramName", null, 1, 1, CorcKeyMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCorcKeyMapping_CorcDiagramPath(), ecorePackage.getEString(), "corcDiagramPath", null, 1, 1, CorcKeyMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

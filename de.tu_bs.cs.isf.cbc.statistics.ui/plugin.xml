@@ -13,6 +13,11 @@
             id="de.tu_bs.cs.isf.cbc.statistics.ui.view.diagram.command"
             name="View in corc diagram command">
       </command>
+      <command
+            defaultHandler="de.tu_bs.cs.isf.cbc.statistics.ui.AddIdsToCorCDiagramElementsHandler"
+            id="de.tu_bs.cs.isf.cbc.statistics.ui.add.ids.diagram.command"
+            name="Add ids to corc elements command">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -58,6 +63,39 @@
 				         </adapt>
 				      </iterate>
 			   	</with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="true"
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <command
+               commandId="de.tu_bs.cs.isf.cbc.statistics.ui.add.ids.diagram.command"
+               icon="icons/CorC.png"
+               id="de.tu_bs.cs.isf.cbc.statistics.ui.add.ids.diagram.command.mapping"
+               label="Add IDs to CorC Diagram Elements"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activeMenuSelection">
+                  <iterate
+                        ifEmpty="false">
+                     <adapt
+                           type="org.eclipse.core.resources.IResource">
+                        <or>
+                           <test
+                                 property="org.eclipse.core.resources.extension"
+                                 value="cbcmodel">
+                           </test>
+                           <test
+                                 property="org.eclipse.core.resources.extension"
+                                 value="diagram">
+                           </test>
+                        </or>
+                     </adapt>
+                  </iterate>
+               </with>
             </visibleWhen>
          </command>
       </menuContribution>

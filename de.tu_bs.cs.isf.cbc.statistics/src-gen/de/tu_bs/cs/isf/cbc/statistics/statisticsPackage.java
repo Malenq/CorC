@@ -277,13 +277,31 @@ public interface statisticsPackage extends EPackage {
 	int CORC_KEY_MAPPING__CORC_ELEMENT_STATEMENT = 3;
 
 	/**
+	 * The feature id for the '<em><b>Corc Element Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CORC_KEY_MAPPING__CORC_ELEMENT_ID = 4;
+
+	/**
 	 * The feature id for the '<em><b>Corc Diagram Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CORC_KEY_MAPPING__CORC_DIAGRAM_NAME = 4;
+	int CORC_KEY_MAPPING__CORC_DIAGRAM_NAME = 5;
+
+	/**
+	 * The feature id for the '<em><b>Corc Diagram Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CORC_KEY_MAPPING__CORC_DIAGRAM_PATH = 6;
 
 	/**
 	 * The number of structural features of the '<em>Corc Key Mapping</em>' class.
@@ -292,7 +310,7 @@ public interface statisticsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CORC_KEY_MAPPING_FEATURE_COUNT = 5;
+	int CORC_KEY_MAPPING_FEATURE_COUNT = 7;
 
 	/**
 	 * The number of operations of the '<em>Corc Key Mapping</em>' class.
@@ -510,6 +528,28 @@ public interface statisticsPackage extends EPackage {
 	EAttribute getCorcKeyMapping_CorcDiagramName();
 
 	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping#getCorcDiagramPath <em>Corc Diagram Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Corc Diagram Path</em>'.
+	 * @see de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping#getCorcDiagramPath()
+	 * @see #getCorcKeyMapping()
+	 * @generated
+	 */
+	EAttribute getCorcKeyMapping_CorcDiagramPath();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping#getCorcElementId <em>Corc Element Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Corc Element Id</em>'.
+	 * @see de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping#getCorcElementId()
+	 * @see #getCorcKeyMapping()
+	 * @generated
+	 */
+	EAttribute getCorcKeyMapping_CorcElementId();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -691,6 +731,22 @@ public interface statisticsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CORC_KEY_MAPPING__CORC_DIAGRAM_NAME = eINSTANCE.getCorcKeyMapping_CorcDiagramName();
+
+		/**
+		 * The meta object literal for the '<em><b>Corc Diagram Path</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CORC_KEY_MAPPING__CORC_DIAGRAM_PATH = eINSTANCE.getCorcKeyMapping_CorcDiagramPath();
+
+		/**
+		 * The meta object literal for the '<em><b>Corc Element Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CORC_KEY_MAPPING__CORC_ELEMENT_ID = eINSTANCE.getCorcKeyMapping_CorcElementId();
 
 	}
 

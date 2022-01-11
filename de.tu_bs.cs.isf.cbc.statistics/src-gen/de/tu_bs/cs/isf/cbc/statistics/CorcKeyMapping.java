@@ -17,7 +17,9 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping#getKeyProofProblemHashValue <em>Key Proof Problem Hash Value</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping#getCorcElementFormula <em>Corc Element Formula</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping#getCorcElementStatement <em>Corc Element Statement</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping#getCorcElementId <em>Corc Element Id</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping#getCorcDiagramName <em>Corc Diagram Name</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping#getCorcDiagramPath <em>Corc Diagram Path</em>}</li>
  * </ul>
  *
  * @see de.tu_bs.cs.isf.cbc.statistics.statisticsPackage#getCorcKeyMapping()
@@ -134,5 +136,49 @@ public interface CorcKeyMapping extends EObject {
 	 * @generated
 	 */
 	void setCorcDiagramName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Corc Diagram Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Corc Diagram Path</em>' attribute.
+	 * @see #setCorcDiagramPath(String)
+	 * @see de.tu_bs.cs.isf.cbc.statistics.statisticsPackage#getCorcKeyMapping_CorcDiagramPath()
+	 * @model required="true"
+	 * @generated
+	 */
+	String getCorcDiagramPath();
+
+	/**
+	 * Sets the value of the '{@link de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping#getCorcDiagramPath <em>Corc Diagram Path</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Corc Diagram Path</em>' attribute.
+	 * @see #getCorcDiagramPath()
+	 * @generated
+	 */
+	void setCorcDiagramPath(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Corc Element Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Corc Element Id</em>' attribute.
+	 * @see #setCorcElementId(String)
+	 * @see de.tu_bs.cs.isf.cbc.statistics.statisticsPackage#getCorcKeyMapping_CorcElementId()
+	 * @model unique="false" required="true"
+	 * @generated
+	 */
+	String getCorcElementId();
+
+	/**
+	 * Sets the value of the '{@link de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping#getCorcElementId <em>Corc Element Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Corc Element Id</em>' attribute.
+	 * @see #getCorcElementId()
+	 * @generated
+	 */
+	void setCorcElementId(String value);
 
 } // CorcKeyMapping

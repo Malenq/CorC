@@ -142,6 +142,8 @@ public class RHelper {
 	public void setStatisticsFileStringForDiagrams(List<StatisticsEntry> entries) {
 		// TODO Auto-generated method stub
 
+		//TODO create database util/tools/smth class for extraction things ... i need to group after diagrams at least...
+		
 		// diagram names
 		String xAxis = "names <= c(";
 		for (StatisticsEntry entry : entries) {
