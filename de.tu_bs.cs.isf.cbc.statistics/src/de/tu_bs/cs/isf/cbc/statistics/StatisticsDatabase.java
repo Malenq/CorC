@@ -138,11 +138,16 @@ public class StatisticsDatabase {
 			resource = resourceSet.createResource(uri);
 		}
 		CbCFormula formula;
-		formula = (CbCFormula) resource.getContents().get(0);
+		for (int i = 0; i < resource.getContents().size(); i++) {
 
-		if (findAbstractStatementById(formula, elementId) == null) {
-			System.out.println("id doeas not exist");
-			return true;
+			if (resource.getContents().get(i) instanceof CbCFormula) {
+				formula = (CbCFormula) resource.getContents().get(i);
+
+				if (findAbstractStatementById(formula, elementId) == null) {
+					System.out.println("id doeas not exist");
+					return true;
+				}
+			}
 		}
 
 		return false;
@@ -165,11 +170,11 @@ public class StatisticsDatabase {
 	private List<StatisticsEntry> getLatestEntriesWithRedundantID(List<StatisticsEntry> entries) {
 
 		List<StatisticsEntry> olderEntriesWithRedundantId = new LinkedList<StatisticsEntry>();
-		
+
 		for (int i = 0; entries.size() > i; i++) {
 			StatisticsEntry outterEntry = entries.get(i);
 			String id = outterEntry.getMapping().getCorcElementId();
-			for (int j = i + 1;  entries.size() > j; j ++ ) {
+			for (int j = i + 1; entries.size() > j; j++) {
 				StatisticsEntry innerEntry = entries.get(j);
 				if (id.equals(entries.get(j).getMapping().getCorcElementId())) {
 
@@ -177,14 +182,13 @@ public class StatisticsDatabase {
 					Date innerEntryDate = innerEntry.getData().getTimestamp();
 					if (outterEntryDate.after(innerEntryDate)) {
 						olderEntriesWithRedundantId.add(innerEntry);
-					}
-					else {
+					} else {
 						olderEntriesWithRedundantId.add(outterEntry);
 					}
 				}
 			}
 		}
-		entries.removeAll(olderEntriesWithRedundantId);	
+		entries.removeAll(olderEntriesWithRedundantId);
 		return entries;
 	}
 }

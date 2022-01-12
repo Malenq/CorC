@@ -68,17 +68,20 @@ public class AddIdsToCorCDiagramElementsHandler extends AbstractHandler {
 		}
 
 		CbCFormula formula;
-		formula = (CbCFormula) resource.getContents().get(0);
-
-		distributeIds(formula);
-
-		try {
-			formula.eResource().save(Collections.EMPTY_MAP);
-		} catch (IOException e) {
-			e.printStackTrace();
+		for (int i = 0; i< resource.getContents().size(); i++ ) {
+			
+			if ( resource.getContents().get(i) instanceof CbCFormula) {
+				formula = (CbCFormula) resource.getContents().get(i);
+				distributeIds(formula);
+				try {
+					formula.eResource().save(Collections.EMPTY_MAP);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+				de.tu_bs.cs.isf.cbc.util.Console.println("... Finished adding IDs");
+			}
 		}
-
-		de.tu_bs.cs.isf.cbc.util.Console.println("... Finished adding IDs");
 
 		return null;
 	}
