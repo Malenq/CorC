@@ -10,7 +10,8 @@ import de.tu_bs.cs.isf.cbc.cbcmodel.SmallRepetitionStatement;
 public class CbcmodelFactoryCustom extends CbcmodelFactoryImpl {
 
 	public static void setId(AbstractStatement statement) {
-		statement.setId(java.util.UUID.randomUUID().toString());
+		if(statement.getId() == null)
+			statement.setId(java.util.UUID.randomUUID().toString());
 	}
 
 	@Override

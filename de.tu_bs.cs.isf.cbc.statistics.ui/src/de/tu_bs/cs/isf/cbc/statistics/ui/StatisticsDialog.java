@@ -23,6 +23,9 @@ import de.tu_bs.cs.isf.cbc.statistics.StatisticsEntry;
 public class StatisticsDialog extends TitleAreaDialog {
 	
 	private List<?> paths = null;
+	private int numberOfDiagrams;
+	private List<StatisticsEntry> entries = new LinkedList<StatisticsEntry>();
+	private List<IFile> selectedDiagramFiles = new LinkedList<IFile>();
 	
 	public StatisticsDialog(Shell parentShell) {
 		super(parentShell);
@@ -54,7 +57,7 @@ public class StatisticsDialog extends TitleAreaDialog {
 		
 		HtmlHandler htmlSite = new HtmlHandler();
 		htmlSite.setDiagramPaths(paths);
-		htmlSite.setData();
+		htmlSite.setData(numberOfDiagrams, entries, selectedDiagramFiles);
 		String templateHTML = htmlSite.getHtmlString();
 		browser.setText(templateHTML);
 
@@ -83,20 +86,32 @@ public class StatisticsDialog extends TitleAreaDialog {
 
 	public void setData(List<IFile> allDiagramFiles) {
 		
-		//TODO: if there is only one file: do not generate diagram
-		
-		List<StatisticsEntry> entries = new LinkedList<StatisticsEntry>();
-		
-		for (IFile file : allDiagramFiles) {
-			entries.addAll(StatisticsDatabase.instance.getEntriesRelatedTo(file));
+		if (allDiagramFiles.size() < 1) {
+			de.tu_bs.cs.isf.cbc.util.Console.println("No diagram files selected.");
 		}
-		
-		RHelper helper = new RHelper();
-		helper.setStatisticsFileStringForDiagrams(entries);
-		helper.createStatisticDiagramFile("test");
-	
-		
-		//TODO: now speak to RHelper an generate the statistic diagram PNG - will return a path (? if makes sense)
-		
+		else {
+			for (IFile file : allDiagramFiles) {
+				entries.addAll(StatisticsDatabase.instance.getEntriesRelatedTo(file));
+			}
+			numberOfDiagrams = allDiagramFiles.size();
+			selectedDiagramFiles = allDiagramFiles;
+		}
 	}
+
+//	private boolean multipleDiagrams(List<StatisticsEntry> entries) {
+//
+//		boolean moreThanOne = false;
+//		
+//		for (int i = 0; entries.size() > i; i++) {
+//			String outterDiagramName = entries.get(i).getMapping().getCorcDiagramName();
+//			for (int j= i + 1; entries.size() > j; j++) {
+//				String innerDiagramName = entries.get(j).getMapping().getCorcDiagramName();
+//				if (!outterDiagramName.equals(innerDiagramName)) {
+//					moreThanOne = true;
+//				}
+//			}
+//			
+//		}
+//		return moreThanOne;
+//	}
 }
