@@ -188,12 +188,13 @@ public interface AbstractStatement extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
 	 * @see de.tu_bs.cs.isf.cbc.cbcmodel.CbcmodelPackage#getAbstractStatement_Id()
-	 * @model id="true" required="true"
+	 * @model default="" id="true" required="true"
 	 * @generated
 	 */
 	String getId();
@@ -207,5 +208,13 @@ public interface AbstractStatement extends EObject {
 	 * @generated
 	 */
 	void setId(String value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void generateID();
 
 } // AbstractStatement

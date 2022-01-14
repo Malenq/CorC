@@ -7,15 +7,25 @@ import org.eclipse.emf.ecore.EObject;
 import com.google.common.hash.Hashing;
 
 import de.tu_bs.cs.isf.cbc.cbcmodel.AbstractStatement;
+import de.tu_bs.cs.isf.cbc.cbcmodel.CompositionStatement;
 import de.tu_bs.cs.isf.cbc.cbcmodel.Condition;
+import de.tu_bs.cs.isf.cbc.cbcmodel.ReturnStatement;
 import de.tu_bs.cs.isf.cbc.cbcmodel.SelectionStatement;
+import de.tu_bs.cs.isf.cbc.cbcmodel.SkipStatement;
+import de.tu_bs.cs.isf.cbc.cbcmodel.SmallRepetitionStatement;
+import de.tu_bs.cs.isf.cbc.cbcmodel.StrengthWeakStatement;
 
 public class FileNameManager {
 
 	private int selectionCounter;
 	private int abstractCounter;
+	private int skipCounter;
+	private int compositionCounter;
+	private int returnCounter;
+	private int repetitionCounter;
+	private int strengthWeakCounter;
 
-	public String getFileName(String problem, String location, AbstractStatement statement) {
+	public String getFileName(String problem, String location, AbstractStatement statement, String subProofName) {
 
 		String hash = Hashing.sha256().hashString(problem, StandardCharsets.UTF_8).toString();
 		// TODO: get name from statement
@@ -44,15 +54,43 @@ public class FileNameManager {
 		// TODO: call by reference is not working (or something else?)
 		selectionCounter = 0;
 		abstractCounter = 0;
-//		if (statementKind == "SelectionStatement") {
+		skipCounter = 0;
+		compositionCounter = 0;
+		returnCounter = 0;
+		repetitionCounter = 0;
+		strengthWeakCounter = 0;
+
+		// if (statementKind == "SelectionStatement") {
 		getKindNumber(root, statement);
 //		}
 
 //		statement.eContainer()
 
 		int counter;
-		if (statementKind == "SelectionStatement") counter = selectionCounter;
-		else counter = abstractCounter;
+		if (statementKind.equals("SelectionStatement")) {
+			counter = selectionCounter;
+		}
+		else if (statementKind.equals("SkipStatement")) {
+			counter = skipCounter;
+		}
+		else if (statementKind.equals("CompositionStatement")) {
+			counter = compositionCounter;
+		}
+		else if (statementKind.equals("ReturnStatement")) {
+			counter = returnCounter;
+		}
+		else if (statementKind.equals("SmallRepetitionStatement")) {
+			counter = repetitionCounter;
+		}
+		else if (statementKind.equals("StrengthWeakStatement")) {
+			counter = strengthWeakCounter;
+		}
+		else
+			counter = abstractCounter;
+
+		if (statement instanceof SmallRepetitionStatement) {
+			return "/" + statementKind + counter + subProofName;
+		}
 		return "/" + statementKind + counter;
 	}
 
@@ -60,6 +98,7 @@ public class FileNameManager {
 
 		// depth-first search for selection statement
 		// different approach needed for abstract statement
+		// TODO:
 
 		for (int i = 0; i < root.eContents().size(); i++) {
 			EObject content = root.eContents().get(i);
@@ -69,15 +108,27 @@ public class FileNameManager {
 //			if (content.eClass().getName().equals("SelectionStatement")) 
 			if (content instanceof SelectionStatement)
 				selectionCounter = selectionCounter + 1;
+			else if (content instanceof SkipStatement)
+				skipCounter++;
+			else if (content instanceof CompositionStatement)
+				compositionCounter++;
+			else if (content instanceof ReturnStatement)
+				returnCounter++;
+			else if (content instanceof SmallRepetitionStatement)
+				repetitionCounter++;
+			else if (content instanceof StrengthWeakStatement)
+				strengthWeakCounter++;
+			else if (content instanceof AbstractStatement && ((AbstractStatement) content).getRefinement() == null)
+					abstractCounter++;	
 			if (content.equals(statement))
 				return true;
 
 			// if there are no children: counter for abstract statement can be increased by
 			// 1
-			if (content.eContents().size() > 0) 
+			if (content.eContents().size() > 0)
 				if (getKindNumber(content, statement))
 					return true;
-				
+
 //			return counter;
 		}
 		return false;

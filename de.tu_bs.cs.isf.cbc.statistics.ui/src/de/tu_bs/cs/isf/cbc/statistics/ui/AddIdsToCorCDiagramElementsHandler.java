@@ -22,7 +22,6 @@ import org.eclipse.ui.handlers.HandlerUtil;
 
 import de.tu_bs.cs.isf.cbc.cbcmodel.AbstractStatement;
 import de.tu_bs.cs.isf.cbc.cbcmodel.CbCFormula;
-import de.tu_bs.cs.isf.cbc.cbcmodel.impl.CbcmodelFactoryCustom;
 
 public class AddIdsToCorCDiagramElementsHandler extends AbstractHandler {
 
@@ -93,9 +92,9 @@ public class AddIdsToCorCDiagramElementsHandler extends AbstractHandler {
 
 			if (content instanceof AbstractStatement) {
 
-				if (((AbstractStatement) content).getId() == null || ((AbstractStatement) content).getId().isEmpty()) {
-					CbcmodelFactoryCustom.setId((AbstractStatement) content);
-				}
+//				if (((AbstractStatement) content).getId() == null || ((AbstractStatement) content).getId().isEmpty()) {
+					((AbstractStatement) content).generateID();
+//				}
 
 			}
 

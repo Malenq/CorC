@@ -201,12 +201,12 @@ public class StatisticsDatabase {
 		// robust: add sorting over timestamp
 		if (oldRepetitionEntries.size() > 3) {
 			oldRepetitionEntries.remove(oldRepetitionEntries.get(oldRepetitionEntries.size() - 1));
-			oldRepetitionEntries.remove(oldRepetitionEntries.get(oldRepetitionEntries.size() - 2));
-			oldRepetitionEntries.remove(oldRepetitionEntries.get(oldRepetitionEntries.size() - 3));
+			oldRepetitionEntries.remove(oldRepetitionEntries.get(oldRepetitionEntries.size() - 1));
+			oldRepetitionEntries.remove(oldRepetitionEntries.get(oldRepetitionEntries.size() - 1));
 		}
 		if (oldStrongWeakEntries.size() > 2) {
 			oldStrongWeakEntries.remove(oldRepetitionEntries.get(oldRepetitionEntries.size() - 1));
-			oldStrongWeakEntries.remove(oldRepetitionEntries.get(oldRepetitionEntries.size() - 2));
+			oldStrongWeakEntries.remove(oldRepetitionEntries.get(oldRepetitionEntries.size() - 1));
 		}
 
 		entries.removeAll(olderEntriesWithRedundantId);

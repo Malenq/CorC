@@ -14,12 +14,5 @@
             class="de.tu_bs.cs.isf.cbc.cbcmodel.CbcmodelPackage"
             genModel="model/test.genmodel"/>
    </extension>
-   <extension
-         point="org.eclipse.emf.ecore.factory_override">
-      <factory
-            class="de.tu_bs.cs.isf.cbc.cbcmodel.impl.CbcmodelFactoryCustom"
-            uri="http://www.example.org/cbcmodel">
-      </factory>
-   </extension>
 
 </plugin>

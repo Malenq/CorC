@@ -39,45 +39,51 @@ public class HtmlHandler {
 		String diagramName = "";
 		List<StatisticsEntry> entriesPerDiagram = new LinkedList<StatisticsEntry>();
 
-//		TODO: abfangen keine entries
-		if (numberOfDiagrams == 1) {
-			entriesPerDiagram = entries;
-			diagramName = entries.get(0).getMapping().getCorcDiagramName();
-			createPlaceholderPlainStringForOneDiagram(diagramName, entriesPerDiagram);
-
-			placeholderGeneratedDiagram = "<div class=\"text block\">\r\n"
-					+ "                <p>No diagrams generated.</p>\r\n" + "            </div>";
-		} else if (numberOfDiagrams > 1) {
+		if (entries == null || entries.isEmpty()) {
 			
-			for (IFile file : selectedDiagramFiles) {
-				diagramName = file.getName().substring(0, file.getName().indexOf(".diagram"));
-				for (StatisticsEntry entry : entries) {
-					if (entry.getMapping().getCorcDiagramName().equals(diagramName)) {
-						entriesPerDiagram.add(entry);
-					}
-				}
+		}
+		else {
+			
+			if (numberOfDiagrams == 1) {
+				entriesPerDiagram = entries;
+				diagramName = entries.get(0).getMapping().getCorcDiagramName();
 				createPlaceholderPlainStringForOneDiagram(diagramName, entriesPerDiagram);
-				entriesPerDiagram = new LinkedList<StatisticsEntry>();
-			}
-
-			RHelper helper = new RHelper();
-			helper.setStatisticsFileStringForDiagrams(entries);
-			helper.createStatisticDiagramFile("test");
-			
-			
-			List<String> diagramPaths = new LinkedList<String>();
-			diagramPaths  = helper.getDiagramPaths();
-			if ( diagramPaths == null || diagramPaths.isEmpty() ) {
+				
 				placeholderGeneratedDiagram = "<div class=\"text block\">\r\n"
-						+ "                <p>Diagram generation failed.</p>\r\n" + "            </div>";
-			}
-			else{
-				for(String path : diagramPaths) {
-					placeholderGeneratedDiagram = placeholderGeneratedDiagram 
-							+ "<img class=\"\" src=\"" + path + "\">\r\n";
+						+ "                <p>No diagrams generated. For diagram generation, please select more than one CorC diagram</p>\r\n" + "            </div>";
+			} else if (numberOfDiagrams > 1) {
+				
+				for (IFile file : selectedDiagramFiles) {
+					diagramName = file.getName().substring(0, file.getName().indexOf(".diagram"));
+					for (StatisticsEntry entry : entries) {
+						if (entry.getMapping().getCorcDiagramName().equals(diagramName)) {
+							entriesPerDiagram.add(entry);
+						}
+					}
+					createPlaceholderPlainStringForOneDiagram(diagramName, entriesPerDiagram);
+					entriesPerDiagram = new LinkedList<StatisticsEntry>();
+				}
+				
+				RHelper helper = new RHelper();
+				helper.setStatisticsFileStringForDiagrams(entries);
+				helper.createStatisticDiagramFile("test");
+				
+				
+				List<String> diagramPaths = new LinkedList<String>();
+				diagramPaths  = helper.getDiagramPaths();
+				if ( diagramPaths == null || diagramPaths.isEmpty() ) {
+					placeholderGeneratedDiagram = "<div class=\"text block\">\r\n"
+							+ "                <p>Diagram generation failed.</p>\r\n" + "            </div>";
+				}
+				else{
+					for(String path : diagramPaths) {
+						placeholderGeneratedDiagram = placeholderGeneratedDiagram 
+								+ "<img class=\"\" src=\"" + path + "\">\r\n";
+					}
 				}
 			}
 		}
+//		TODO: abfangen keine entries
 
 		String htmlStyleTag = "<style>\r\n" + "        body{\r\n" + "            margin: 0;\r\n"
 				+ "            padding: 0;\r\n" + "        }\r\n" + "        .container{\r\n" + "        }\r\n"
@@ -96,7 +102,7 @@ public class HtmlHandler {
 				+ "            <div class=\"text block\">\r\n" + "                <p>" + placeholderPlainStatistics
 				+ "</p>\r\n" + "            </div>\r\n" + "        </div>\r\n"
 				+ "        <hr class=\"horizontal-line\">\r\n" + "        <div class=\"inner-box\">\r\n"
-				+ "            <h2 class=\"text\">Generated Diagrams</h2>\r\n"
+				+ "            <h2 class=\"text\">Generated Diagram</h2>\r\n"
 //				+ "            <img class=\"\" src=\"file:///D:/Uni/Bachelorarbeit/HTMLTemplateCode/test.png\">\r\n"
 				+ placeholderGeneratedDiagram + "        </div>\r\n" + "    </div>\r\n" + "</body>\r\n" + "</html>";
 	}

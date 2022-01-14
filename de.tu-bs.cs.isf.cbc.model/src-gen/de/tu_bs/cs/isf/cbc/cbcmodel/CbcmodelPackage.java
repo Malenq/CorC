@@ -5,6 +5,7 @@ package de.tu_bs.cs.isf.cbc.cbcmodel;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -304,13 +305,22 @@ public interface CbcmodelPackage extends EPackage {
 	int ABSTRACT_STATEMENT_FEATURE_COUNT = 8;
 
 	/**
+	 * The operation id for the '<em>Generate ID</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_STATEMENT___GENERATE_ID = 0;
+
+	/**
 	 * The number of operations of the '<em>Abstract Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_STATEMENT_OPERATION_COUNT = 0;
+	int ABSTRACT_STATEMENT_OPERATION_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link de.tu_bs.cs.isf.cbc.cbcmodel.impl.SkipStatementImpl <em>Skip Statement</em>}' class.
@@ -402,6 +412,15 @@ public interface CbcmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int SKIP_STATEMENT_FEATURE_COUNT = ABSTRACT_STATEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Generate ID</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SKIP_STATEMENT___GENERATE_ID = ABSTRACT_STATEMENT___GENERATE_ID;
 
 	/**
 	 * The number of operations of the '<em>Skip Statement</em>' class.
@@ -531,6 +550,15 @@ public interface CbcmodelPackage extends EPackage {
 	int COMPOSITION_STATEMENT_FEATURE_COUNT = ABSTRACT_STATEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The operation id for the '<em>Generate ID</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITION_STATEMENT___GENERATE_ID = ABSTRACT_STATEMENT___GENERATE_ID;
+
+	/**
 	 * The number of operations of the '<em>Composition Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -656,6 +684,15 @@ public interface CbcmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int SELECTION_STATEMENT_FEATURE_COUNT = ABSTRACT_STATEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Generate ID</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTION_STATEMENT___GENERATE_ID = ABSTRACT_STATEMENT___GENERATE_ID;
 
 	/**
 	 * The number of operations of the '<em>Selection Statement</em>' class.
@@ -793,6 +830,15 @@ public interface CbcmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int RETURN_STATEMENT_FEATURE_COUNT = ABSTRACT_STATEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Generate ID</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_STATEMENT___GENERATE_ID = ABSTRACT_STATEMENT___GENERATE_ID;
 
 	/**
 	 * The number of operations of the '<em>Return Statement</em>' class.
@@ -956,6 +1002,15 @@ public interface CbcmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int SMALL_REPETITION_STATEMENT_FEATURE_COUNT = ABSTRACT_STATEMENT_FEATURE_COUNT + 7;
+
+	/**
+	 * The operation id for the '<em>Generate ID</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SMALL_REPETITION_STATEMENT___GENERATE_ID = ABSTRACT_STATEMENT___GENERATE_ID;
 
 	/**
 	 * The number of operations of the '<em>Small Repetition Statement</em>' class.
@@ -1370,6 +1425,15 @@ public interface CbcmodelPackage extends EPackage {
 	int STRENGTH_WEAK_STATEMENT_FEATURE_COUNT = ABSTRACT_STATEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Generate ID</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRENGTH_WEAK_STATEMENT___GENERATE_ID = ABSTRACT_STATEMENT___GENERATE_ID;
+
+	/**
 	 * The number of operations of the '<em>Strength Weak Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1711,6 +1775,16 @@ public interface CbcmodelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getAbstractStatement_Id();
+
+	/**
+	 * Returns the meta object for the '{@link de.tu_bs.cs.isf.cbc.cbcmodel.AbstractStatement#generateID() <em>Generate ID</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Generate ID</em>' operation.
+	 * @see de.tu_bs.cs.isf.cbc.cbcmodel.AbstractStatement#generateID()
+	 * @generated
+	 */
+	EOperation getAbstractStatement__GenerateID();
 
 	/**
 	 * Returns the meta object for class '{@link de.tu_bs.cs.isf.cbc.cbcmodel.SkipStatement <em>Skip Statement</em>}'.
@@ -2438,6 +2512,14 @@ public interface CbcmodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ABSTRACT_STATEMENT__ID = eINSTANCE.getAbstractStatement_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Generate ID</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ABSTRACT_STATEMENT___GENERATE_ID = eINSTANCE.getAbstractStatement__GenerateID();
 
 		/**
 		 * The meta object literal for the '{@link de.tu_bs.cs.isf.cbc.cbcmodel.impl.SkipStatementImpl <em>Skip Statement</em>}' class.

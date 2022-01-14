@@ -50,6 +50,7 @@ public class ProveWithKey {
 	private IFileUtil fileHandler;
 	// new field Malena BA
 	private String problem;
+	private String subProofName = "";
 	
 	public ProveWithKey(AbstractStatement statement, JavaVariables vars, GlobalConditions conds, Renaming renaming,
 			IProgressMonitor monitor, String uri, CbCFormula formula, IFileUtil fileHandler) {
@@ -118,7 +119,7 @@ public class ProveWithKey {
 		problem = problem.replaceAll("return", ""); //TODO replace with correct handling of return
 		
 		String location = fileHandler.getLocationString(uri);
-		File keyFile = fileHandler.writeFile(problem, location, numberFile, override, statement);
+		File keyFile = fileHandler.writeFile(problem, location, numberFile, override, statement, subProofName);
 		return keyFile;
 	}
 	
@@ -446,6 +447,7 @@ public class ProveWithKey {
 	}
 
 	public boolean proveCImpliesCWithKey(Condition preCondition, Condition postCondition) {
+		subProofName = "precondition";
 		File location = createProveCImpliesCWithKey(preCondition.getName(), postCondition.getName(), 0, true);
 		Console.println("  Verify Pre -> Invariant");
 		return proveWithKey(location, false);
@@ -469,11 +471,12 @@ public class ProveWithKey {
 
         //String location = fileHandler.getProjectLocation(uri) + uri.segment(uri.segmentCount()-3) + "/prove" + uri.trimFileExtension().lastSegment();
 		String location = fileHandler.getLocationString(uri);
-		File keyFile = fileHandler.writeFile(problem, location, numberFile, override, statement);
+		File keyFile = fileHandler.writeFile(problem, location, numberFile, override, statement, subProofName);
 		return keyFile;
 	}
 
 	public boolean provePostRepetitionWithKey(Condition invariant, Condition guard, Condition postCondition) {
+		subProofName = "postcondition";
 		String pre = invariant.getName() + " & !(" + guard.getName() + ")";
 		File location = createProveCImpliesCWithKey(pre, postCondition.getName(), 0, true);
 		Console.println("  Verify (Invariant & !Guard) -> Post");
@@ -497,6 +500,7 @@ public class ProveWithKey {
 	}
 
 	public boolean proveVariantWithKey(String code, Condition invariant, Condition guard, Variant variant) {
+		subProofName = "variant";
 		File location = createProveVariantWithKey(code, invariant, guard, variant, 0, true);
 		Console.println("Verify Pre -> {WhileStatement} (variant<variant0 & variant >= 0)");
 		return proveWithKey(location, false);
@@ -520,7 +524,7 @@ public class ProveWithKey {
 		problem = content.getKeYStatementContent();
 		
 		String location = fileHandler.getLocationString(uri);
-		File keyFile = fileHandler.writeFile(problem, location, numberFile, override, statement);
+		File keyFile = fileHandler.writeFile(problem, location, numberFile, override, statement, subProofName);
 		return keyFile;
 	}
 
@@ -546,7 +550,7 @@ public class ProveWithKey {
 		problem = content.getKeYStatementContent();
 		
 		String location = fileHandler.getLocationString(uri);
-		File keyFile = fileHandler.writeFile(problem, location, numberFile, override, statement);
+		File keyFile = fileHandler.writeFile(problem, location, numberFile, override, statement, subProofName);
 		return keyFile;
 	}
 

@@ -149,8 +149,6 @@ public class RHelper {
 
 		String folderName = "generatedDiagrams";
 		String rootLocation = pluginStateFolder.getAbsolutePath() + File.separator + folderName + File.separator;
-//		File rFile = new File(rootLocation);
-//		rFile.mkdir();
 		
 		String generatedDiagramPath ="png(filename=\""+ rootLocation +"test.png" +"\")\r\n";
 		generatedDiagramPath = generatedDiagramPath.replaceAll("\\\\", "/");
@@ -178,14 +176,15 @@ public class RHelper {
 		String xAxis = "diagram <- c(";
 		String yAxis = "time <- c(" ;
 		
+		// filling the axes
 		for (String diagramName : diagramNames) {
-			xAxis = xAxis + "\"" + diagramName +"\", ";
 			float totalTime = 0;
 			for (StatisticsEntry entry : entries) {
 				if (entry.getMapping().getCorcDiagramName().equals(diagramName)) {
 					totalTime = totalTime + entry.getData().getAutoModeTimeInMillis();
 				}
 			}
+			xAxis = xAxis + "\"" + diagramName +"\", ";
 			yAxis = yAxis + totalTime + ", ";
 		}
 		xAxis = xAxis.substring(0, xAxis.length()-2) + ")\r\n";
