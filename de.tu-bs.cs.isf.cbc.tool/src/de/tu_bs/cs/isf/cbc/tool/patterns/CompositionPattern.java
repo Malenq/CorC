@@ -38,6 +38,7 @@ import de.tu_bs.cs.isf.cbc.cbcmodel.CompositionStatement;
 import de.tu_bs.cs.isf.cbc.cbcmodel.Condition;
 import de.tu_bs.cs.isf.cbc.cbcmodel.JavaVariables;
 import de.tu_bs.cs.isf.cbc.tool.diagram.CbCImageProvider;
+import de.tu_bs.cs.isf.cbc.tool.helper.HighlightHelper;
 import de.tu_bs.cs.isf.cbc.tool.helper.UpdateModifiableOfConditions;
 import de.tu_bs.cs.isf.cbc.util.FileUtil;
 
@@ -416,6 +417,9 @@ public class CompositionPattern extends IdPattern implements IPattern {
 			} else if (!checkIsProven(domainObject) && image.getId().equals(CbCImageProvider.IMG_PROVEN)) {
 				return Reason.createTrueReason("Statement is not proven. Expected red color.");
 			} 
+		}
+		if(HighlightHelper.instance.elementNeedsHighlighting(context)) {
+			return Reason.createTrueReason("Element needs to be highlighted.");
 		}
 		return Reason.createFalseReason();
 	}

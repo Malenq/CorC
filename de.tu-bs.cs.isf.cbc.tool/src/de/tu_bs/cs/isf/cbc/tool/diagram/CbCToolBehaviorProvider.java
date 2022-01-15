@@ -24,6 +24,7 @@ import org.eclipse.graphiti.tb.DefaultToolBehaviorProvider;
 import org.eclipse.graphiti.tb.IContextButtonPadData;
 import org.eclipse.graphiti.tb.IContextMenuEntry;
 import org.eclipse.graphiti.tb.IToolBehaviorProvider;
+import org.eclipse.graphiti.ui.editor.DiagramEditor;
 
 import de.tu_bs.cs.isf.cbc.cbcmodel.AbstractStatement;
 import de.tu_bs.cs.isf.cbc.cbcmodel.CbCFormula;
@@ -54,7 +55,7 @@ public class CbCToolBehaviorProvider extends DefaultToolBehaviorProvider impleme
 	public CbCToolBehaviorProvider(IDiagramTypeProvider diagramTypeProvider) {
 		super(diagramTypeProvider);
 	}
-
+	
 	@Override
 	public IContextButtonPadData getContextButtonPad(IPictogramElementContext context) {
 		IContextButtonPadData data = super.getContextButtonPad(context);

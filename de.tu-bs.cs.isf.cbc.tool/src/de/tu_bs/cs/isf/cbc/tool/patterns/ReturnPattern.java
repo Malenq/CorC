@@ -38,6 +38,7 @@ import de.tu_bs.cs.isf.cbc.cbcmodel.Condition;
 import de.tu_bs.cs.isf.cbc.cbcmodel.JavaVariables;
 import de.tu_bs.cs.isf.cbc.cbcmodel.ReturnStatement;
 import de.tu_bs.cs.isf.cbc.tool.diagram.CbCImageProvider;
+import de.tu_bs.cs.isf.cbc.tool.helper.HighlightHelper;
 import de.tu_bs.cs.isf.cbc.tool.helper.UpdateModifiableOfConditions;
 import de.tu_bs.cs.isf.cbc.util.CompareMethodBodies;
 import de.tu_bs.cs.isf.cbc.util.FileUtil;
@@ -300,6 +301,9 @@ public class ReturnPattern extends IdPattern implements IPattern {
 			} 
 		}
 
+		if(HighlightHelper.instance.elementNeedsHighlighting(context)) {
+			return Reason.createTrueReason("Element needs to be highlighted.");
+		}
 		return Reason.createFalseReason();
 	}
 
@@ -316,25 +320,31 @@ public class ReturnPattern extends IdPattern implements IPattern {
 			AbstractStatement domainObject = (AbstractStatement) context.getDomainObject();
 			if (domainObject.isProven()) {
 				rectangle.setForeground(manageColor(IColorConstant.DARK_GREEN));
-				if(domainObject.getParent()!= null) {
-					IPeService pe = Graphiti.getPeService();
-					EObject[] objArray = {domainObject.getParent()};
-					Object[] obj =  pe.getLinkedPictogramElements(objArray, getDiagram());
-					Shape pElement = (Shape) obj[0];
-					if (pElement.getContainer() != null) updatePictogramElement(pElement.getContainer());
-				}
+//				if(domainObject.getParent()!= null) {
+//					IPeService pe = Graphiti.getPeService();
+//					EObject[] objArray = {domainObject.getParent()};
+//					Object[] obj =  pe.getLinkedPictogramElements(objArray, getDiagram());
+//					Shape pElement = (Shape) obj[0];
+//					if (pElement.getContainer() != null) updatePictogramElement(pElement.getContainer());
+//				}
 			} else {
 				rectangle.setForeground(manageColor(IColorConstant.RED));
-				if(domainObject.getParent()!= null) {
-					IPeService pe = Graphiti.getPeService();
-					EObject[] objArray = {domainObject.getParent()};
-					Object[] obj =  pe.getLinkedPictogramElements(objArray, getDiagram());
-					if (obj.length > 0) {
-						Shape pElement = (Shape) obj[0];
-						if (pElement.getContainer() != null) updatePictogramElement(pElement.getContainer());
-					}
-				}
+//				if(domainObject.getParent()!= null) {
+//					IPeService pe = Graphiti.getPeService();
+//					EObject[] objArray = {domainObject.getParent()};
+//					Object[] obj =  pe.getLinkedPictogramElements(objArray, getDiagram());
+//					if (obj.length > 0) {
+//						Shape pElement = (Shape) obj[0];
+//						if (pElement.getContainer() != null) updatePictogramElement(pElement.getContainer());
+//					}
+//				}
 			}
+			
+			if(HighlightHelper.instance.elementNeedsHighlighting(context)) {
+//				rectangle.setForeground(manageColor(IColorConstant.DARK_BLUE));
+				HighlightHelper.instance.reset();
+			}
+			updateParent(domainObject);
 			return true;
 		} else if (id.equals(ID_IMAGE_PROVEN)) {
 			AbstractStatement domainObject = (AbstractStatement) context.getDomainObject();
@@ -346,6 +356,19 @@ public class ReturnPattern extends IdPattern implements IPattern {
 			} 
 		}
 		return false;
+	}
+
+	private void updateParent(AbstractStatement statement) {
+		if (statement.getParent() != null) {
+			IPeService pe = Graphiti.getPeService();
+			EObject[] objArray = { statement.getParent() };
+			Object[] obj = pe.getLinkedPictogramElements(objArray, getDiagram());
+			if (obj.length > 0) {
+				Shape pElement = (Shape) obj[0];
+				if (pElement.getContainer() != null)
+					updatePictogramElement(pElement.getContainer());
+			}
+		}
 	}
 
 	@Override

@@ -114,6 +114,41 @@ public class StatisticsDatabase {
 
 	}
 
+	public StatisticsEntry getLastEntrysRelatedToKeyFile(IFile file) {
+		
+		List<StatisticsEntry> validDBEntries = new LinkedList<StatisticsEntry>();
+		List<StatisticsEntry> affectedEntriesInDB = new LinkedList<StatisticsEntry>();
+		
+		System.out.println("File: " + file);
+		for (StatisticsEntry entry : registry.getEntries()) {
+
+			String entryPath;
+			if (entry.getMapping().getKeyFilePath() != null) {
+				entryPath = entry.getMapping().getKeyFilePath().toString();
+
+			} else
+				continue;
+
+			String filePath = file.getRawLocation().toString();
+			entryPath = entryPath.replace(File.separator, "/");
+
+			if (entryPath.equals(filePath)) {
+				affectedEntriesInDB.add(entry);
+				System.out.println("equal path found");
+			}
+		}
+		if (!affectedEntriesInDB.isEmpty()) {
+			affectedEntriesInDB = removeOutdated(affectedEntriesInDB);
+			validDBEntries.addAll(getLatestEntriesWithRedundantID(affectedEntriesInDB));
+		}
+
+		
+		if (validDBEntries == null || validDBEntries.isEmpty()) {
+			return null;
+		}
+		return validDBEntries.get(validDBEntries.size() - 1);
+	}
+
 	private List<StatisticsEntry> removeOutdated(List<StatisticsEntry> entries) {
 
 		List<StatisticsEntry> validEntries = new LinkedList<StatisticsEntry>();
@@ -139,7 +174,7 @@ public class StatisticsDatabase {
 		} catch (Exception e) {
 			resource = resourceSet.createResource(uri);
 		}
-		
+
 		for (int i = 0; i < resource.getContents().size(); i++) {
 			if (resource.getContents().get(i) instanceof CbCFormula) {
 				CbCFormula formula = (CbCFormula) resource.getContents().get(i);
@@ -214,4 +249,41 @@ public class StatisticsDatabase {
 		entries.removeAll(oldStrongWeakEntries);
 		return entries;
 	}
+
+	public String getHashForKeyFile(File keyFile) {
+		
+		List<StatisticsEntry> validDBEntries = new LinkedList<StatisticsEntry>();
+		List<StatisticsEntry> affectedEntriesInDB = new LinkedList<StatisticsEntry>();
+		
+		System.out.println("File: " + keyFile);
+		for (StatisticsEntry entry : registry.getEntries()) {
+
+			String entryPath;
+			if (entry.getMapping().getKeyFilePath() != null) {
+				entryPath = entry.getMapping().getKeyFilePath().toString();
+
+			} else
+				continue;
+
+			String filePath = keyFile.getPath().toString();
+//			entryPath = entryPath.replace(File.separator, "/");
+
+			if (entryPath.equals(filePath)) {
+				affectedEntriesInDB.add(entry);
+				System.out.println("equal path found");
+			}
+		}
+		if (!affectedEntriesInDB.isEmpty()) {
+			affectedEntriesInDB = removeOutdated(affectedEntriesInDB);
+			validDBEntries.addAll(getLatestEntriesWithRedundantID(affectedEntriesInDB));
+		}
+
+		
+		if (validDBEntries == null || validDBEntries.isEmpty()) {
+			return null;
+		}
+		
+		return validDBEntries.get(validDBEntries.size()-1).getMapping().getKeyProofProblemHashValue();
+	}
+
 }

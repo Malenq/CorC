@@ -15,7 +15,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 
-import de.tu_bs.cs.isf.cbc.statistics.RHelper;
 import de.tu_bs.cs.isf.cbc.statistics.StatisticsDatabase;
 import de.tu_bs.cs.isf.cbc.statistics.StatisticsEntry;
 

@@ -26,6 +26,7 @@ import de.tu_bs.cs.isf.cbc.cbcmodel.JavaVariables;
 import de.tu_bs.cs.isf.cbc.cbcmodel.Renaming;
 import de.tu_bs.cs.isf.cbc.cbcmodel.Variant;
 import de.tu_bs.cs.isf.cbc.statistics.DataCollector;
+import de.tu_bs.cs.isf.cbc.statistics.FileNameManager;
 import de.uka.ilkd.key.proof.Goal;
 import de.uka.ilkd.key.proof.Proof;
 
@@ -51,6 +52,7 @@ public class ProveWithKey {
 	// new field Malena BA
 	private String problem;
 	private String subProofName = "";
+	private Boolean alreadyExistingKeyWithHash = false;
 	
 	public ProveWithKey(AbstractStatement statement, JavaVariables vars, GlobalConditions conds, Renaming renaming,
 			IProgressMonitor monitor, String uri, CbCFormula formula, IFileUtil fileHandler) {
@@ -67,6 +69,11 @@ public class ProveWithKey {
 	
 	public boolean proveStatementWithKey(boolean returnStatement, boolean inlining, int numberfile) {
 			File location = createProveStatementWithKey(null, 0, true, "", "", returnStatement);
+			if (alreadyExistingKeyWithHash) {
+				Console.println("Found existing KeY file. Proof process skipped.");
+				// TODO: really return true?? @warning technical debt
+				return true;
+			}
 			Console.println("  Verify Pre -> {Statement} Post");
 			return proveWithKey(location, inlining);
 	}
@@ -74,6 +81,11 @@ public class ProveWithKey {
 	public boolean proveStatementWithKey(boolean returnStatement, boolean inlining, String variants, int numberfile, String callingMethod, String varM) {
 		if (variants == null || variants.length() == 0) {
 			File location = createProveStatementWithKey(null, 0, true, callingMethod, varM, returnStatement);
+			if (alreadyExistingKeyWithHash) {
+				Console.println("Found existing KeY file. Proof process skipped.");
+				// TODO: really return true?? @warning technical debt
+				return true;
+			}
 			Console.println("  Verify Pre -> {Statement} Post");
 			return proveWithKey(location, inlining);
 		} else {
@@ -81,6 +93,11 @@ public class ProveWithKey {
 			
 				List<String> refinements = Lists.newArrayList(variants.split(","));
 				File location = createProveStatementWithKey(refinements, numberfile, true, callingMethod, varM, returnStatement);
+				if (alreadyExistingKeyWithHash) {
+					Console.println("Found existing KeY file. Proof process skipped.");
+					// TODO: really return true??@warning technical debt
+					return true;
+				}
 				Console.println("  Verify Pre -> {Statement} Post");
 
 				if (!proveWithKey(location, inlining)) {
@@ -118,8 +135,16 @@ public class ProveWithKey {
 		problem = problem.replaceAll("static", "");
 		problem = problem.replaceAll("return", ""); //TODO replace with correct handling of return
 		
+		
+		// TODO: problem hash if still should be proven? -> load key file instead of skip
 		String location = fileHandler.getLocationString(uri);
-		File keyFile = fileHandler.writeFile(problem, location, numberFile, override, statement, subProofName);
+		FileNameManager manager = new FileNameManager();
+		File keyFile = manager.getAlreadyProvenKeyFile(problem, statement, location);
+		alreadyExistingKeyWithHash = true;
+		if (keyFile == null) {
+			alreadyExistingKeyWithHash = false;
+			keyFile = fileHandler.writeFile(problem, location, numberFile, override, statement, subProofName);
+		}
 		return keyFile;
 	}
 	

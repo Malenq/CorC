@@ -37,6 +37,7 @@ import de.tu_bs.cs.isf.cbc.cbcmodel.CbcmodelFactory;
 import de.tu_bs.cs.isf.cbc.cbcmodel.Condition;
 import de.tu_bs.cs.isf.cbc.cbcmodel.SelectionStatement;
 import de.tu_bs.cs.isf.cbc.tool.diagram.CbCImageProvider;
+import de.tu_bs.cs.isf.cbc.tool.helper.HighlightHelper;
 
 /**
  * Class that creates the graphical representation of Conditions
@@ -458,6 +459,10 @@ public class SelectionPattern extends IdPattern implements IPattern {
 				return Reason.createTrueReason("Statement is not proven. Expected red color.");
 			}
 		}
+
+		if(HighlightHelper.instance.elementNeedsHighlighting(context)) {
+			return Reason.createTrueReason("Element needs to be highlighted.");
+		}
 		return Reason.createFalseReason();
 	}
 
@@ -541,12 +546,17 @@ public class SelectionPattern extends IdPattern implements IPattern {
 			if (checkIsProven(statement)) {
 				statement.setProven(true);
 				rectangle.setForeground(manageColor(IColorConstant.DARK_GREEN));
-				updateParent(statement);
 			} else {
 				statement.setProven(false);
 				rectangle.setForeground(manageColor(IColorConstant.RED));
-				updateParent(statement);
 			}
+			
+			if(HighlightHelper.instance.elementNeedsHighlighting(context)) {
+//				rectangle.setForeground(manageColor(IColorConstant.DARK_BLUE));
+				HighlightHelper.instance.reset();
+			}
+			
+			updateParent(statement);
 			return true;
 		} else if (id.equals(ID_IMAGE_PROVEN)) {
 			SelectionStatement domainObject = (SelectionStatement) context.getDomainObject();

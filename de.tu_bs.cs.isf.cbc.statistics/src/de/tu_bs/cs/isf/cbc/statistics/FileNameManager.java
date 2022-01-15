@@ -1,6 +1,14 @@
 package de.tu_bs.cs.isf.cbc.statistics;
 
+import java.io.File;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -27,31 +35,12 @@ public class FileNameManager {
 
 	public String getFileName(String problem, String location, AbstractStatement statement, String subProofName) {
 
-		String hash = Hashing.sha256().hashString(problem, StandardCharsets.UTF_8).toString();
-		// TODO: get name from statement
-		// match hash with hashes in statistics eobject : if
-		// ja was dann... eigentlich macht das hashen doch nur sinn wenn ich wissen will
-		// ob genau das problem schon einmal bewiesen wurde...
-		// was will ich dann also machen wenn ich das weiﬂ? trotzdem beweisen oder
-		// nicht?
-		AbstractStatement statementParent = (AbstractStatement) statement.eContainer();
-
-		// namen geben: root finden und dann mit tiefensuche auf eClass reagieren(bei
-		// selection statement)
-		// beim abstract statement nicht auf eClass reagierne sondern auf letztes blatt
-		// (wenn das geht)
-		// weil abstract statement als eClass kommt auch innerhalb von composition und
-		// so vor
-
-		// root identifizieren: eClass ist CbCFormula
-
 		String statementKind = statement.eClass().getName();
-
 		EObject root = getRoot(statement);
 
-//		root.eContents().get(0)
+		//TODO: delete old key files
+		cleanKeyFiles(location, root);
 
-		// TODO: call by reference is not working (or something else?)
 		selectionCounter = 0;
 		abstractCounter = 0;
 		skipCounter = 0;
@@ -60,11 +49,7 @@ public class FileNameManager {
 		repetitionCounter = 0;
 		strengthWeakCounter = 0;
 
-		// if (statementKind == "SelectionStatement") {
 		getKindNumber(root, statement);
-//		}
-
-//		statement.eContainer()
 
 		int counter;
 		if (statementKind.equals("SelectionStatement")) {
@@ -93,19 +78,87 @@ public class FileNameManager {
 		}
 		return "/" + statementKind + counter;
 	}
+	
+	private void cleanKeyFiles(String location, EObject root) {
+		// TODO Auto-generated method stub
+		List<File> keyFilesInFolder = getKeYFilesFromFolder(location);
+		List<File> redundantFiles = new LinkedList<File>();
+		List<String> foundHashValues = new LinkedList<String>();
+		for (int i=0; keyFilesInFolder.size()>i;i++) {
+			File outterFile = keyFilesInFolder.get(i);
+			if (outterFile.getName().equals("helper.key")) {
+				continue;
+			}
+			String outterHash = StatisticsDatabase.instance.getHashForKeyFile(outterFile);
+			if (outterHash == null){
+				redundantFiles.add(outterFile);
+				continue;
+			}
+			if (!outterHash.isEmpty()) {
+				foundHashValues.add(outterHash);
+				for (int j= i+1; keyFilesInFolder.size() > j; j++) {
+					File innerFile = keyFilesInFolder.get(j);
+					String innerHash = StatisticsDatabase.instance.getHashForKeyFile(innerFile);
+					if (innerHash == null){
+						redundantFiles.add(innerFile);
+						continue;
+					}
+					if (outterHash.equals(innerHash))
+						if (outterFile.lastModified() > innerFile.lastModified())
+							redundantFiles.add(innerFile);
+						else
+							redundantFiles.add(outterFile);
+				}
+			}
+		}
+		
+		for (File file : redundantFiles) {
+			file.delete();
+		}
+		
+		
+		
+	}
+
+	private List<File> getKeYFilesFromFolder(String location) {
+		List<File> keyFilesInFolder = new LinkedList<File>();
+		
+		try (Stream<Path> paths = Files.walk(Paths.get(location))) {
+		    paths
+		        .filter(Files::isRegularFile)
+		        .forEach(guas -> keyFilesInFolder.add(guas.toFile()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+		
+		return keyFilesInFolder;
+	}
+
+	public File getAlreadyProvenKeyFile(String problem, AbstractStatement statement, String location) {
+		
+		String hash = Hashing.sha256().hashString(problem, StandardCharsets.UTF_8).toString();
+		
+		List<File> keyFilesInFolder = getKeYFilesFromFolder(location);
+		for (File file : keyFilesInFolder) {
+			String dbHash = StatisticsDatabase.instance.getHashForKeyFile(file);
+			if (dbHash != null) {				
+				if (dbHash.equals(hash)) {
+					return file;
+				}
+			}
+		}
+		
+		return null;
+	}
 
 	private boolean getKindNumber(EObject root, AbstractStatement statement) {
 
 		// depth-first search for selection statement
-		// different approach needed for abstract statement
-		// TODO:
-
 		for (int i = 0; i < root.eContents().size(); i++) {
 			EObject content = root.eContents().get(i);
 			if (content instanceof Condition) {
 				continue;
 			}
-//			if (content.eClass().getName().equals("SelectionStatement")) 
 			if (content instanceof SelectionStatement)
 				selectionCounter = selectionCounter + 1;
 			else if (content instanceof SkipStatement)
@@ -128,8 +181,6 @@ public class FileNameManager {
 			if (content.eContents().size() > 0)
 				if (getKindNumber(content, statement))
 					return true;
-
-//			return counter;
 		}
 		return false;
 	}
@@ -142,5 +193,7 @@ public class FileNameManager {
 		}
 		return currentObject;
 	}
+
+
 
 }

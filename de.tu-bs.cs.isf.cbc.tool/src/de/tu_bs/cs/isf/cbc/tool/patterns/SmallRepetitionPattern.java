@@ -37,6 +37,7 @@ import de.tu_bs.cs.isf.cbc.cbcmodel.Condition;
 import de.tu_bs.cs.isf.cbc.cbcmodel.SmallRepetitionStatement;
 import de.tu_bs.cs.isf.cbc.cbcmodel.Variant;
 import de.tu_bs.cs.isf.cbc.tool.diagram.CbCImageProvider;
+import de.tu_bs.cs.isf.cbc.tool.helper.HighlightHelper;
 
 /**
  * Class that creates the graphical representation of Conditions
@@ -431,6 +432,9 @@ manageColor(IColorConstant.DARK_GREEN);
 				return Reason.createTrueReason("Statement is not proven. Expected red color.");
 			} 
 		}
+		if(HighlightHelper.instance.elementNeedsHighlighting(context)) {
+			return Reason.createTrueReason("Element needs to be highlighted.");
+		}
 		return Reason.createFalseReason();
 	}
 
@@ -453,6 +457,10 @@ manageColor(IColorConstant.DARK_GREEN);
 				domainObject.setVariantProven(false);
 				rectangle.setForeground(manageColor(IColorConstant.RED));
 				updateParent(domainObject);
+			}
+			if(HighlightHelper.instance.elementNeedsHighlighting(context)) {
+//				rectangle.setForeground(manageColor(IColorConstant.DARK_BLUE));
+				HighlightHelper.instance.reset();
 			}
 			return true;
 		} else if (id.equals(ID_IMAGE_PROVEN)) {

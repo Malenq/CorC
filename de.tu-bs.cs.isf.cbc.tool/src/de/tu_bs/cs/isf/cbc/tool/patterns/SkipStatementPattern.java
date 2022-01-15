@@ -36,6 +36,7 @@ import de.tu_bs.cs.isf.cbc.cbcmodel.CbcmodelFactory;
 import de.tu_bs.cs.isf.cbc.cbcmodel.Condition;
 import de.tu_bs.cs.isf.cbc.cbcmodel.SkipStatement;
 import de.tu_bs.cs.isf.cbc.tool.diagram.CbCImageProvider;
+import de.tu_bs.cs.isf.cbc.tool.helper.HighlightHelper;
 
 /**
  * Class that creates the graphical representation of Conditions
@@ -289,6 +290,9 @@ public class SkipStatementPattern extends IdPattern implements IPattern {
 				return Reason.createTrueReason("Statement is not proven. Expected red color.");
 			} 
 		}
+		if(HighlightHelper.instance.elementNeedsHighlighting(context)) {
+			return Reason.createTrueReason("Element needs to be highlighted.");
+		}
 		return Reason.createFalseReason();
 	}
 
@@ -315,6 +319,10 @@ public class SkipStatementPattern extends IdPattern implements IPattern {
 					Shape pElement = (Shape) obj[0];
 					if (pElement.getContainer() != null) updatePictogramElement(pElement.getContainer());
 				}
+			}
+			if(HighlightHelper.instance.elementNeedsHighlighting(context)) {
+//				rectangle.setForeground(manageColor(IColorConstant.DARK_BLUE));
+				HighlightHelper.instance.reset();
 			}
 			return true;
 		} else if (id.equals(ID_IMAGE_PROVEN)) {

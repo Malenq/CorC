@@ -36,6 +36,7 @@ import de.tu_bs.cs.isf.cbc.cbcmodel.CbCFormula;
 import de.tu_bs.cs.isf.cbc.cbcmodel.CbcmodelFactory;
 import de.tu_bs.cs.isf.cbc.cbcmodel.Condition;
 import de.tu_bs.cs.isf.cbc.tool.diagram.CbCImageProvider;
+import de.tu_bs.cs.isf.cbc.tool.helper.HighlightHelper;
 import de.tu_bs.cs.isf.cbc.tool.model.CbcModelUtil;
 import de.tu_bs.cs.isf.cbc.cbcmodel.MethodSignature;
 
@@ -401,7 +402,10 @@ public class FormulaPattern extends IdPattern implements IPattern {
 		// domainObject.getName() + "'");
 		//// }
 		// }
-
+		
+		if(HighlightHelper.instance.elementNeedsHighlighting(context)) {
+			return Reason.createTrueReason("Element needs to be highlighted.");
+		}
 		return Reason.createFalseReason();
 	}
 
