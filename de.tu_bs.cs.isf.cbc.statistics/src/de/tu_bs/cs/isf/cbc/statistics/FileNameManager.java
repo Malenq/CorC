@@ -100,7 +100,8 @@ public class FileNameManager {
 					File innerFile = keyFilesInFolder.get(j);
 					String innerHash = StatisticsDatabase.instance.getHashForKeyFile(innerFile);
 					if (innerHash == null){
-						redundantFiles.add(innerFile);
+						if (!innerFile.getName().equals("helper.key"))
+							redundantFiles.add(innerFile);
 						continue;
 					}
 					if (outterHash.equals(innerHash))
