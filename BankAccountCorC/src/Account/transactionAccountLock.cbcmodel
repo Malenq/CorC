@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="ASCII"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cbcmodel="http://www.example.org/cbcmodel">
   <cbcmodel:CbCFormula name="transactionAccountLock" proven="true" className="Account" methodName="transactionAccountLock">
-    <statement name="statement" proven="true">
-      <refinement xsi:type="cbcmodel:CompositionStatement" name="compositionStatement" proven="true">
-        <firstStatement name="statement1">
-          <refinement xsi:type="cbcmodel:SelectionStatement" name="selectionStatement" proven="true" preProve="true">
+    <statement name="statement" proven="true" id="9ee7b56e-7322-41a3-adaf-52bc351e20df">
+      <refinement xsi:type="cbcmodel:CompositionStatement" name="compositionStatement" proven="true" id="6b1c68e5-a5dc-417e-bd90-27230803c987">
+        <firstStatement name="statement1" id="306dde17-5940-49ba-8aca-aba4a7be4238">
+          <refinement xsi:type="cbcmodel:SelectionStatement" name="selectionStatement" proven="true" id="18df7e6f-cdf9-484c-a0f3-04fe6574c4c7" preProve="true">
             <guards name="source.isLocked() = TRUE"/>
             <guards name="source.isLocked() = FALSE"/>
-            <commands name="statement">
-              <refinement xsi:type="cbcmodel:ReturnStatement" name="false;" proven="true" comment="returnStatement">
+            <commands name="statement" id="b1cbba35-f84a-4973-b107-10ea687aefa6">
+              <refinement xsi:type="cbcmodel:ReturnStatement" name="false;" proven="true" comment="returnStatement" id="56d79712-4cd0-4fd5-8aa1-de72203f7c3e">
                 <postCondition name="modifiable(result);&#xD;&#xA;result = TRUE -> source.isLocked() = TRUE&amp; destination.isLocked() = TRUE"/>
                 <preCondition name="modifiable(\nothing);(true) &amp; (source.isLocked() = TRUE)"/>
               </refinement>
               <postCondition name="true"/>
               <preCondition name="modifiable(\nothing);(true) &amp; (source.isLocked() = TRUE)"/>
             </commands>
-            <commands name="statement">
-              <refinement xsi:type="cbcmodel:SkipStatement" name=";" proven="true">
+            <commands name="statement" id="31f7cefa-23f7-472d-9e21-8d2f57a48bf0">
+              <refinement xsi:type="cbcmodel:SkipStatement" name=";" proven="true" id="dc2564b3-3919-4168-9218-e298d8bbea33">
                 <postCondition name="true"/>
                 <preCondition name="modifiable(\nothing);(true) &amp; (source.isLocked() = FALSE)"/>
               </refinement>
@@ -27,22 +27,22 @@
           <postCondition name="true"/>
           <preCondition name="true"/>
         </firstStatement>
-        <secondStatement name="statement2">
-          <refinement xsi:type="cbcmodel:CompositionStatement" name="compositionStatement" proven="true">
-            <firstStatement name="statement1">
-              <refinement xsi:type="cbcmodel:SelectionStatement" name="selectionStatement" proven="true" preProve="true">
+        <secondStatement name="statement2" id="6bf4293e-b375-4aea-a6c3-ebcd25ad2832">
+          <refinement xsi:type="cbcmodel:CompositionStatement" name="compositionStatement" proven="true" id="cdc013b0-f99b-4244-86aa-996b691ccec0">
+            <firstStatement name="statement1" id="20b0dfac-52f9-4138-b601-96935f1f1a50">
+              <refinement xsi:type="cbcmodel:SelectionStatement" name="selectionStatement" proven="true" id="88439971-7e24-4124-9719-c48b0a3acfe7" preProve="true">
                 <guards name="destination.isLocked() = TRUE"/>
                 <guards name="destination.isLocked() = FALSE"/>
-                <commands name="statement1">
-                  <refinement xsi:type="cbcmodel:ReturnStatement" name="false;" proven="true" comment="returnStatement">
+                <commands name="statement1" id="405dd456-444b-45d8-9bc8-0a973f2ed95b">
+                  <refinement xsi:type="cbcmodel:ReturnStatement" name="false;" proven="true" comment="returnStatement" id="18b39d93-1bad-4c87-b579-aeccb3299b6f">
                     <postCondition name="modifiable(result);&#xD;&#xA;result = TRUE -> source.isLocked() = TRUE&amp; destination.isLocked() = TRUE"/>
                     <preCondition name="modifiable(\nothing);(true) &amp; (destination.isLocked() = TRUE)"/>
                   </refinement>
                   <postCondition name="true"/>
                   <preCondition name="modifiable(\nothing);(true) &amp; (destination.isLocked() = TRUE)"/>
                 </commands>
-                <commands name="statement">
-                  <refinement xsi:type="cbcmodel:SkipStatement" name=";" proven="true">
+                <commands name="statement" id="f0373220-b630-4c23-a6d1-894ec16c45c7">
+                  <refinement xsi:type="cbcmodel:SkipStatement" name=";" proven="true" id="a763c983-54c1-425c-8b3c-562ed9bf4a4d">
                     <postCondition name="true"/>
                     <preCondition name="modifiable(\nothing);(true) &amp; (destination.isLocked() = FALSE)"/>
                   </refinement>
@@ -53,18 +53,18 @@
               <postCondition name="true"/>
               <preCondition name="true"/>
             </firstStatement>
-            <secondStatement name="statement2">
-              <refinement xsi:type="cbcmodel:CompositionStatement" name="compositionStatement" proven="true">
-                <firstStatement name="statement1">
-                  <refinement name="source.lock(); &#xD;&#xA;destination.lock(); result = true;" proven="true">
+            <secondStatement name="statement2" id="12f61460-557f-4392-b293-db072d998a28">
+              <refinement xsi:type="cbcmodel:CompositionStatement" name="compositionStatement" proven="true" id="c54cca30-b059-44dc-a34a-7dceb9a2c7ab">
+                <firstStatement name="statement1" id="8bb4e2ac-87bb-421a-b00c-24a2d6adc52b">
+                  <refinement name="source.lock(); &#xD;&#xA;destination.lock(); result = true;" proven="true" id="54e6d2eb-a600-449d-8b79-230241309269">
                     <postCondition name="modifiable(result);&#xD;&#xA;result = TRUE &amp; source.isLocked() = TRUE&amp; destination.isLocked() = TRUE"/>
                     <preCondition name="true"/>
                   </refinement>
                   <postCondition name="modifiable(result);&#xD;&#xA;result = TRUE &amp; source.isLocked() = TRUE&amp; destination.isLocked() = TRUE"/>
                   <preCondition name="true"/>
                 </firstStatement>
-                <secondStatement name="statement2">
-                  <refinement xsi:type="cbcmodel:ReturnStatement" name="result;" proven="true" comment="returnStatement">
+                <secondStatement name="statement2" id="3972773a-7e5a-437a-b57d-ca52c249e56a">
+                  <refinement xsi:type="cbcmodel:ReturnStatement" name="result;" proven="true" comment="returnStatement" id="91e17c30-eb63-43b2-8d38-d1b148390234">
                     <postCondition name="modifiable(result);&#xD;&#xA;result = TRUE -> source.isLocked() = TRUE&amp; destination.isLocked() = TRUE"/>
                     <preCondition name="modifiable(result);&#xD;&#xA;result = TRUE &amp; source.isLocked() = TRUE&amp; destination.isLocked() = TRUE"/>
                   </refinement>

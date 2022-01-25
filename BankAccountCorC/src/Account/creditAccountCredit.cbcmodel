@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ASCII"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cbcmodel="http://www.example.org/cbcmodel">
   <cbcmodel:CbCFormula name="creditAccountCredit" proven="true" className="Account" methodName="creditAccountCredit">
-    <statement name="statement">
-      <refinement xsi:type="cbcmodel:ReturnStatement" name="balance >= amount;" proven="true" comment="returnStatement">
+    <statement name="statement" id="f2ef5169-89b2-4258-9b4d-f2a5c62ad58f">
+      <refinement xsi:type="cbcmodel:ReturnStatement" name="balance >= amount;" proven="true" comment="returnStatement" id="ff4a7bbb-8721-43e6-af56-db77cdf4a60c">
         <postCondition name="balance >= amount &lt;-> \result = TRUE"/>
         <preCondition name=" amount > 0"/>
       </refinement>

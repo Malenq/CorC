@@ -74,8 +74,6 @@ public class StatisticsDatabase {
 		System.out.println("File: " + file);
 		List<StatisticsEntry> affectedEntriesInDB = new LinkedList<StatisticsEntry>();
 		for (StatisticsEntry entry : registry.getEntries()) {
-			// TODO: mismatch: entry file is KeY file and affected files are diagrams
-			// TODO: check if CorcKeyMapping.getKeyFilePath() is null
 
 			// TODO: replace entryPath with diagram name which is new in statistics model
 			String entryPath;
@@ -232,13 +230,14 @@ public class StatisticsDatabase {
 			}
 		}
 
-		// TODO: this *should* remove the last ones we want to preserve but not verry
-		// robust: add sorting over timestamp
+		// TODO: this *should* remove the last ones we want to preserve but not very
+		// robust: add sorting over timestamp (and ensure each of pre post and variant)
 		if (oldRepetitionEntries.size() > 3) {
 			oldRepetitionEntries.remove(oldRepetitionEntries.get(oldRepetitionEntries.size() - 1));
 			oldRepetitionEntries.remove(oldRepetitionEntries.get(oldRepetitionEntries.size() - 1));
 			oldRepetitionEntries.remove(oldRepetitionEntries.get(oldRepetitionEntries.size() - 1));
 		}
+		// for this statement only pre and post
 		if (oldStrongWeakEntries.size() > 2) {
 			oldStrongWeakEntries.remove(oldRepetitionEntries.get(oldRepetitionEntries.size() - 1));
 			oldStrongWeakEntries.remove(oldRepetitionEntries.get(oldRepetitionEntries.size() - 1));

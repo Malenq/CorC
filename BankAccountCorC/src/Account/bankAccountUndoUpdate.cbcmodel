@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="ASCII"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cbcmodel="http://www.example.org/cbcmodel">
   <cbcmodel:CbCFormula name="bankAccountUndoUpdate" proven="true" className="Account" methodName="bankAccountUndoUpdate">
-    <statement name="statement" proven="true">
-      <refinement xsi:type="cbcmodel:CompositionStatement" name="compositionStatement" proven="true">
-        <firstStatement name="statement1">
-          <refinement name="newBalance = balance - x;" proven="true">
+    <statement name="statement" proven="true" id="24740e9c-0846-4990-a3e2-ac0b710200f4">
+      <refinement xsi:type="cbcmodel:CompositionStatement" name="compositionStatement" proven="true" id="0911de3c-06af-4b33-80a2-c34a1559c726">
+        <firstStatement name="statement1" id="8c0ee725-591a-43db-8885-c8dd62348941">
+          <refinement name="newBalance = balance - x;" proven="true" id="09db1fb0-9754-4459-b254-f720233cfb01">
             <postCondition name="newBalance = balance - x"/>
             <preCondition name=" true"/>
           </refinement>
           <postCondition name="newBalance = balance - x"/>
           <preCondition name=" true"/>
         </firstStatement>
-        <secondStatement name="statement2">
-          <refinement xsi:type="cbcmodel:CompositionStatement" name="compositionStatement" proven="true">
-            <firstStatement name="statement1">
-              <refinement xsi:type="cbcmodel:SelectionStatement" name="selectionStatement" proven="true" preProve="true">
+        <secondStatement name="statement2" id="f2e60a8a-33cb-45f0-b0ee-acb2746bd98c">
+          <refinement xsi:type="cbcmodel:CompositionStatement" name="compositionStatement" proven="true" id="b35611c8-5f61-48ac-bad0-5123a4b165d2">
+            <firstStatement name="statement1" id="ffefbeb3-2ff7-47d5-a5c5-b0c74a51679c">
+              <refinement xsi:type="cbcmodel:SelectionStatement" name="selectionStatement" proven="true" id="bff4fd57-a814-462b-ae41-4380b47d53e9" preProve="true">
                 <guards name="newBalance &lt; this.OVERDRAFT_LIMIT"/>
                 <guards name="newBalance >= this.OVERDRAFT_LIMIT"/>
-                <commands name="statement1">
-                  <refinement name="result = false;" proven="true">
+                <commands name="statement1" id="247f9974-2fc4-40fc-8066-5fcc1f571439">
+                  <refinement name="result = false;" proven="true" id="cd7c08c7-531a-407d-8125-9641ae7a430b">
                     <postCondition name="modifiable(balance,result);&#xD;&#xA;(result = FALSE -> balance = \old(balance)) &amp; (result = TRUE -> balance = \old(balance) - x)"/>
                     <preCondition name="modifiable(\nothing);(newBalance = balance - x) &amp; (newBalance &lt; this.OVERDRAFT_LIMIT)"/>
                   </refinement>
                   <postCondition name="modifiable(balance,result);&#xD;&#xA;(result = FALSE -> balance = \old(balance)) &amp; (result = TRUE -> balance = \old(balance) - x)"/>
                   <preCondition name="modifiable(\nothing);(newBalance = balance - x) &amp; (newBalance &lt; this.OVERDRAFT_LIMIT)"/>
                 </commands>
-                <commands name="statement">
-                  <refinement name="balance = newBalance;&#xD;&#xA;result = true;" proven="true">
+                <commands name="statement" id="4e80c550-80c7-4b00-9705-f730e482d008">
+                  <refinement name="balance = newBalance;&#xD;&#xA;result = true;" proven="true" id="d9e65bdf-25b5-4879-8afe-817b4fa57103">
                     <postCondition name="modifiable(balance,result);&#xD;&#xA;(result = FALSE -> balance = \old(balance)) &amp; (result = TRUE -> balance = \old(balance) - x)"/>
                     <preCondition name="modifiable(\nothing);(newBalance = balance - x) &amp; (newBalance >= this.OVERDRAFT_LIMIT)"/>
                   </refinement>
@@ -37,8 +37,8 @@
               <postCondition name="modifiable(balance,result);&#xD;&#xA;(result = FALSE -> balance = \old(balance)) &amp; (result = TRUE -> balance = \old(balance) - x)"/>
               <preCondition name="newBalance = balance - x"/>
             </firstStatement>
-            <secondStatement name="statement2">
-              <refinement xsi:type="cbcmodel:ReturnStatement" name="result;" proven="true">
+            <secondStatement name="statement2" id="15ed98f0-2e80-4ce8-8ebc-0225db6af347">
+              <refinement xsi:type="cbcmodel:ReturnStatement" name="result;" proven="true" id="3b165584-3e45-49df-b71d-5c2b82783f3d">
                 <postCondition name="modifiable(balance,result);&#xD;&#xA;(\result = FALSE -> balance = \old(balance)) &amp; (\result = TRUE -> balance = \old(balance) - x)"/>
                 <preCondition name="modifiable(balance,result);&#xD;&#xA;(result = FALSE -> balance = \old(balance)) &amp; (result = TRUE -> balance = \old(balance) - x)"/>
               </refinement>

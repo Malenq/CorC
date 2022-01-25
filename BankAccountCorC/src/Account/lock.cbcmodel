@@ -1,48 +1,48 @@
 <?xml version="1.0" encoding="ASCII"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cbcmodel="http://www.example.org/cbcmodel">
   <cbcmodel:CbCFormula name="lock" className="Account" methodName="lock">
-    <statement name="statement">
-      <refinement xsi:type="cbcmodel:CompositionStatement" name="compositionStatement">
-        <firstStatement name="statement1">
-          <refinement xsi:type="cbcmodel:SkipStatement" name=";">
+    <statement name="statement" id="b0c38cb7-20b2-47b1-9543-e8e948d5e829">
+      <refinement xsi:type="cbcmodel:CompositionStatement" name="compositionStatement" id="e96b85a0-6c9e-4716-b4f5-d94abbcdbcc4">
+        <firstStatement name="statement1" id="d6851ddc-aa8f-4269-914e-c77772695ec7">
+          <refinement xsi:type="cbcmodel:SkipStatement" name=";" id="9514a6eb-078e-4965-8906-e684a89f36a8">
             <postCondition name="intermediateCond"/>
             <preCondition name=" destination != null &amp; source != null &amp; source != destination"/>
           </refinement>
           <postCondition name="intermediateCond"/>
           <preCondition name=" destination != null &amp; source != null &amp; source != destination"/>
         </firstStatement>
-        <secondStatement name="statement2">
-          <refinement xsi:type="cbcmodel:CompositionStatement" name="compositionStatement">
-            <firstStatement name="statement1">
-              <refinement xsi:type="cbcmodel:SkipStatement" name=";">
+        <secondStatement name="statement2" id="f7604231-281a-4ea7-b3eb-5143a5035f47">
+          <refinement xsi:type="cbcmodel:CompositionStatement" name="compositionStatement" id="5929a93a-55ab-4a66-90a5-d910e6d63c27">
+            <firstStatement name="statement1" id="be1c4cd8-36fc-40c7-b067-c1ed8d02bd60">
+              <refinement xsi:type="cbcmodel:SkipStatement" name=";" id="f67e7806-5d61-41db-98cd-0c3ba3c12ac8">
                 <postCondition name="intermediateCond"/>
                 <preCondition name="intermediateCond"/>
               </refinement>
               <postCondition name="intermediateCond"/>
               <preCondition name="intermediateCond"/>
             </firstStatement>
-            <secondStatement name="statement2">
-              <refinement xsi:type="cbcmodel:CompositionStatement" name="compositionStatement">
-                <firstStatement name="statement1">
-                  <refinement name="source.lock();">
+            <secondStatement name="statement2" id="f581175b-dc90-4f1a-af3e-ef37327c5b00">
+              <refinement xsi:type="cbcmodel:CompositionStatement" name="compositionStatement" id="ebcad77d-1b95-4034-8849-70e01fa9a71f">
+                <firstStatement name="statement1" id="8924e1e3-33c3-4ca7-9166-37fdbc28ba4a">
+                  <refinement name="source.lock();" id="43b250b8-8e13-4d19-9920-bd5e9ddcac5e">
                     <postCondition name="intermediateCond"/>
                     <preCondition name="intermediateCond"/>
                   </refinement>
                   <postCondition name="intermediateCond"/>
                   <preCondition name="intermediateCond"/>
                 </firstStatement>
-                <secondStatement name="statement2">
-                  <refinement xsi:type="cbcmodel:CompositionStatement" name="compositionStatement">
-                    <firstStatement name="statement1">
-                      <refinement name="destination.lock();">
+                <secondStatement name="statement2" id="1bccdce9-a660-4e32-bd5e-52d69c3239c8">
+                  <refinement xsi:type="cbcmodel:CompositionStatement" name="compositionStatement" id="bd82aa63-f610-4086-acd0-90b61ce2f10e">
+                    <firstStatement name="statement1" id="872e2bf7-7dda-438d-b85c-d8e25e5e40bd">
+                      <refinement name="destination.lock();" id="03670480-2c24-4db5-9c55-12e46f6fcb16">
                         <postCondition name="intermediateCond"/>
                         <preCondition name="intermediateCond"/>
                       </refinement>
                       <postCondition name="intermediateCond"/>
                       <preCondition name="intermediateCond"/>
                     </firstStatement>
-                    <secondStatement name="statement2">
-                      <refinement xsi:type="cbcmodel:ReturnStatement" name="result = true;">
+                    <secondStatement name="statement2" id="5db7cc64-1347-4714-b9be-c701818e1123">
+                      <refinement xsi:type="cbcmodel:ReturnStatement" name="result = true;" id="bfb76128-b593-48fe-b054-a536663b5dff">
                         <postCondition name=" result -> source.isLocked() &amp; destination.isLocked()"/>
                         <preCondition name="intermediateCond"/>
                       </refinement>

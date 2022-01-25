@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ASCII"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:cbcmodel="http://www.example.org/cbcmodel">
   <cbcmodel:CbCFormula name="unLock" proven="true" className="Account" methodName="unLock">
-    <statement name="statement" proven="true">
-      <refinement name="lock = false;" proven="true">
+    <statement name="statement" proven="true" id="a1822323-041c-476e-ab93-bb5f8cb5c857">
+      <refinement name="lock = false;" proven="true" id="6dcb359b-de62-4d05-9514-49d6f8b1efe8">
         <postCondition name="this.lock = FALSE"/>
         <preCondition name=" true"/>
       </refinement>

@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="ASCII"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cbcmodel="http://www.example.org/cbcmodel">
   <cbcmodel:CbCFormula name="undoUpdate" className="Account" methodName="undoUpdate">
-    <statement name="statement">
-      <refinement xsi:type="cbcmodel:CompositionStatement" name="compositionStatement">
-        <firstStatement name="statement1">
-          <refinement name="newBalance = balance - x;">
+    <statement name="statement" id="f239dd73-cb68-4f2e-8cf3-4e326a220ab8">
+      <refinement xsi:type="cbcmodel:CompositionStatement" name="compositionStatement" id="40b4fbcd-bc1c-4a49-bdf9-2e3689765e1b">
+        <firstStatement name="statement1" id="e060a29a-655e-4db5-bf20-403fd4081527">
+          <refinement name="newBalance = balance - x;" id="cca7876a-2dfd-4fe7-8143-5268d3ef2aaf">
             <postCondition name="intermediateCond"/>
             <preCondition name=" true"/>
           </refinement>
           <postCondition name="intermediateCond"/>
           <preCondition name=" true"/>
         </firstStatement>
-        <secondStatement name="statement2">
-          <refinement xsi:type="cbcmodel:CompositionStatement" name="compositionStatement">
-            <firstStatement name="statement1">
-              <refinement xsi:type="cbcmodel:SkipStatement" name=";">
+        <secondStatement name="statement2" id="1c425704-f428-41a3-b321-548c8454565a">
+          <refinement xsi:type="cbcmodel:CompositionStatement" name="compositionStatement" id="89a8856e-bea2-4c89-9225-c25eb52a5041">
+            <firstStatement name="statement1" id="f0ad620e-977c-4499-8612-f56abad38e51">
+              <refinement xsi:type="cbcmodel:SkipStatement" name=";" id="48ceaaf3-3675-4c26-9599-e4ea277d6cc4">
                 <postCondition name="intermediateCond"/>
                 <preCondition name="intermediateCond"/>
               </refinement>
               <postCondition name="intermediateCond"/>
               <preCondition name="intermediateCond"/>
             </firstStatement>
-            <secondStatement name="statement2">
-              <refinement xsi:type="cbcmodel:CompositionStatement" name="compositionStatement">
-                <firstStatement name="statement1">
-                  <refinement name="balance = newBalance;">
+            <secondStatement name="statement2" id="64659370-f083-46d3-857e-13b1b8f13686">
+              <refinement xsi:type="cbcmodel:CompositionStatement" name="compositionStatement" id="6b1a3b50-caa2-4299-9a58-f8f141fb8c12">
+                <firstStatement name="statement1" id="61877526-8451-4010-a997-4ebbc16f5d48">
+                  <refinement name="balance = newBalance;" id="d3a229b8-9bbd-4cc4-8b87-b687f8441bf3">
                     <postCondition name="intermediateCond"/>
                     <preCondition name="intermediateCond"/>
                   </refinement>
                   <postCondition name="intermediateCond"/>
                   <preCondition name="intermediateCond"/>
                 </firstStatement>
-                <secondStatement name="statement2">
-                  <refinement xsi:type="cbcmodel:ReturnStatement" name="result = true;">
+                <secondStatement name="statement2" id="9594261d-4299-4b85-8ed6-2cdac0e01ecb">
+                  <refinement xsi:type="cbcmodel:ReturnStatement" name="result = true;" id="4a8e528b-d907-46b3-9b02-20efbc9f59bf">
                     <postCondition name=" (!result -> balance = old_balance)     &amp; (result -> balance = old_balance - x)"/>
                     <preCondition name="intermediateCond"/>
                   </refinement>

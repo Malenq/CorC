@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ASCII"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cbcmodel="http://www.example.org/cbcmodel">
   <cbcmodel:CbCFormula name="interestEstimated" className="Account" methodName="interestEstimated">
-    <statement name="statement">
-      <refinement xsi:type="cbcmodel:ReturnStatement" name="&#xD;&#xA;interest + daysLeft * this.interestCalculate();">
+    <statement name="statement" id="7302740d-4bb1-4fb0-9c83-a4fd06127442">
+      <refinement xsi:type="cbcmodel:ReturnStatement" name="&#xD;&#xA;interest + daysLeft * this.interestCalculate();" id="53d324be-e177-4fd3-982b-47399395b16c">
         <postCondition name="(this.interestCalculate() >= 0 -> \result >= interest)&#xD;&#xA;&amp; (this.interestCalculate() &lt;= 0 -> \result &lt;= interest&#xD;&#xA;)"/>
         <preCondition name=" daysLeft > 0"/>
       </refinement>

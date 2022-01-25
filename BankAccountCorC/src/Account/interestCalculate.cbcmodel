@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ASCII"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cbcmodel="http://www.example.org/cbcmodel">
   <cbcmodel:CbCFormula name="interestCalculate" proven="true" className="Account" methodName="interestCalculate">
-    <statement name="statement">
-      <refinement xsi:type="cbcmodel:ReturnStatement" name="balance * Account.INTEREST_RATE / 36500;" proven="true">
+    <statement name="statement" id="306e5358-b2d8-4755-baad-e1fc57d8cc34">
+      <refinement xsi:type="cbcmodel:ReturnStatement" name="balance * Account.INTEREST_RATE / 36500;" proven="true" id="73a3ce3a-3fc7-4b9b-a7ba-095b6eaadb48">
         <postCondition name="(balance >= 0 -> \result >= 0) &amp; (balance &lt;= 0 -> \result &lt;= 0)"/>
         <preCondition name=" true"/>
       </refinement>

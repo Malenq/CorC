@@ -6,7 +6,7 @@
   </link>
   <children xsi:type="pi:ContainerShape" visible="true" active="true">
     <properties key="org.eclipse.graphiti.pattern.patternType" value="org.eclipse.graphiti.pattern.idpattern"/>
-    <graphicsAlgorithm xsi:type="al:RoundedRectangle" foreground="//@colors.2" lineWidth="2" filled="true" transparency="0.0" width="961" height="211" x="50" cornerHeight="20" cornerWidth="20">
+    <graphicsAlgorithm xsi:type="al:RoundedRectangle" foreground="//@colors.2" lineWidth="2" filled="true" transparency="0.0" width="711" height="201" x="30" y="30" cornerHeight="20" cornerWidth="20">
       <properties key="org.eclipse.graphiti.pattern.id.id" value="mainRectangle"/>
       <renderingStyle>
         <adaptedGradientColoredAreas definedStyleId="blue-white" gradientType="0">
@@ -47,7 +47,7 @@
       <businessObjects href="bankAccountUndoUpdate.cbcmodel#/0"/>
     </link>
     <children visible="true" active="true">
-      <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" filled="false" transparency="0.0" width="320" height="151" y="60" horizontalAlignment="ALIGNMENT_CENTER" value="{ true}">
+      <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" filled="false" transparency="0.0" width="237" height="141" y="60" horizontalAlignment="ALIGNMENT_CENTER" value="{ true}">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="preConditionText"/>
       </graphicsAlgorithm>
       <link>
@@ -55,16 +55,16 @@
       </link>
     </children>
     <children visible="true" active="true">
-      <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" filled="false" transparency="0.0" width="320" height="151" x="320" y="60" horizontalAlignment="ALIGNMENT_CENTER" value="statement">
+      <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" filled="false" transparency="0.0" width="237" height="141" x="237" y="60" horizontalAlignment="ALIGNMENT_CENTER" value="statement">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="statementNameText"/>
       </graphicsAlgorithm>
       <link>
-        <businessObjects href="bankAccountUndoUpdate.cbcmodel#/0/@statement"/>
+        <businessObjects href="bankAccountUndoUpdate.cbcmodel#24740e9c-0846-4990-a3e2-ac0b710200f4"/>
       </link>
       <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.3"/>
     </children>
     <children visible="true" active="true">
-      <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" filled="false" transparency="0.0" width="320" height="151" x="640" y="60" horizontalAlignment="ALIGNMENT_CENTER" value="{modifiable(balance,result);&#xD;&#xA;(\result = FALSE -> balance = \old(balance)) &amp; (\result = TRUE -> balance = \old(balance) - x)}">
+      <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" filled="false" transparency="0.0" width="237" height="141" x="474" y="60" horizontalAlignment="ALIGNMENT_CENTER" value="{modifiable(balance,result);&#xD;&#xA;(\result = FALSE -> balance = \old(balance)) &amp; (\result = TRUE -> balance = \old(balance) - x)}">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="postConditionText"/>
       </graphicsAlgorithm>
       <link>
@@ -72,12 +72,12 @@
       </link>
     </children>
     <children visible="true">
-      <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" filled="false" transparency="0.0" width="961" height="30" y="5" font="//@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Formula">
+      <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" filled="false" transparency="0.0" width="711" height="30" y="5" font="//@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Formula">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="nameText"/>
       </graphicsAlgorithm>
     </children>
     <children visible="true">
-      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="10" height="10" x="941" y="10" id="de.tu_bs.cs.isf.cbc.tool.proven" stretchH="false" stretchV="false" proportional="false">
+      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="10" height="10" x="691" y="10" id="de.tu_bs.cs.isf.cbc.tool.proven" stretchH="false" stretchV="false" proportional="false">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="imageproven"/>
       </graphicsAlgorithm>
       <link>
@@ -85,17 +85,17 @@
       </link>
     </children>
     <children visible="true">
-      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="320" height="20" y="40" font="//@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="precondition">
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="237" height="20" y="40" font="//@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="precondition">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="preHeader"/>
       </graphicsAlgorithm>
     </children>
     <children visible="true">
-      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="320" height="20" x="640" y="40" font="//@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="postcondition">
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="237" height="20" x="474" y="40" font="//@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="postcondition">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="postHeader"/>
       </graphicsAlgorithm>
     </children>
     <children visible="true">
-      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="320" height="20" x="320" y="40" font="//@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="statement">
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="237" height="20" x="237" y="40" font="//@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="statement">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="stHeader"/>
       </graphicsAlgorithm>
     </children>
@@ -103,34 +103,34 @@
       <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="hor1Line"/>
         <points y="40"/>
-        <points x="961" y="40"/>
+        <points x="711" y="40"/>
       </graphicsAlgorithm>
     </children>
     <children visible="true">
       <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="hor2Line"/>
         <points y="60"/>
-        <points x="961" y="60"/>
+        <points x="711" y="60"/>
       </graphicsAlgorithm>
     </children>
     <children visible="true">
       <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="ver1Line"/>
-        <points x="320" y="40"/>
-        <points x="320" y="211"/>
+        <points x="237" y="40"/>
+        <points x="237" y="201"/>
       </graphicsAlgorithm>
     </children>
     <children visible="true">
       <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="ver2Line"/>
-        <points x="640" y="40"/>
-        <points x="640" y="211"/>
+        <points x="474" y="40"/>
+        <points x="474" y="201"/>
       </graphicsAlgorithm>
     </children>
   </children>
   <children xsi:type="pi:ContainerShape" visible="true" active="true">
     <properties key="org.eclipse.graphiti.pattern.patternType" value="org.eclipse.graphiti.pattern.idpattern"/>
-    <graphicsAlgorithm xsi:type="al:RoundedRectangle" foreground="//@colors.2" lineWidth="2" filled="true" transparency="0.0" width="500" height="300" x="281" y="310" cornerHeight="20" cornerWidth="20">
+    <graphicsAlgorithm xsi:type="al:RoundedRectangle" foreground="//@colors.2" lineWidth="2" filled="true" transparency="0.0" width="500" height="300" x="160" y="340" cornerHeight="20" cornerWidth="20">
       <properties key="org.eclipse.graphiti.pattern.id.id" value="mainRectangle"/>
       <renderingStyle>
         <adaptedGradientColoredAreas definedStyleId="blue-white" gradientType="0">
@@ -168,7 +168,7 @@
       </renderingStyle>
     </graphicsAlgorithm>
     <link>
-      <businessObjects href="bankAccountUndoUpdate.cbcmodel#/0/@statement/@refinement"/>
+      <businessObjects href="bankAccountUndoUpdate.cbcmodel#0911de3c-06af-4b33-80a2-c34a1559c726"/>
     </link>
     <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="//@connections.3"/>
     <children visible="true" active="true">
@@ -176,7 +176,7 @@
         <properties key="org.eclipse.graphiti.pattern.id.id" value="statement1NameText"/>
       </graphicsAlgorithm>
       <link>
-        <businessObjects href="bankAccountUndoUpdate.cbcmodel#/0/@statement/@refinement/@firstStatement"/>
+        <businessObjects href="bankAccountUndoUpdate.cbcmodel#8c0ee725-591a-43db-8885-c8dd62348941"/>
       </link>
       <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.0"/>
     </children>
@@ -193,7 +193,7 @@
         <properties key="org.eclipse.graphiti.pattern.id.id" value="statement2NameText"/>
       </graphicsAlgorithm>
       <link>
-        <businessObjects href="bankAccountUndoUpdate.cbcmodel#/0/@statement/@refinement/@secondStatement"/>
+        <businessObjects href="bankAccountUndoUpdate.cbcmodel#f2e60a8a-33cb-45f0-b0ee-acb2746bd98c"/>
       </link>
       <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.4"/>
     </children>
@@ -223,7 +223,7 @@
         <properties key="org.eclipse.graphiti.pattern.id.id" value="imageproven"/>
       </graphicsAlgorithm>
       <link>
-        <businessObjects href="bankAccountUndoUpdate.cbcmodel#/0/@statement/@refinement"/>
+        <businessObjects href="bankAccountUndoUpdate.cbcmodel#0911de3c-06af-4b33-80a2-c34a1559c726"/>
       </link>
     </children>
     <children visible="true">
@@ -303,7 +303,7 @@
   </children>
   <children xsi:type="pi:ContainerShape" visible="true" active="true">
     <properties key="org.eclipse.graphiti.pattern.patternType" value="org.eclipse.graphiti.pattern.idpattern"/>
-    <graphicsAlgorithm xsi:type="al:RoundedRectangle" foreground="//@colors.2" lineWidth="2" filled="true" transparency="0.0" width="300" height="100" x="10" y="770" cornerHeight="20" cornerWidth="20">
+    <graphicsAlgorithm xsi:type="al:RoundedRectangle" foreground="//@colors.2" lineWidth="2" filled="true" transparency="0.0" width="311" height="120" x="40" y="730" cornerHeight="20" cornerWidth="20">
       <properties key="org.eclipse.graphiti.pattern.id.id" value="mainRectangle"/>
       <renderingStyle>
         <adaptedGradientColoredAreas definedStyleId="blue-white" gradientType="0">
@@ -341,20 +341,20 @@
       </renderingStyle>
     </graphicsAlgorithm>
     <link>
-      <businessObjects href="bankAccountUndoUpdate.cbcmodel#/0/@statement/@refinement/@firstStatement/@refinement"/>
+      <businessObjects href="bankAccountUndoUpdate.cbcmodel#09db1fb0-9754-4459-b254-f720233cfb01"/>
     </link>
     <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="//@connections.0"/>
     <children visible="true" active="true">
-      <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" filled="false" transparency="0.0" width="100" height="60" x="100" y="40" horizontalAlignment="ALIGNMENT_CENTER" value="newBalance = balance - x;">
+      <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" filled="false" transparency="0.0" width="103" height="80" x="103" y="40" horizontalAlignment="ALIGNMENT_CENTER" value="newBalance = balance - x;">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="statementText"/>
       </graphicsAlgorithm>
       <link>
-        <businessObjects href="bankAccountUndoUpdate.cbcmodel#/0/@statement/@refinement/@firstStatement/@refinement"/>
+        <businessObjects href="bankAccountUndoUpdate.cbcmodel#09db1fb0-9754-4459-b254-f720233cfb01"/>
       </link>
       <anchors xsi:type="pi:ChopboxAnchor"/>
     </children>
     <children visible="true">
-      <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" filled="false" transparency="0.0" width="100" height="60" y="40" horizontalAlignment="ALIGNMENT_CENTER" value="{ true}">
+      <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" filled="false" transparency="0.0" width="103" height="80" y="40" horizontalAlignment="ALIGNMENT_CENTER" value="{ true}">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="preText"/>
       </graphicsAlgorithm>
       <link>
@@ -362,7 +362,7 @@
       </link>
     </children>
     <children visible="true">
-      <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" filled="false" transparency="0.0" width="100" height="60" x="200" y="40" horizontalAlignment="ALIGNMENT_CENTER" value="{newBalance = balance - x}">
+      <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" filled="false" transparency="0.0" width="103" height="80" x="206" y="40" horizontalAlignment="ALIGNMENT_CENTER" value="{newBalance = balance - x}">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="postText"/>
       </graphicsAlgorithm>
       <link>
@@ -370,25 +370,25 @@
       </link>
     </children>
     <children visible="true">
-      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="10" height="10" x="280" y="10" id="de.tu_bs.cs.isf.cbc.tool.proven" stretchH="false" stretchV="false" proportional="false">
+      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="10" height="10" x="291" y="10" id="de.tu_bs.cs.isf.cbc.tool.proven" stretchH="false" stretchV="false" proportional="false">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="imageproven"/>
       </graphicsAlgorithm>
       <link>
-        <businessObjects href="bankAccountUndoUpdate.cbcmodel#/0/@statement/@refinement/@firstStatement/@refinement"/>
+        <businessObjects href="bankAccountUndoUpdate.cbcmodel#09db1fb0-9754-4459-b254-f720233cfb01"/>
       </link>
     </children>
     <children visible="true">
-      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="100" height="20" x="100" y="20" font="//@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="statement">
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="103" height="20" x="103" y="20" font="//@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="statement">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="statementHeader"/>
       </graphicsAlgorithm>
     </children>
     <children visible="true">
-      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="100" height="20" y="20" font="//@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="precondition">
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="103" height="20" y="20" font="//@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="precondition">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="preHeader"/>
       </graphicsAlgorithm>
     </children>
     <children visible="true">
-      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="100" height="20" x="200" y="20" font="//@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="postcondition">
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="103" height="20" x="206" y="20" font="//@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="postcondition">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="postHeader"/>
       </graphicsAlgorithm>
     </children>
@@ -396,27 +396,27 @@
       <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="headerSeparater"/>
         <points y="40"/>
-        <points x="300" y="40"/>
+        <points x="311" y="40"/>
       </graphicsAlgorithm>
     </children>
     <children visible="true">
       <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="preSep"/>
-        <points x="200"/>
-        <points x="200" y="100"/>
+        <points x="206"/>
+        <points x="206" y="120"/>
       </graphicsAlgorithm>
     </children>
     <children visible="true">
       <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="postSep"/>
-        <points x="100"/>
-        <points x="100" y="100"/>
+        <points x="103"/>
+        <points x="103" y="120"/>
       </graphicsAlgorithm>
     </children>
   </children>
   <children xsi:type="pi:ContainerShape" visible="true" active="true">
     <properties key="org.eclipse.graphiti.pattern.patternType" value="org.eclipse.graphiti.pattern.idpattern"/>
-    <graphicsAlgorithm xsi:type="al:RoundedRectangle" foreground="//@colors.2" lineWidth="2" filled="true" transparency="0.0" width="500" height="300" x="550" y="730" cornerHeight="20" cornerWidth="20">
+    <graphicsAlgorithm xsi:type="al:RoundedRectangle" foreground="//@colors.2" lineWidth="2" filled="true" transparency="0.0" width="500" height="300" x="400" y="730" cornerHeight="20" cornerWidth="20">
       <properties key="org.eclipse.graphiti.pattern.id.id" value="mainRectangle"/>
       <renderingStyle>
         <adaptedGradientColoredAreas definedStyleId="blue-white" gradientType="0">
@@ -454,7 +454,7 @@
       </renderingStyle>
     </graphicsAlgorithm>
     <link>
-      <businessObjects href="bankAccountUndoUpdate.cbcmodel#/0/@statement/@refinement/@secondStatement/@refinement"/>
+      <businessObjects href="bankAccountUndoUpdate.cbcmodel#b35611c8-5f61-48ac-bad0-5123a4b165d2"/>
     </link>
     <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="//@connections.4"/>
     <children visible="true" active="true">
@@ -462,7 +462,7 @@
         <properties key="org.eclipse.graphiti.pattern.id.id" value="statement1NameText"/>
       </graphicsAlgorithm>
       <link>
-        <businessObjects href="bankAccountUndoUpdate.cbcmodel#/0/@statement/@refinement/@secondStatement/@refinement/@firstStatement"/>
+        <businessObjects href="bankAccountUndoUpdate.cbcmodel#ffefbeb3-2ff7-47d5-a5c5-b0c74a51679c"/>
       </link>
       <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.5"/>
     </children>
@@ -479,7 +479,7 @@
         <properties key="org.eclipse.graphiti.pattern.id.id" value="statement2NameText"/>
       </graphicsAlgorithm>
       <link>
-        <businessObjects href="bankAccountUndoUpdate.cbcmodel#/0/@statement/@refinement/@secondStatement/@refinement/@secondStatement"/>
+        <businessObjects href="bankAccountUndoUpdate.cbcmodel#15ed98f0-2e80-4ce8-8ebc-0225db6af347"/>
       </link>
       <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.2"/>
     </children>
@@ -509,7 +509,7 @@
         <properties key="org.eclipse.graphiti.pattern.id.id" value="imageproven"/>
       </graphicsAlgorithm>
       <link>
-        <businessObjects href="bankAccountUndoUpdate.cbcmodel#/0/@statement/@refinement/@secondStatement/@refinement"/>
+        <businessObjects href="bankAccountUndoUpdate.cbcmodel#b35611c8-5f61-48ac-bad0-5123a4b165d2"/>
       </link>
     </children>
     <children visible="true">
@@ -589,7 +589,7 @@
   </children>
   <children xsi:type="pi:ContainerShape" visible="true" active="true">
     <properties key="org.eclipse.graphiti.pattern.patternType" value="org.eclipse.graphiti.pattern.idpattern"/>
-    <graphicsAlgorithm xsi:type="al:RoundedRectangle" foreground="//@colors.2" lineWidth="2" filled="true" transparency="0.0" width="530" height="350" x="90" y="1060" cornerHeight="20" cornerWidth="20">
+    <graphicsAlgorithm xsi:type="al:RoundedRectangle" foreground="//@colors.2" lineWidth="2" filled="true" transparency="0.0" width="530" height="350" x="146" y="1090" cornerHeight="20" cornerWidth="20">
       <properties key="org.eclipse.graphiti.pattern.id.id" value="mainRectangle"/>
       <renderingStyle>
         <adaptedGradientColoredAreas definedStyleId="blue-white" gradientType="0">
@@ -627,7 +627,7 @@
       </renderingStyle>
     </graphicsAlgorithm>
     <link>
-      <businessObjects href="bankAccountUndoUpdate.cbcmodel#/0/@statement/@refinement/@secondStatement/@refinement/@firstStatement/@refinement"/>
+      <businessObjects href="bankAccountUndoUpdate.cbcmodel#bff4fd57-a814-462b-ae41-4380b47d53e9"/>
     </link>
     <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="//@connections.5"/>
     <children visible="true">
@@ -640,7 +640,7 @@
         <properties key="org.eclipse.graphiti.pattern.id.id" value="imageproven"/>
       </graphicsAlgorithm>
       <link>
-        <businessObjects href="bankAccountUndoUpdate.cbcmodel#/0/@statement/@refinement/@secondStatement/@refinement/@firstStatement/@refinement"/>
+        <businessObjects href="bankAccountUndoUpdate.cbcmodel#bff4fd57-a814-462b-ae41-4380b47d53e9"/>
       </link>
     </children>
     <children visible="true">
@@ -725,7 +725,7 @@
         <properties key="org.eclipse.graphiti.pattern.id.index" value="0"/>
       </graphicsAlgorithm>
       <link>
-        <businessObjects href="bankAccountUndoUpdate.cbcmodel#/0/@statement/@refinement/@secondStatement/@refinement/@firstStatement/@refinement/@commands.0"/>
+        <businessObjects href="bankAccountUndoUpdate.cbcmodel#247f9974-2fc4-40fc-8066-5fcc1f571439"/>
       </link>
       <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.1"/>
     </children>
@@ -780,7 +780,7 @@
         <properties key="org.eclipse.graphiti.pattern.id.index" value="1"/>
       </graphicsAlgorithm>
       <link>
-        <businessObjects href="bankAccountUndoUpdate.cbcmodel#/0/@statement/@refinement/@secondStatement/@refinement/@firstStatement/@refinement/@commands.1"/>
+        <businessObjects href="bankAccountUndoUpdate.cbcmodel#4e80c550-80c7-4b00-9705-f730e482d008"/>
       </link>
       <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.6"/>
     </children>
@@ -838,7 +838,7 @@
   </children>
   <children xsi:type="pi:ContainerShape" visible="true" active="true">
     <properties key="org.eclipse.graphiti.pattern.patternType" value="org.eclipse.graphiti.pattern.idpattern"/>
-    <graphicsAlgorithm xsi:type="al:RoundedRectangle" foreground="//@colors.2" lineWidth="2" filled="true" transparency="0.0" width="300" height="100" x="50" y="1520" cornerHeight="20" cornerWidth="20">
+    <graphicsAlgorithm xsi:type="al:RoundedRectangle" foreground="//@colors.2" lineWidth="2" filled="true" transparency="0.0" width="300" height="100" x="120" y="1470" cornerHeight="20" cornerWidth="20">
       <properties key="org.eclipse.graphiti.pattern.id.id" value="mainRectangle"/>
       <renderingStyle>
         <adaptedGradientColoredAreas definedStyleId="blue-white" gradientType="0">
@@ -876,7 +876,7 @@
       </renderingStyle>
     </graphicsAlgorithm>
     <link>
-      <businessObjects href="bankAccountUndoUpdate.cbcmodel#/0/@statement/@refinement/@secondStatement/@refinement/@firstStatement/@refinement/@commands.0/@refinement"/>
+      <businessObjects href="bankAccountUndoUpdate.cbcmodel#cd7c08c7-531a-407d-8125-9641ae7a430b"/>
     </link>
     <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="//@connections.1"/>
     <children visible="true" active="true">
@@ -884,7 +884,7 @@
         <properties key="org.eclipse.graphiti.pattern.id.id" value="statementText"/>
       </graphicsAlgorithm>
       <link>
-        <businessObjects href="bankAccountUndoUpdate.cbcmodel#/0/@statement/@refinement/@secondStatement/@refinement/@firstStatement/@refinement/@commands.0/@refinement"/>
+        <businessObjects href="bankAccountUndoUpdate.cbcmodel#cd7c08c7-531a-407d-8125-9641ae7a430b"/>
       </link>
       <anchors xsi:type="pi:ChopboxAnchor"/>
     </children>
@@ -909,7 +909,7 @@
         <properties key="org.eclipse.graphiti.pattern.id.id" value="imageproven"/>
       </graphicsAlgorithm>
       <link>
-        <businessObjects href="bankAccountUndoUpdate.cbcmodel#/0/@statement/@refinement/@secondStatement/@refinement/@firstStatement/@refinement/@commands.0/@refinement"/>
+        <businessObjects href="bankAccountUndoUpdate.cbcmodel#cd7c08c7-531a-407d-8125-9641ae7a430b"/>
       </link>
     </children>
     <children visible="true">
@@ -951,7 +951,7 @@
   </children>
   <children xsi:type="pi:ContainerShape" visible="true" active="true">
     <properties key="org.eclipse.graphiti.pattern.patternType" value="org.eclipse.graphiti.pattern.idpattern"/>
-    <graphicsAlgorithm xsi:type="al:RoundedRectangle" foreground="//@colors.2" lineWidth="2" filled="true" transparency="0.0" width="300" height="100" x="540" y="1550" cornerHeight="20" cornerWidth="20">
+    <graphicsAlgorithm xsi:type="al:RoundedRectangle" foreground="//@colors.2" lineWidth="2" filled="true" transparency="0.0" width="300" height="100" x="480" y="1470" cornerHeight="20" cornerWidth="20">
       <properties key="org.eclipse.graphiti.pattern.id.id" value="mainRectangle"/>
       <renderingStyle>
         <adaptedGradientColoredAreas definedStyleId="blue-white" gradientType="0">
@@ -989,7 +989,7 @@
       </renderingStyle>
     </graphicsAlgorithm>
     <link>
-      <businessObjects href="bankAccountUndoUpdate.cbcmodel#/0/@statement/@refinement/@secondStatement/@refinement/@firstStatement/@refinement/@commands.1/@refinement"/>
+      <businessObjects href="bankAccountUndoUpdate.cbcmodel#d9e65bdf-25b5-4879-8afe-817b4fa57103"/>
     </link>
     <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="//@connections.6"/>
     <children visible="true" active="true">
@@ -997,7 +997,7 @@
         <properties key="org.eclipse.graphiti.pattern.id.id" value="statementText"/>
       </graphicsAlgorithm>
       <link>
-        <businessObjects href="bankAccountUndoUpdate.cbcmodel#/0/@statement/@refinement/@secondStatement/@refinement/@firstStatement/@refinement/@commands.1/@refinement"/>
+        <businessObjects href="bankAccountUndoUpdate.cbcmodel#d9e65bdf-25b5-4879-8afe-817b4fa57103"/>
       </link>
       <anchors xsi:type="pi:ChopboxAnchor"/>
     </children>
@@ -1022,7 +1022,7 @@
         <properties key="org.eclipse.graphiti.pattern.id.id" value="imageproven"/>
       </graphicsAlgorithm>
       <link>
-        <businessObjects href="bankAccountUndoUpdate.cbcmodel#/0/@statement/@refinement/@secondStatement/@refinement/@firstStatement/@refinement/@commands.1/@refinement"/>
+        <businessObjects href="bankAccountUndoUpdate.cbcmodel#d9e65bdf-25b5-4879-8afe-817b4fa57103"/>
       </link>
     </children>
     <children visible="true">
@@ -1064,7 +1064,7 @@
   </children>
   <children xsi:type="pi:ContainerShape" visible="true" active="true">
     <properties key="org.eclipse.graphiti.pattern.patternType" value="org.eclipse.graphiti.pattern.idpattern"/>
-    <graphicsAlgorithm xsi:type="al:RoundedRectangle" foreground="//@colors.2" lineWidth="2" filled="true" transparency="0.0" width="300" height="100" x="950" y="1120" cornerHeight="20" cornerWidth="20">
+    <graphicsAlgorithm xsi:type="al:RoundedRectangle" foreground="//@colors.2" lineWidth="2" filled="true" transparency="0.0" width="325" height="100" x="736" y="1090" cornerHeight="20" cornerWidth="20">
       <properties key="org.eclipse.graphiti.pattern.id.id" value="mainRectangle"/>
       <renderingStyle>
         <adaptedGradientColoredAreas definedStyleId="blue-white" gradientType="0">
@@ -1102,20 +1102,20 @@
       </renderingStyle>
     </graphicsAlgorithm>
     <link>
-      <businessObjects href="bankAccountUndoUpdate.cbcmodel#/0/@statement/@refinement/@secondStatement/@refinement/@secondStatement/@refinement"/>
+      <businessObjects href="bankAccountUndoUpdate.cbcmodel#3b165584-3e45-49df-b71d-5c2b82783f3d"/>
     </link>
     <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="//@connections.2"/>
     <children visible="true" active="true">
-      <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" filled="false" transparency="0.0" width="100" height="60" x="100" y="40" horizontalAlignment="ALIGNMENT_CENTER" value="result;">
+      <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" filled="false" transparency="0.0" width="108" height="60" x="108" y="40" horizontalAlignment="ALIGNMENT_CENTER" value="result;">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="statementText"/>
       </graphicsAlgorithm>
       <link>
-        <businessObjects href="bankAccountUndoUpdate.cbcmodel#/0/@statement/@refinement/@secondStatement/@refinement/@secondStatement/@refinement"/>
+        <businessObjects href="bankAccountUndoUpdate.cbcmodel#3b165584-3e45-49df-b71d-5c2b82783f3d"/>
       </link>
       <anchors xsi:type="pi:ChopboxAnchor"/>
     </children>
     <children visible="true">
-      <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" filled="false" transparency="0.0" width="100" height="60" y="40" horizontalAlignment="ALIGNMENT_CENTER" value="{modifiable(balance,result);&#xD;&#xA;(result = FALSE -> balance = \old(balance)) &amp; (result = TRUE -> balance = \old(balance) - x)}">
+      <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" filled="false" transparency="0.0" width="108" height="60" y="40" horizontalAlignment="ALIGNMENT_CENTER" value="{modifiable(balance,result);&#xD;&#xA;(result = FALSE -> balance = \old(balance)) &amp; (result = TRUE -> balance = \old(balance) - x)}">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="preText"/>
       </graphicsAlgorithm>
       <link>
@@ -1123,7 +1123,7 @@
       </link>
     </children>
     <children visible="true">
-      <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" filled="false" transparency="0.0" width="100" height="60" x="200" y="40" horizontalAlignment="ALIGNMENT_CENTER" value="{modifiable(balance,result);&#xD;&#xA;(\result = FALSE -> balance = \old(balance)) &amp; (\result = TRUE -> balance = \old(balance) - x)}">
+      <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" filled="false" transparency="0.0" width="108" height="60" x="216" y="40" horizontalAlignment="ALIGNMENT_CENTER" value="{modifiable(balance,result);&#xD;&#xA;(\result = FALSE -> balance = \old(balance)) &amp; (\result = TRUE -> balance = \old(balance) - x)}">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="postText"/>
       </graphicsAlgorithm>
       <link>
@@ -1131,25 +1131,25 @@
       </link>
     </children>
     <children visible="true">
-      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="10" height="10" x="280" y="10" id="de.tu_bs.cs.isf.cbc.tool.proven" stretchH="false" stretchV="false" proportional="false">
+      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="10" height="10" x="305" y="10" id="de.tu_bs.cs.isf.cbc.tool.proven" stretchH="false" stretchV="false" proportional="false">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="imageproven"/>
       </graphicsAlgorithm>
       <link>
-        <businessObjects href="bankAccountUndoUpdate.cbcmodel#/0/@statement/@refinement/@secondStatement/@refinement/@secondStatement/@refinement"/>
+        <businessObjects href="bankAccountUndoUpdate.cbcmodel#3b165584-3e45-49df-b71d-5c2b82783f3d"/>
       </link>
     </children>
     <children visible="true">
-      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="100" height="20" x="100" y="20" font="//@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="ReturnStatement">
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="108" height="20" x="108" y="20" font="//@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="ReturnStatement">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="statementHeader"/>
       </graphicsAlgorithm>
     </children>
     <children visible="true">
-      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="100" height="20" y="20" font="//@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="precondition">
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="108" height="20" y="20" font="//@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="precondition">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="preHeader"/>
       </graphicsAlgorithm>
     </children>
     <children visible="true">
-      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="100" height="20" x="200" y="20" font="//@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="postcondition">
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="108" height="20" x="216" y="20" font="//@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="postcondition">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="postHeader"/>
       </graphicsAlgorithm>
     </children>
@@ -1157,27 +1157,27 @@
       <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="headerSeparater"/>
         <points y="40"/>
-        <points x="300" y="40"/>
+        <points x="325" y="40"/>
       </graphicsAlgorithm>
     </children>
     <children visible="true">
       <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="preSep"/>
-        <points x="200"/>
-        <points x="200" y="100"/>
+        <points x="216"/>
+        <points x="216" y="100"/>
       </graphicsAlgorithm>
     </children>
     <children visible="true">
       <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="postSep"/>
-        <points x="100"/>
-        <points x="100" y="100"/>
+        <points x="108"/>
+        <points x="108" y="100"/>
       </graphicsAlgorithm>
     </children>
   </children>
   <children xsi:type="pi:ContainerShape" visible="true" active="true">
     <properties key="org.eclipse.graphiti.pattern.patternType" value="org.eclipse.graphiti.pattern.idpattern"/>
-    <graphicsAlgorithm xsi:type="al:RoundedRectangle" lineWidth="1" filled="true" transparency="0.0" width="221" height="481" x="1299" y="50" cornerHeight="20" cornerWidth="20">
+    <graphicsAlgorithm xsi:type="al:RoundedRectangle" lineWidth="1" filled="true" transparency="0.0" width="221" height="481" x="1052" y="30" cornerHeight="20" cornerWidth="20">
       <properties key="org.eclipse.graphiti.pattern.id.id" value="mainRectangle"/>
       <renderingStyle>
         <adaptedGradientColoredAreas definedStyleId="blue-white" gradientType="0">
@@ -1334,7 +1334,7 @@
   </children>
   <children xsi:type="pi:ContainerShape" visible="true" active="true">
     <properties key="org.eclipse.graphiti.pattern.patternType" value="org.eclipse.graphiti.pattern.idpattern"/>
-    <graphicsAlgorithm xsi:type="al:RoundedRectangle" lineWidth="1" filled="true" transparency="0.0" width="200" height="100" x="1290" y="580" cornerHeight="20" cornerWidth="20">
+    <graphicsAlgorithm xsi:type="al:RoundedRectangle" lineWidth="1" filled="true" transparency="0.0" width="200" height="481" x="1333" y="30" cornerHeight="20" cornerWidth="20">
       <properties key="org.eclipse.graphiti.pattern.id.id" value="mainRectangle"/>
       <renderingStyle>
         <adaptedGradientColoredAreas definedStyleId="blue-white" gradientType="0">
@@ -1375,7 +1375,7 @@
       <businessObjects href="bankAccountUndoUpdate.cbcmodel#/2"/>
     </link>
     <children visible="true">
-      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="200" height="50" font="//@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Global Conditions">
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="200" height="240" font="//@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Global Conditions">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="globalConditionsName"/>
       </graphicsAlgorithm>
       <link>
@@ -1385,12 +1385,12 @@
     <children visible="true">
       <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="hor1Line"/>
-        <points y="50"/>
-        <points x="200" y="50"/>
+        <points y="240"/>
+        <points x="200" y="240"/>
       </graphicsAlgorithm>
     </children>
     <children visible="true" active="true">
-      <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" filled="false" transparency="0.0" width="200" height="50" y="50" horizontalAlignment="ALIGNMENT_CENTER" value="OVERDRAFT_LIMIT = 0">
+      <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" filled="false" transparency="0.0" width="200" height="240" y="240" horizontalAlignment="ALIGNMENT_CENTER" value="OVERDRAFT_LIMIT = 0">
         <properties key="org.eclipse.graphiti.pattern.id.id" value="globalcondition"/>
         <properties key="org.eclipse.graphiti.pattern.id.index" value="0"/>
       </graphicsAlgorithm>
