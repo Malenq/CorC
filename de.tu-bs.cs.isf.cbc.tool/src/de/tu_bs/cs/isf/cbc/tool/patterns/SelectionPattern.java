@@ -460,7 +460,7 @@ public class SelectionPattern extends IdPattern implements IPattern {
 			}
 		}
 
-		if(HighlightHelper.instance.elementNeedsHighlighting(context)) {
+		if(HighlightHelper.instance.needsInitialHighlightUpdate(context)) {
 			return Reason.createTrueReason("Element needs to be highlighted.");
 		}
 		return Reason.createFalseReason();
@@ -551,10 +551,7 @@ public class SelectionPattern extends IdPattern implements IPattern {
 				rectangle.setForeground(manageColor(IColorConstant.RED));
 			}
 			
-			if(HighlightHelper.instance.elementNeedsHighlighting(context)) {
-//				rectangle.setForeground(manageColor(IColorConstant.DARK_BLUE));
-				HighlightHelper.instance.reset();
-			}
+			HighlightHelper.instance.handleHighlightDrawing(context, rectangle);
 			
 			updateParent(statement);
 			return true;

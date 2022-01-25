@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
@@ -71,7 +72,7 @@ public class StatisticsDatabase {
 
 		List<StatisticsEntry> validDBEntries = new LinkedList<StatisticsEntry>();
 
-		System.out.println("File: " + file);
+//		System.out.println("File: " + file);
 		List<StatisticsEntry> affectedEntriesInDB = new LinkedList<StatisticsEntry>();
 		for (StatisticsEntry entry : registry.getEntries()) {
 
@@ -99,7 +100,7 @@ public class StatisticsDatabase {
 //				System.out.println(affectedDiagram);
 			if (entryFolder.equals(affectedDiagram)) {
 				affectedEntriesInDB.add(entry);
-				System.out.println("equal path found");
+//				System.out.println("equal path found");
 			}
 		}
 
@@ -117,7 +118,7 @@ public class StatisticsDatabase {
 		List<StatisticsEntry> validDBEntries = new LinkedList<StatisticsEntry>();
 		List<StatisticsEntry> affectedEntriesInDB = new LinkedList<StatisticsEntry>();
 		
-		System.out.println("File: " + file);
+//		System.out.println("File: " + file);
 		for (StatisticsEntry entry : registry.getEntries()) {
 
 			String entryPath;
@@ -132,7 +133,7 @@ public class StatisticsDatabase {
 
 			if (entryPath.equals(filePath)) {
 				affectedEntriesInDB.add(entry);
-				System.out.println("equal path found");
+//				System.out.println("equal path found");
 			}
 		}
 		if (!affectedEntriesInDB.isEmpty()) {
@@ -254,7 +255,7 @@ public class StatisticsDatabase {
 		List<StatisticsEntry> validDBEntries = new LinkedList<StatisticsEntry>();
 		List<StatisticsEntry> affectedEntriesInDB = new LinkedList<StatisticsEntry>();
 		
-		System.out.println("File: " + keyFile);
+//		System.out.println("File: " + keyFile);
 		for (StatisticsEntry entry : registry.getEntries()) {
 
 			String entryPath;
@@ -269,7 +270,7 @@ public class StatisticsDatabase {
 
 			if (entryPath.equals(filePath)) {
 				affectedEntriesInDB.add(entry);
-				System.out.println("equal path found");
+//				System.out.println("equal path found");
 			}
 		}
 		if (!affectedEntriesInDB.isEmpty()) {
@@ -283,6 +284,49 @@ public class StatisticsDatabase {
 		}
 		
 		return validDBEntries.get(validDBEntries.size()-1).getMapping().getKeyProofProblemHashValue();
+	}
+
+	public List<IFile> getKeYFilesForId(String searchedId) {
+
+		List<StatisticsEntry> validDBEntries = new LinkedList<StatisticsEntry>();
+		List<StatisticsEntry> affectedEntriesInDB = new LinkedList<StatisticsEntry>();
+		
+		for (StatisticsEntry entry : registry.getEntries()) {
+
+			String entryId;
+			if (entry.getMapping().getKeyFilePath() != null) {
+				entryId = entry.getMapping().getCorcElementId();
+
+			} else
+				continue;
+			
+			if (entryId.equals(searchedId)) {
+				affectedEntriesInDB.add(entry);
+			}
+		}
+		if (!affectedEntriesInDB.isEmpty()) {
+			affectedEntriesInDB = removeOutdated(affectedEntriesInDB);
+			validDBEntries.addAll(getLatestEntriesWithRedundantID(affectedEntriesInDB));
+		}
+
+		
+		if (validDBEntries == null || validDBEntries.isEmpty()) {
+			return null;
+		}
+
+		List<IFile> affectedFiles = new LinkedList<IFile>();
+		for (StatisticsEntry entry : validDBEntries) {
+			File file = new File(entry.getMapping().getKeyFilePath());
+			java.net.URI location = file.toURI();
+			IFile[] files = ResourcesPlugin
+			   .getWorkspace()
+			   .getRoot()
+			   .findFilesForLocationURI( location );
+			affectedFiles.add(files[0]);
+		}
+		
+		return affectedFiles;
+		
 	}
 
 }

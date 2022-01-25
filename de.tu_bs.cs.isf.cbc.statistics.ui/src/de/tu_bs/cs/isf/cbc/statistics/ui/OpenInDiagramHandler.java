@@ -57,8 +57,8 @@ public class OpenInDiagramHandler extends AbstractHandler {
 		Path path = new Path(dbEntry.getMapping().getCorcDiagramPath());
 		IFile diagramFile = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
 		
-		HighlightHelper.instance.registerElementToHighlight(dbEntry.getMapping().getCorcElementId());
 		showInEditor(diagramFile);
+		HighlightHelper.instance.registerElementToHighlight(dbEntry.getMapping().getCorcElementId());
 		
 		return null;
 	}

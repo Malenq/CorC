@@ -432,7 +432,7 @@ manageColor(IColorConstant.DARK_GREEN);
 				return Reason.createTrueReason("Statement is not proven. Expected red color.");
 			} 
 		}
-		if(HighlightHelper.instance.elementNeedsHighlighting(context)) {
+		if(HighlightHelper.instance.needsInitialHighlightUpdate(context)) {
 			return Reason.createTrueReason("Element needs to be highlighted.");
 		}
 		return Reason.createFalseReason();
@@ -458,10 +458,7 @@ manageColor(IColorConstant.DARK_GREEN);
 				rectangle.setForeground(manageColor(IColorConstant.RED));
 				updateParent(domainObject);
 			}
-			if(HighlightHelper.instance.elementNeedsHighlighting(context)) {
-//				rectangle.setForeground(manageColor(IColorConstant.DARK_BLUE));
-				HighlightHelper.instance.reset();
-			}
+			HighlightHelper.instance.handleHighlightDrawing(context, rectangle);
 			return true;
 		} else if (id.equals(ID_IMAGE_PROVEN)) {
 			SmallRepetitionStatement domainObject = (SmallRepetitionStatement) context.getDomainObject();

@@ -403,7 +403,7 @@ public class FormulaPattern extends IdPattern implements IPattern {
 		//// }
 		// }
 		
-		if(HighlightHelper.instance.elementNeedsHighlighting(context)) {
+		if(HighlightHelper.instance.needsInitialHighlightUpdate(context)) {
 			return Reason.createTrueReason("Element needs to be highlighted.");
 		}
 		return Reason.createFalseReason();
@@ -430,6 +430,9 @@ public class FormulaPattern extends IdPattern implements IPattern {
 				// updateParent(domainObject, false);
 				rectangle.setForeground(manageColor(IColorConstant.RED));
 			}
+			
+			HighlightHelper.instance.handleHighlightDrawing(context, rectangle);
+			
 			return true;
 		} else if (id.equals(ID_IMAGE_PROVEN)) {
 			CbCFormula domainObject = (CbCFormula) context.getDomainObject();

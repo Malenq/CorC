@@ -295,7 +295,7 @@ public class StrengthWeakStatementPattern extends IdPattern implements IPattern 
 				return Reason.createTrueReason("Statement is not proven. Expected red color.");
 			} 
 		}
-		if(HighlightHelper.instance.elementNeedsHighlighting(context)) {
+		if(HighlightHelper.instance.needsInitialHighlightUpdate(context)) {
 			return Reason.createTrueReason("Element needs to be highlighted.");
 		}
 		return Reason.createFalseReason();
@@ -334,10 +334,7 @@ public class StrengthWeakStatementPattern extends IdPattern implements IPattern 
 					}
 				}
 			}
-			if(HighlightHelper.instance.elementNeedsHighlighting(context)) {
-//				rectangle.setForeground(manageColor(IColorConstant.DARK_BLUE));
-				HighlightHelper.instance.reset();
-			}
+			HighlightHelper.instance.handleHighlightDrawing(context, rectangle);
 			return true;
 		} else if (id.equals(ID_IMAGE_PROVEN)) {
 			StrengthWeakStatement domainObject = (StrengthWeakStatement) context.getDomainObject();

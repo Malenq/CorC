@@ -418,9 +418,6 @@ public class CompositionPattern extends IdPattern implements IPattern {
 				return Reason.createTrueReason("Statement is not proven. Expected red color.");
 			} 
 		}
-		if(HighlightHelper.instance.elementNeedsHighlighting(context)) {
-			return Reason.createTrueReason("Element needs to be highlighted.");
-		}
 		return Reason.createFalseReason();
 	}
 
