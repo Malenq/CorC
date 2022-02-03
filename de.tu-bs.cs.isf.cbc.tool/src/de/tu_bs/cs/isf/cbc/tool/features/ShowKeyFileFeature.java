@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IContext;
 import org.eclipse.graphiti.features.context.ICustomContext;
@@ -80,10 +79,10 @@ public class ShowKeyFileFeature extends AbstractCustomFeature {
 					IViewPart view = page.findView(IPageLayout.ID_PROJECT_EXPLORER);
 					((ISetSelectionTarget)view).selectReveal(new StructuredSelection(keyFiles));
 					
-					Console.println("KeY file nam5e(s):");
-					for (IFile file : keyFiles) {
-						Console.println("    "+file.getName());
-					}
+//					Console.println("KeY file name(s):");
+//					for (IFile file : keyFiles) {
+//						Console.println("    "+file.getName());
+//					}
 				}
 			}
 		}

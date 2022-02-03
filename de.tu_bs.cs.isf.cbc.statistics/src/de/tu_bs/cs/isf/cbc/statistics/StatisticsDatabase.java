@@ -231,23 +231,58 @@ public class StatisticsDatabase {
 			}
 		}
 
-		// TODO: this *should* remove the last ones we want to preserve but not very
-		// robust: add sorting over timestamp (and ensure each of pre post and variant)
+		// TODO: check if null
 		if (oldRepetitionEntries.size() > 3) {
-			oldRepetitionEntries.remove(oldRepetitionEntries.get(oldRepetitionEntries.size() - 1));
-			oldRepetitionEntries.remove(oldRepetitionEntries.get(oldRepetitionEntries.size() - 1));
-			oldRepetitionEntries.remove(oldRepetitionEntries.get(oldRepetitionEntries.size() - 1));
+			oldRepetitionEntries.remove(getLatestPrecondition(oldRepetitionEntries));
+			oldRepetitionEntries.remove(getLatestPostcondition(oldRepetitionEntries));
+			oldRepetitionEntries.remove(getLatestVariant(oldRepetitionEntries));
+			entries.removeAll(oldRepetitionEntries);
 		}
 		// for this statement only pre and post
 		if (oldStrongWeakEntries.size() > 2) {
-			oldStrongWeakEntries.remove(oldRepetitionEntries.get(oldRepetitionEntries.size() - 1));
-			oldStrongWeakEntries.remove(oldRepetitionEntries.get(oldRepetitionEntries.size() - 1));
+			oldStrongWeakEntries.remove(getLatestPostcondition(oldStrongWeakEntries));
+			oldStrongWeakEntries.remove(getLatestPrecondition(oldStrongWeakEntries));
+			entries.removeAll(oldStrongWeakEntries);
 		}
 
 		entries.removeAll(olderEntriesWithRedundantId);
-		entries.removeAll(oldRepetitionEntries);
-		entries.removeAll(oldStrongWeakEntries);
 		return entries;
+	}
+
+	// TODO: split the string to not check the path 
+	private StatisticsEntry getLatestVariant(List<StatisticsEntry> oldRepetitionEntries) {
+		StatisticsEntry latestVariant = null;
+		for (StatisticsEntry entry : oldRepetitionEntries) {
+			String path = entry.getMapping().getKeyFilePath();
+			if (path.contains("variant")) {
+				latestVariant = entry;
+			}
+		}
+		return latestVariant;
+	}
+
+	// TODO: split the string to not check the path 
+	private StatisticsEntry getLatestPostcondition(List<StatisticsEntry> oldRepetitionEntries) {
+		StatisticsEntry latestPostcondition = null;
+		for (StatisticsEntry entry : oldRepetitionEntries) {
+			String path = entry.getMapping().getKeyFilePath();
+			if (path.contains("postcondition")) {
+				latestPostcondition = entry;
+			}
+		}
+		return latestPostcondition;
+	}
+
+	// TODO: split the string to not check the path 
+	private StatisticsEntry getLatestPrecondition(List<StatisticsEntry> oldRepetitionEntries) {
+		StatisticsEntry latestPrecondition = null;
+		for (StatisticsEntry entry : oldRepetitionEntries) {
+			String path = entry.getMapping().getKeyFilePath();
+			if (path.contains("precondition")) {
+				latestPrecondition = entry;
+			}
+		}
+		return latestPrecondition;
 	}
 
 	public String getHashForKeyFile(File keyFile) {

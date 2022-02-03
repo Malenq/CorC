@@ -156,8 +156,6 @@ public class FileUtil implements IFileUtil{
 	}
 	
 	public File writeFile(String problem, String location, int numberFile, boolean override, AbstractStatement statement, String subProofName) {
-		//TODO: implement file name, match through problem hash
-		// at this point hash is not already in database (this exact hash)
 		FileNameManager manager = new FileNameManager();
 		String keyFileName = manager.getFileName(problem, location, statement, subProofName);
 		

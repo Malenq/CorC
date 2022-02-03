@@ -34,6 +34,15 @@ public class FileNameManager {
 	private int strengthWeakCounter;
 
 	public String getFileName(String problem, String location, AbstractStatement statement, String subProofName) {
+		
+		// TODO: if there exists a KeY file with same problem hash -> get the existing name 
+		File keyFile = getAlreadyProvenKeyFile(problem, statement, location);
+		
+		if (keyFile != null) {
+			String existingName = keyFile.getName();
+			existingName = existingName.substring(0, existingName.length() -4);
+			return "/" + existingName; 
+		}
 
 		String statementKind = statement.eClass().getName();
 		EObject root = getRoot(statement);
@@ -66,13 +75,16 @@ public class FileNameManager {
 		}
 		else if (statementKind.equals("SmallRepetitionStatement")) {
 			counter = repetitionCounter;
+			statementKind = "RepetitionStatement";
 		}
 		else if (statementKind.equals("StrengthWeakStatement")) {
 			counter = strengthWeakCounter;
 		}
-		else
+		else {
 			counter = abstractCounter;
-
+			statementKind = "Statement";
+		}
+			
 		if (statement instanceof SmallRepetitionStatement) {
 			return "/" + statementKind + counter + subProofName;
 		}
@@ -114,7 +126,7 @@ public class FileNameManager {
 		}
 		
 		for (File file : redundantFiles) {
-			file.delete();
+//			file.delete();
 		}
 		
 		
@@ -135,7 +147,7 @@ public class FileNameManager {
 		return keyFilesInFolder;
 	}
 
-	public File getAlreadyProvenKeyFile(String problem, AbstractStatement statement, String location) {
+	private File getAlreadyProvenKeyFile(String problem, AbstractStatement statement, String location) {
 		
 		String hash = Hashing.sha256().hashString(problem, StandardCharsets.UTF_8).toString();
 		

@@ -65,7 +65,12 @@ public class ProveWithKey {
 	}
 	
 	public boolean proveStatementWithKey(boolean returnStatement, boolean inlining, int numberfile) {
+			// problem still null at this point
 			File location = createProveStatementWithKey(null, 0, true, "", "", returnStatement);
+			// problem is now set with createProveStatementWithKey
+			// to late to abort verification?
+			// load key files in prove folder and check in db if they got the same hash value
+			// if yes ... 
 			Console.println("  Verify Pre -> {Statement} Post");
 			return proveWithKey(location, inlining);
 	}
@@ -116,6 +121,8 @@ public class ProveWithKey {
 
 		problem = problem.replaceAll("static", "");
 		problem = problem.replaceAll("return", ""); //TODO replace with correct handling of return
+		
+		// this is the earliest point to hash the problem and check if KeY file already exists with this same problem
 		
 		String location = fileHandler.getLocationString(uri);
 		File keyFile = fileHandler.writeFile(problem, location, numberFile, override, statement, subProofName);
