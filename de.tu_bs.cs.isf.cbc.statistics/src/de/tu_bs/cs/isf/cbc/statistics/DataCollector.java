@@ -33,6 +33,7 @@ public class DataCollector {
 			// set statistics to this entry
 			corcStatsEntry.setData(corcStatsData);
 			corcStatsEntry.setMapping(mapping);
+			
 
 //			String path = getWorkspaceRelatedPath(proof.getProofFile().getAbsolutePath());
 
@@ -63,6 +64,7 @@ public class DataCollector {
 			corcStatsData.setTotalRuleApps(keyStats.totalRuleApps);
 			Date date = new Date();
 			corcStatsData.setTimestamp(date);
+			// TODO: corcStatsDataisProven = proof.closed();
 
 			StatisticsDatabase.instance.saveToDatabase(corcStatsEntry);
 		} else {

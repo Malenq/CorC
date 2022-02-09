@@ -271,6 +271,8 @@ public class VerifyStatement extends MyAbstractAsynchronousCustomFeature {
 		if (CompareMethodBodies.readAndTestMethodBodyWithJaMoPP2(statement.getName())) {
 			String uri = getDiagram().eResource().getURI().toPlatformString(true);
 			ProveWithKey prove = new ProveWithKey(statement, vars, conds, renaming, monitor, uri, formula, new FileUtil(uri));
+			
+			// at this point possible a boolean "forceVerification = true"
             proven = prove.proveStatementWithKey(returnStatement, false, 0);
 		} else {
             Console.println("Statement is not in correct format.");

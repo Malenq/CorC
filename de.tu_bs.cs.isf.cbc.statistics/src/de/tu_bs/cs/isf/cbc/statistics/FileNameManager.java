@@ -34,21 +34,21 @@ public class FileNameManager {
 	private int strengthWeakCounter;
 
 	public String getFileName(String problem, String location, AbstractStatement statement, String subProofName) {
-		
-		// TODO: if there exists a KeY file with same problem hash -> get the existing name 
+		EObject root = getRoot(statement);
+		// TODO: delete old key files
+		cleanKeyFiles(location, root);
+
+		// if there exists a KeY file with same problem hash -> get the existing name
 		File keyFile = getAlreadyProvenKeyFile(problem, statement, location);
-		
+
 		if (keyFile != null) {
 			String existingName = keyFile.getName();
-			existingName = existingName.substring(0, existingName.length() -4);
-			return "/" + existingName; 
+			existingName = existingName.substring(0, existingName.length() - 4);
+			return "/" + existingName;
 		}
 
 		String statementKind = statement.eClass().getName();
-		EObject root = getRoot(statement);
 
-		//TODO: delete old key files
-		cleanKeyFiles(location, root);
 
 		selectionCounter = 0;
 		abstractCounter = 0;
@@ -63,55 +63,51 @@ public class FileNameManager {
 		int counter;
 		if (statementKind.equals("SelectionStatement")) {
 			counter = selectionCounter;
-		}
-		else if (statementKind.equals("SkipStatement")) {
+		} else if (statementKind.equals("SkipStatement")) {
 			counter = skipCounter;
-		}
-		else if (statementKind.equals("CompositionStatement")) {
+		} else if (statementKind.equals("CompositionStatement")) {
 			counter = compositionCounter;
-		}
-		else if (statementKind.equals("ReturnStatement")) {
+		} else if (statementKind.equals("ReturnStatement")) {
 			counter = returnCounter;
-		}
-		else if (statementKind.equals("SmallRepetitionStatement")) {
+		} else if (statementKind.equals("SmallRepetitionStatement")) {
 			counter = repetitionCounter;
 			statementKind = "RepetitionStatement";
-		}
-		else if (statementKind.equals("StrengthWeakStatement")) {
+		} else if (statementKind.equals("StrengthWeakStatement")) {
 			counter = strengthWeakCounter;
-		}
-		else {
+		} else {
 			counter = abstractCounter;
 			statementKind = "Statement";
 		}
-			
+
 		if (statement instanceof SmallRepetitionStatement) {
 			return "/" + statementKind + counter + subProofName;
 		}
 		return "/" + statementKind + counter;
 	}
-	
+
 	private void cleanKeyFiles(String location, EObject root) {
-		// TODO Auto-generated method stub
+		
+		//TODO this method only cleans redundant files -> also clean outdated files (if they do not hold an id existing within diagram)
+
 		List<File> keyFilesInFolder = getKeYFilesFromFolder(location);
 		List<File> redundantFiles = new LinkedList<File>();
 		List<String> foundHashValues = new LinkedList<String>();
-		for (int i=0; keyFilesInFolder.size()>i;i++) {
+		for (int i = 0; keyFilesInFolder.size() > i; i++) {
 			File outterFile = keyFilesInFolder.get(i);
 			if (outterFile.getName().equals("helper.key")) {
 				continue;
 			}
 			String outterHash = StatisticsDatabase.instance.getHashForKeyFile(outterFile);
-			if (outterHash == null){
+			if (outterHash == null) {
 				redundantFiles.add(outterFile);
 				continue;
 			}
 			if (!outterHash.isEmpty()) {
 				foundHashValues.add(outterHash);
-				for (int j= i+1; keyFilesInFolder.size() > j; j++) {
+				for (int j = i + 1; keyFilesInFolder.size() > j; j++) {
 					File innerFile = keyFilesInFolder.get(j);
 					String innerHash = StatisticsDatabase.instance.getHashForKeyFile(innerFile);
-					if (innerHash == null){
+					if (innerHash == null) {
 						if (!innerFile.getName().equals("helper.key"))
 							redundantFiles.add(innerFile);
 						continue;
@@ -124,45 +120,90 @@ public class FileNameManager {
 				}
 			}
 		}
-		
+
 		for (File file : redundantFiles) {
-//			file.delete();
+			file.delete();
 		}
-		
-		
-		
+
 	}
 
 	private List<File> getKeYFilesFromFolder(String location) {
 		List<File> keyFilesInFolder = new LinkedList<File>();
-		
+
 		try (Stream<Path> paths = Files.walk(Paths.get(location))) {
-		    paths
-		        .filter(Files::isRegularFile)
-		        .forEach(guas -> keyFilesInFolder.add(guas.toFile()));
+			paths.filter(Files::isRegularFile).forEach(guas -> keyFilesInFolder.add(guas.toFile()));
 		} catch (IOException e) {
 			e.printStackTrace();
-		} 
-		
+		}
+
 		return keyFilesInFolder;
 	}
 
 	private File getAlreadyProvenKeyFile(String problem, AbstractStatement statement, String location) {
-		
+
 		String hash = Hashing.sha256().hashString(problem, StandardCharsets.UTF_8).toString();
-		
+
 		List<File> keyFilesInFolder = getKeYFilesFromFolder(location);
 		for (File file : keyFilesInFolder) {
-			String dbHash = StatisticsDatabase.instance.getHashForKeyFile(file);
-			if (dbHash != null) {				
-				if (dbHash.equals(hash)) {
+			String existingHash = StatisticsDatabase.instance.getHashForKeyFile(file);
+//			if (file.getName().equals("helper.key"))
+//				continue;
+//			String existingHash = getHashFromKeyFile(file);
+			if (existingHash != null) {
+				if (existingHash.equals(hash)) {
 					return file;
 				}
 			}
 		}
-		
+
 		return null;
 	}
+
+//	private String getHashFromKeyFile(File keyFile) {
+//
+//		Path keyFilePath = Path.of(keyFile.getAbsolutePath());
+//		String fileString = "";
+//		try {
+//			fileString = Files.readString(keyFilePath);
+//		} catch (IOException e) {
+//			System.out.println("read proof file failed - FileNameManager Error: " + e.getMessage());
+//			e.printStackTrace();
+//			return "-1";
+//		}
+//
+//		int startProblem = fileString.indexOf("\\javaSource");
+//
+//		// todo: check if file string is empty
+//		String problem = fileString.substring(startProblem, fileString.length() - 1);
+////		int firstOpeningBracket = problem.indexOf("{");
+//		// todo: proof may not be the next part in every case. use a counter to
+//		// recognize every new opening bracket and decrement if a closing bracket
+//		// appears. then cut string if counter is 0 and a closing bracket appears
+////		int endOfProblem = problem.indexOf("\\proof");
+//		
+//		// Error: it is not possible to get the exact problem string from a key file 
+//		
+//		char[] charactersInProblem = problem.toCharArray();
+//		int indexEndOfProblem = 0;
+//		char lastProblemChar = ' ';
+//		for (char character : charactersInProblem) {
+//			if (character == '{') 
+//				indexEndOfProblem ++;
+//			if (character == '}')
+//				indexEndOfProblem --;
+//			if (indexEndOfProblem == -1) 
+//				lastProblemChar = character;
+//		}
+//		problem = problem.substring(0, problem.indexOf(lastProblemChar));
+//
+////		problem = problem.substring(0, problem.lastIndexOf("}"));
+//		problem = problem.trim();
+//
+//		// TODO: throw exception if problem is null
+//		String hash = Hashing.sha256().hashString(problem, StandardCharsets.UTF_8).toString();
+//
+//		return hash;
+//	}
 
 	private boolean getKindNumber(EObject root, AbstractStatement statement) {
 
@@ -185,7 +226,7 @@ public class FileNameManager {
 			else if (content instanceof StrengthWeakStatement)
 				strengthWeakCounter++;
 			else if (content instanceof AbstractStatement && ((AbstractStatement) content).getRefinement() == null)
-					abstractCounter++;	
+				abstractCounter++;
 			if (content.equals(statement))
 				return true;
 
@@ -206,7 +247,5 @@ public class FileNameManager {
 		}
 		return currentObject;
 	}
-
-
 
 }

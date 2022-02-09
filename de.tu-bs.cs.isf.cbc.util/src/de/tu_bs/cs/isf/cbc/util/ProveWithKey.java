@@ -70,7 +70,13 @@ public class ProveWithKey {
 			// problem is now set with createProveStatementWithKey
 			// to late to abort verification?
 			// load key files in prove folder and check in db if they got the same hash value
-			// if yes ... 
+			// if yes ... (a boolean "isProven" is needed within statistics model)
+			// return boolean and change console print to make clear that the proof process already had a result
+			
+			// TODO: if i check at this point, verify a statement is also aborted -> forceVerification boolean argument
+			
+			// TODO: entry is the old one but the key file is overwritten with same problem -> consider if this could be a problem
+			
 			Console.println("  Verify Pre -> {Statement} Post");
 			return proveWithKey(location, inlining);
 	}
@@ -123,6 +129,7 @@ public class ProveWithKey {
 		problem = problem.replaceAll("return", ""); //TODO replace with correct handling of return
 		
 		// this is the earliest point to hash the problem and check if KeY file already exists with this same problem
+		// but i would not influence the right things - key file names already synced within write file
 		
 		String location = fileHandler.getLocationString(uri);
 		File keyFile = fileHandler.writeFile(problem, location, numberFile, override, statement, subProofName);
