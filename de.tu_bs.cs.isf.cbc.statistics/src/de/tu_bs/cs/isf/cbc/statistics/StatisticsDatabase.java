@@ -335,8 +335,10 @@ public class StatisticsDatabase {
 			} else
 				continue;
 			
-			if (entryId.equals(searchedId)) {
-				affectedEntriesInDB.add(entry);
+			if (entryId != null) {				
+				if (entryId.equals(searchedId)) {
+					affectedEntriesInDB.add(entry);
+				}
 			}
 		}
 		if (!affectedEntriesInDB.isEmpty()) {

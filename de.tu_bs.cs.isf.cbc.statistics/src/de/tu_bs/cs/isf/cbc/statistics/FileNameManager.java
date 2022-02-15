@@ -42,6 +42,7 @@ public class FileNameManager {
 		File keyFile = getAlreadyProvenKeyFile(problem, statement, location);
 
 		if (keyFile != null) {
+			// TODO: eher umbenennen konflikt mit später gleich benannten statements
 			String existingName = keyFile.getName();
 			existingName = existingName.substring(0, existingName.length() - 4);
 			return "/" + existingName;
