@@ -1,6 +1,7 @@
 package de.tu_bs.cs.isf.cbc.util;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -15,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 import com.google.common.collect.Lists;
+import com.google.common.hash.Hashing;
 
 import de.tu_bs.cs.isf.cbc.cbcmodel.AbstractStatement;
 import de.tu_bs.cs.isf.cbc.cbcmodel.CbCFormula;
@@ -25,6 +27,8 @@ import de.tu_bs.cs.isf.cbc.cbcmodel.JavaVariable;
 import de.tu_bs.cs.isf.cbc.cbcmodel.JavaVariables;
 import de.tu_bs.cs.isf.cbc.cbcmodel.Renaming;
 import de.tu_bs.cs.isf.cbc.cbcmodel.Variant;
+import de.tu_bs.cs.isf.cbc.statistics.FileNameManager;
+import de.tu_bs.cs.isf.cbc.statistics.StatisticsDatabase;
 import de.uka.ilkd.key.proof.Goal;
 import de.uka.ilkd.key.proof.Proof;
 
@@ -64,26 +68,40 @@ public class ProveWithKey {
 		this.fileHandler = fileHandler;
 	}
 	
-	public boolean proveStatementWithKey(boolean returnStatement, boolean inlining, int numberfile) {
-			// problem still null at this point
+	public boolean proveStatementWithKey(boolean returnStatement, boolean inlining, int numberfile, boolean forceProving) {
 			File location = createProveStatementWithKey(null, 0, true, "", "", returnStatement);
-			// problem is now set with createProveStatementWithKey
-			// to late to abort verification?
-			// load key files in prove folder and check in db if they got the same hash value
-			// if yes ... (a boolean "isProven" is needed within statistics model)
-			// return boolean and change console print to make clear that the proof process already had a result
 			
-			// TODO: if i check at this point, verify a statement is also aborted -> forceVerification boolean argument
-			
-			// TODO: entry is the old one but the key file is overwritten with same problem -> consider if this could be a problem
+			// TODO: proving will only skip if already true
+			if (!forceProving) {
+				String problemHash = Hashing.sha256().hashString(problem, StandardCharsets.UTF_8).toString();
+				String filePath =location.getAbsolutePath().toString();
+				String proveFolderLocation = filePath.substring(0, filePath.lastIndexOf(File.separator));
+				FileNameManager fileManager = new FileNameManager();
+				if (fileManager.isKeYFileWithHashProven(problemHash, proveFolderLocation)) {
+					Console.println("Already true... skip");
+					return true;
+				}
+			}
 			
 			Console.println("  Verify Pre -> {Statement} Post");
 			return proveWithKey(location, inlining);
 	}
 
-	public boolean proveStatementWithKey(boolean returnStatement, boolean inlining, String variants, int numberfile, String callingMethod, String varM) {
+	public boolean proveStatementWithKey(boolean returnStatement, boolean inlining, String variants, int numberfile, String callingMethod, String varM, boolean forceProving) {
+		
 		if (variants == null || variants.length() == 0) {
 			File location = createProveStatementWithKey(null, 0, true, callingMethod, varM, returnStatement);
+			
+			if (!forceProving) {
+				String problemHash = Hashing.sha256().hashString(problem, StandardCharsets.UTF_8).toString();
+				String filePath = location.getAbsolutePath().toString();
+				String proveFolderLocation = filePath.substring(0, filePath.lastIndexOf(File.separator));
+				FileNameManager fileManager = new FileNameManager();
+				if (fileManager.isKeYFileWithHashProven(problemHash, proveFolderLocation)) {
+					Console.println("Already true... skip");
+					return true;
+				}
+			}
 			Console.println("  Verify Pre -> {Statement} Post");
 			return proveWithKey(location, inlining);
 		} else {
@@ -91,6 +109,16 @@ public class ProveWithKey {
 			
 				List<String> refinements = Lists.newArrayList(variants.split(","));
 				File location = createProveStatementWithKey(refinements, numberfile, true, callingMethod, varM, returnStatement);
+				if (!forceProving) {
+					String problemHash = Hashing.sha256().hashString(problem, StandardCharsets.UTF_8).toString();
+					String filePath = location.getAbsolutePath().toString();
+					String proveFolderLocation = filePath.substring(0, filePath.lastIndexOf(File.separator));
+					FileNameManager fileManager = new FileNameManager();
+					if (fileManager.isKeYFileWithHashProven(problemHash, proveFolderLocation)) {
+						Console.println("Already true... skip");
+						return true;
+					}
+				}
 				Console.println("  Verify Pre -> {Statement} Post");
 
 				if (!proveWithKey(location, inlining)) {

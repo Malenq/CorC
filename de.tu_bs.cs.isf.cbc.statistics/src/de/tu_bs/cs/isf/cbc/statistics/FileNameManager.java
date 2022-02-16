@@ -33,7 +33,7 @@ public class FileNameManager {
 	private int repetitionCounter;
 	private int strengthWeakCounter;
 
-	public String getFileName(String problem, String location, AbstractStatement statement, String subProofName) {
+	public String getFileName(String problem, String location, AbstractStatement statement, String subProofName)  {
 		EObject root = getRoot(statement);
 		// TODO: delete old key files
 		cleanKeyFiles(location, root);
@@ -41,12 +41,6 @@ public class FileNameManager {
 		// if there exists a KeY file with same problem hash -> get the existing name
 		File keyFile = getAlreadyProvenKeyFile(problem, statement, location);
 
-		if (keyFile != null) {
-			// TODO: eher umbenennen konflikt mit später gleich benannten statements
-			String existingName = keyFile.getName();
-			existingName = existingName.substring(0, existingName.length() - 4);
-			return "/" + existingName;
-		}
 
 		String statementKind = statement.eClass().getName();
 
@@ -80,10 +74,30 @@ public class FileNameManager {
 			statementKind = "Statement";
 		}
 
+		String foundName = "";
 		if (statement instanceof SmallRepetitionStatement) {
-			return "/" + statementKind + counter + subProofName;
+			foundName= "/" + statementKind + counter + subProofName;
 		}
-		return "/" + statementKind + counter;
+		else
+			foundName = "/" + statementKind + counter;
+		if (keyFile != null) {
+			// rename existing files
+			String existingName = keyFile.getName();
+			existingName = existingName.substring(0, existingName.length() - 4);
+//			return "/" + existingName;
+			if (!("/" + existingName).equals(foundName)) {
+				File file = new File(location + File.separator + foundName + ".key");
+				if (file.exists()) {
+//				in this case the already existing file will be overwritten
+					System.out.println("not renaming");
+					return foundName;
+				}
+				keyFile.renameTo(file);
+				System.out.println("renaming");
+			}
+		}
+		
+		return foundName;
 	}
 
 	private void cleanKeyFiles(String location, EObject root) {
@@ -126,6 +140,21 @@ public class FileNameManager {
 			file.delete();
 		}
 
+	}
+	
+	public boolean isKeYFileWithHashProven (String hash, String proveFolderLocation) {
+		List<File> keyFiles = getKeYFilesFromFolder(proveFolderLocation);
+		
+		for (File file : keyFiles) {
+			String hashKeyFile = StatisticsDatabase.instance.getHashForKeyFile(file);
+			if (hashKeyFile != null && hashKeyFile.equals(hash)) {
+				if (StatisticsDatabase.instance.isKeyFileProven(file)) {
+					return true;
+				}
+			}
+		}
+		
+		return false;
 	}
 
 	private List<File> getKeYFilesFromFolder(String location) {

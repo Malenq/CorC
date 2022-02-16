@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsDataImpl#getTimeInMillis <em>Time In Millis</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsDataImpl#getTimePerStepInMillis <em>Time Per Step In Millis</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsDataImpl#getTimestamp <em>Timestamp</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.impl.StatisticsDataImpl#isIsProven <em>Is Proven</em>}</li>
  * </ul>
  *
  * @generated
@@ -173,6 +174,26 @@ public class StatisticsDataImpl extends MinimalEObjectImpl.Container implements 
 	 * @ordered
 	 */
 	protected Date timestamp = TIMESTAMP_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isIsProven() <em>Is Proven</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsProven()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_PROVEN_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIsProven() <em>Is Proven</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsProven()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isProven = IS_PROVEN_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -345,6 +366,27 @@ public class StatisticsDataImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isIsProven() {
+		return isProven;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsProven(boolean newIsProven) {
+		boolean oldIsProven = isProven;
+		isProven = newIsProven;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, statisticsPackage.STATISTICS_DATA__IS_PROVEN, oldIsProven, isProven));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -362,6 +404,8 @@ public class StatisticsDataImpl extends MinimalEObjectImpl.Container implements 
 				return getTimePerStepInMillis();
 			case statisticsPackage.STATISTICS_DATA__TIMESTAMP:
 				return getTimestamp();
+			case statisticsPackage.STATISTICS_DATA__IS_PROVEN:
+				return isIsProven();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -394,6 +438,9 @@ public class StatisticsDataImpl extends MinimalEObjectImpl.Container implements 
 				return;
 			case statisticsPackage.STATISTICS_DATA__TIMESTAMP:
 				setTimestamp((Date)newValue);
+				return;
+			case statisticsPackage.STATISTICS_DATA__IS_PROVEN:
+				setIsProven((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -428,6 +475,9 @@ public class StatisticsDataImpl extends MinimalEObjectImpl.Container implements 
 			case statisticsPackage.STATISTICS_DATA__TIMESTAMP:
 				setTimestamp(TIMESTAMP_EDEFAULT);
 				return;
+			case statisticsPackage.STATISTICS_DATA__IS_PROVEN:
+				setIsProven(IS_PROVEN_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -454,6 +504,8 @@ public class StatisticsDataImpl extends MinimalEObjectImpl.Container implements 
 				return timePerStepInMillis != TIME_PER_STEP_IN_MILLIS_EDEFAULT;
 			case statisticsPackage.STATISTICS_DATA__TIMESTAMP:
 				return TIMESTAMP_EDEFAULT == null ? timestamp != null : !TIMESTAMP_EDEFAULT.equals(timestamp);
+			case statisticsPackage.STATISTICS_DATA__IS_PROVEN:
+				return isProven != IS_PROVEN_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -482,6 +534,8 @@ public class StatisticsDataImpl extends MinimalEObjectImpl.Container implements 
 		result.append(timePerStepInMillis);
 		result.append(", timestamp: ");
 		result.append(timestamp);
+		result.append(", isProven: ");
+		result.append(isProven);
 		result.append(')');
 		return result.toString();
 	}

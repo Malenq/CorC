@@ -234,6 +234,15 @@ public class statisticsPackageImpl extends EPackageImpl implements statisticsPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getStatisticsData_IsProven() {
+		return (EAttribute)statisticsDataEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCorcKeyMapping() {
 		return corcKeyMappingEClass;
 	}
@@ -344,6 +353,7 @@ public class statisticsPackageImpl extends EPackageImpl implements statisticsPac
 		createEAttribute(statisticsDataEClass, STATISTICS_DATA__TIME_IN_MILLIS);
 		createEAttribute(statisticsDataEClass, STATISTICS_DATA__TIME_PER_STEP_IN_MILLIS);
 		createEAttribute(statisticsDataEClass, STATISTICS_DATA__TIMESTAMP);
+		createEAttribute(statisticsDataEClass, STATISTICS_DATA__IS_PROVEN);
 
 		corcKeyMappingEClass = createEClass(CORC_KEY_MAPPING);
 		createEAttribute(corcKeyMappingEClass, CORC_KEY_MAPPING__KEY_FILE_PATH);
@@ -400,6 +410,7 @@ public class statisticsPackageImpl extends EPackageImpl implements statisticsPac
 		initEAttribute(getStatisticsData_TimeInMillis(), ecorePackage.getELong(), "timeInMillis", null, 0, 1, StatisticsData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getStatisticsData_TimePerStepInMillis(), ecorePackage.getEFloat(), "timePerStepInMillis", null, 0, 1, StatisticsData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getStatisticsData_Timestamp(), ecorePackage.getEDate(), "timestamp", null, 0, 1, StatisticsData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStatisticsData_IsProven(), ecorePackage.getEBoolean(), "isProven", null, 0, 1, StatisticsData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(corcKeyMappingEClass, CorcKeyMapping.class, "CorcKeyMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCorcKeyMapping_KeyFilePath(), ecorePackage.getEString(), "keyFilePath", null, 1, 1, CorcKeyMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

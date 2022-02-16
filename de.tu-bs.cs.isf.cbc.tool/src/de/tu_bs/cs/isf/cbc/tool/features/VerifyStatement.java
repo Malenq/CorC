@@ -180,9 +180,9 @@ public class VerifyStatement extends MyAbstractAsynchronousCustomFeature {
 						Console.println(printConfiguration(featureConfigs, i));
 						ProveWithKey prove = new ProveWithKey(statement, vars, conds, renaming, monitor, uri.toPlatformString(true), formula, new FileUtil(uri.toPlatformString(true)));
 						if (isInSameClass) {
-							proven = prove.proveStatementWithKey(returnStatement, false, variants[i], i, varMParts[0], varMParts[0]);
+							proven = prove.proveStatementWithKey(returnStatement, false, variants[i], i, varMParts[0], varMParts[0], true);
 						} else {
-							proven = prove.proveStatementWithKey(returnStatement, false, variants[i], i, callingMethod, varMParts[0]);
+							proven = prove.proveStatementWithKey(returnStatement, false, variants[i], i, callingMethod, varMParts[0], true);
 						}
 				}					
 			} else {
@@ -271,9 +271,7 @@ public class VerifyStatement extends MyAbstractAsynchronousCustomFeature {
 		if (CompareMethodBodies.readAndTestMethodBodyWithJaMoPP2(statement.getName())) {
 			String uri = getDiagram().eResource().getURI().toPlatformString(true);
 			ProveWithKey prove = new ProveWithKey(statement, vars, conds, renaming, monitor, uri, formula, new FileUtil(uri));
-			
-			// at this point possible a boolean "forceVerification = true"
-            proven = prove.proveStatementWithKey(returnStatement, false, 0);
+            proven = prove.proveStatementWithKey(returnStatement, false, 0, true);
 		} else {
             Console.println("Statement is not in correct format.");
 		}

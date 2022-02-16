@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getTimeInMillis <em>Time In Millis</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getTimePerStepInMillis <em>Time Per Step In Millis</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#getTimestamp <em>Timestamp</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#isIsProven <em>Is Proven</em>}</li>
  * </ul>
  *
  * @see de.tu_bs.cs.isf.cbc.statistics.statisticsPackage#getStatisticsData()
@@ -182,5 +183,27 @@ public interface StatisticsData extends EObject {
 	 * @generated
 	 */
 	void setTimestamp(Date value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Proven</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Proven</em>' attribute.
+	 * @see #setIsProven(boolean)
+	 * @see de.tu_bs.cs.isf.cbc.statistics.statisticsPackage#getStatisticsData_IsProven()
+	 * @model
+	 * @generated
+	 */
+	boolean isIsProven();
+
+	/**
+	 * Sets the value of the '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#isIsProven <em>Is Proven</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Proven</em>' attribute.
+	 * @see #isIsProven()
+	 * @generated
+	 */
+	void setIsProven(boolean value);
 
 } // StatisticsData

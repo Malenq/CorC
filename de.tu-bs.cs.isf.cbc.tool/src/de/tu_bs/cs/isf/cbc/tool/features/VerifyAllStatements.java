@@ -187,7 +187,7 @@ public class VerifyAllStatements extends MyAbstractAsynchronousCustomFeature {
 			String variants = null;
 			//TODO für SPLs anpassen
 			ProveWithKey prove = new ProveWithKey(statement, vars, conds, renaming, monitor, uri, formula, new FileUtil(uri));
-			proven = prove.proveStatementWithKey(returnStatement, false, 0);
+			proven = prove.proveStatementWithKey(returnStatement, false, 0, false);
 			if (proven) {
 				statement.setProven(true);
 			} else {

@@ -64,7 +64,7 @@ public class DataCollector {
 			corcStatsData.setTotalRuleApps(keyStats.totalRuleApps);
 			Date date = new Date();
 			corcStatsData.setTimestamp(date);
-			// TODO: corcStatsDataisProven = proof.closed();
+			corcStatsData.setIsProven(proof.closed());
 
 			StatisticsDatabase.instance.saveToDatabase(corcStatsEntry);
 		} else {

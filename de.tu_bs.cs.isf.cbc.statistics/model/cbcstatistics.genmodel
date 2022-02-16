@@ -23,6 +23,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbcstatistics.ecore#//StatisticsData/timeInMillis"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbcstatistics.ecore#//StatisticsData/timePerStepInMillis"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbcstatistics.ecore#//StatisticsData/timestamp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbcstatistics.ecore#//StatisticsData/isProven"/>
     </genClasses>
     <genClasses ecoreClass="cbcstatistics.ecore#//CorcKeyMapping">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbcstatistics.ecore#//CorcKeyMapping/keyFilePath"/>

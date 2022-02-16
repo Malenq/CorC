@@ -366,4 +366,41 @@ public class StatisticsDatabase {
 		
 	}
 
+	public boolean isKeyFileProven(File file) {
+		List<StatisticsEntry> validDBEntries = new LinkedList<StatisticsEntry>();
+		List<StatisticsEntry> affectedEntriesInDB = new LinkedList<StatisticsEntry>();
+		
+		for (StatisticsEntry entry : registry.getEntries()) {
+
+			String entryPath;
+			if (entry.getMapping().getKeyFilePath() != null) {
+				entryPath = entry.getMapping().getKeyFilePath().toString();
+
+			} else
+				continue;
+
+			String filePath = file.getPath().toString();
+
+			if (entryPath.equals(filePath)) {
+				affectedEntriesInDB.add(entry);
+			}
+		}
+		if (!affectedEntriesInDB.isEmpty()) {
+			affectedEntriesInDB = removeOutdated(affectedEntriesInDB);
+			validDBEntries.addAll(getLatestEntriesWithRedundantID(affectedEntriesInDB));
+		}
+
+		
+		if (validDBEntries == null || validDBEntries.isEmpty()) {
+			return false;
+		}
+		
+//		return validDBEntries.get(validDBEntries.size()-1).getMapping().getKeyProofProblemHashValue();
+		if ( validDBEntries.get(validDBEntries.size()-1).getData().isIsProven())
+			return true;
+		return false;
+	}
+	
+	
+
 }

@@ -213,13 +213,22 @@ public interface statisticsPackage extends EPackage {
 	int STATISTICS_DATA__TIMESTAMP = 6;
 
 	/**
+	 * The feature id for the '<em><b>Is Proven</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATISTICS_DATA__IS_PROVEN = 7;
+
+	/**
 	 * The number of structural features of the '<em>Statistics Data</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATISTICS_DATA_FEATURE_COUNT = 7;
+	int STATISTICS_DATA_FEATURE_COUNT = 8;
 
 	/**
 	 * The number of operations of the '<em>Statistics Data</em>' class.
@@ -463,6 +472,17 @@ public interface statisticsPackage extends EPackage {
 	EAttribute getStatisticsData_Timestamp();
 
 	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.cbc.statistics.StatisticsData#isIsProven <em>Is Proven</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Proven</em>'.
+	 * @see de.tu_bs.cs.isf.cbc.statistics.StatisticsData#isIsProven()
+	 * @see #getStatisticsData()
+	 * @generated
+	 */
+	EAttribute getStatisticsData_IsProven();
+
+	/**
 	 * Returns the meta object for class '{@link de.tu_bs.cs.isf.cbc.statistics.CorcKeyMapping <em>Corc Key Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -681,6 +701,14 @@ public interface statisticsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute STATISTICS_DATA__TIMESTAMP = eINSTANCE.getStatisticsData_Timestamp();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Proven</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STATISTICS_DATA__IS_PROVEN = eINSTANCE.getStatisticsData_IsProven();
 
 		/**
 		 * The meta object literal for the '{@link de.tu_bs.cs.isf.cbc.statistics.impl.CorcKeyMappingImpl <em>Corc Key Mapping</em>}' class.

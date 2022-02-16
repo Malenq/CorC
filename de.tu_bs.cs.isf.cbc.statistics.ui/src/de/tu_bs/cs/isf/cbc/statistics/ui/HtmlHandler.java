@@ -116,12 +116,13 @@ public class HtmlHandler {
 			placeholderPlainStatistics = placeholderPlainStatistics
 					+ "<p class= \"left-margin-class\">No data found. Please generate statistics by verifying statements.</p>";
 		} else {
-			float totalTime = 0;
+			float totalAutomodeTime = 0;
+			// TODO: sort entriesPerDiagram: alphabetic names 
 			for (StatisticsEntry entry : entriesPerDiagram) {
 
 				String KeYFile = entry.getMapping().getKeyFilePath();
 				KeYFile = KeYFile.substring(KeYFile.lastIndexOf(File.separator) + 1, KeYFile.length());
-
+				
 				placeholderPlainStatistics = placeholderPlainStatistics + "<div class=\"left-margin-class\">"
 						+ "<h4 class=\"text\">KeY file: " + KeYFile + "</h4>" + "<p class= \"left-margin-class\">"
 						+ "Automode Time: " + entry.getData().getAutoModeTimeInMillis() + "ms" + lineBreak
@@ -129,10 +130,11 @@ public class HtmlHandler {
 						+ "Number of Nodes: " + entry.getData().getNumberOfNodes() + lineBreak
 						+ "total Rule Applications: " + entry.getData().getTotalRuleApps() + lineBreak
 						+ "Time per Step: " + entry.getData().getTimePerStepInMillis() + "ms" + lineBreak + "Time: "
-						+ entry.getData().getTimeInMillis() + "ms" + "</p>" + "</div>";
-				totalTime = totalTime + entry.getData().getTimeInMillis();
+						+ entry.getData().getTimeInMillis() + "ms" + lineBreak
+						+ "Successfully proven: " + entry.getData().isIsProven() + "</p>" + "</div>";
+				totalAutomodeTime = totalAutomodeTime + entry.getData().getAutoModeTimeInMillis();
 			}
-			placeholderPlainStatistics = placeholderPlainStatistics + "Total time needed: " + totalTime + "ms" 
+			placeholderPlainStatistics = placeholderPlainStatistics + "Total automode time needed: " + totalAutomodeTime + "ms" 
 			+ lineBreak			+ lineBreak			+ lineBreak;
 		}
 	}
