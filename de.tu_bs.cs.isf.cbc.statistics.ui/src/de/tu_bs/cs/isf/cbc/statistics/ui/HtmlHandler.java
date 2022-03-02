@@ -1,10 +1,15 @@
 package de.tu_bs.cs.isf.cbc.statistics.ui;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.Platform;
 
 import de.tu_bs.cs.isf.cbc.statistics.RHelper;
 import de.tu_bs.cs.isf.cbc.statistics.StatisticsEntry;
@@ -65,21 +70,28 @@ public class HtmlHandler {
 				}
 				
 				RHelper helper = new RHelper();
-				helper.setStatisticsFileStringForDiagrams(entries);
-				helper.createStatisticDiagramFile("test");
+				String pathToPNG = helper.generatePNG("statistics-png", entries);
+				String pathToPDF = helper.generatePDF("statistics-pdf", entries);
 				
-				
-				List<String> diagramPaths = new LinkedList<String>();
-				diagramPaths  = helper.getDiagramPaths();
-				if ( diagramPaths == null || diagramPaths.isEmpty() ) {
-					placeholderGeneratedDiagram = "<div class=\"text block\">\r\n"
-							+ "                <p>Diagram generation failed.</p>\r\n" + "            </div>";
+//				helper.setStatisticsFileStringForDiagrams(entries);
+//				List<String> diagramPaths = new LinkedList<String>();
+				if(pathToPDF != null) {
+					placeholderGeneratedDiagram += "<a class=\"text\" href=\" "+ pathToPDF + "\">Open as PDF</a>\r\n<br>\r\n";
 				}
-				else{
-					for(String path : diagramPaths) {
-						placeholderGeneratedDiagram = placeholderGeneratedDiagram 
-								+ "<img class=\"\" src=\"" + path + "\">\r\n";
+				
+				if(pathToPNG != null) {
+					placeholderGeneratedDiagram += "<img class=\"\" src=\"" + pathToPNG + "\">\r\n";
+				}
+				else {
+					URL errorImageURI = Platform.getBundle("de.tu_bs.cs.isf.cbc.statistics.ui").getEntry("icons/how-to-environment-R.png");
+					try {
+						pathToPNG = new File(FileLocator.resolve(errorImageURI).toURI()).getAbsolutePath();
+					} catch (URISyntaxException | IOException e1) {
+						e1.printStackTrace();
 					}
+
+					placeholderGeneratedDiagram += "<p>Cannot generate diagrams, probably because R is not installed.<br><strong>Please install R</strong> and add it to your operating system's environment path:</p>";
+					placeholderGeneratedDiagram += "<img class=\"\" src=\"" + pathToPNG + "\">\r\n";
 				}
 			}
 		}

@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
@@ -13,8 +15,10 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
 
+import de.tu_bs.cs.isf.cbc.statistics.CSVHelper;
 import de.tu_bs.cs.isf.cbc.statistics.StatisticsDatabase;
 import de.tu_bs.cs.isf.cbc.statistics.StatisticsEntry;
 
@@ -61,6 +65,45 @@ public class StatisticsDialog extends TitleAreaDialog {
 		browser.setText(templateHTML);
 
 		browser.setFocus();
+	}
+
+	@Override
+	protected void createButtonsForButtonBar(Composite parent) {
+		// create OK and Cancel buttons by default
+//		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, true);
+		createButton(parent, IDialogConstants.CLIENT_ID, "Export CSV File", false);
+		createButton(parent, IDialogConstants.CANCEL_ID, "Close", true);
+	}
+
+	@Override
+	protected void buttonPressed(int buttonId) {
+		if (IDialogConstants.OK_ID == buttonId) {
+			okPressed();
+		} else if (IDialogConstants.CLIENT_ID == buttonId) {
+			exportCSV();
+		} else if (IDialogConstants.CANCEL_ID == buttonId) {
+			cancelPressed();
+		}
+	}
+
+	private void exportCSV() {
+	    FileDialog dialog = new FileDialog(getShell(), SWT.SAVE);
+	    dialog.setFilterNames(new String[] { "CSV Files", "All Files (*.*)" });
+	    dialog.setFilterExtensions(new String[] { "*.csv", "*.*" });
+	    
+	    dialog.setFilterPath(selectedDiagramFiles.get(0).getParent().getFullPath().toFile().getAbsolutePath().toString());
+	    dialog.setFileName("statistics.csv");
+	    
+	    String path = dialog.open();
+		CSVHelper helper = new CSVHelper();
+		
+		String errorMessage = helper.generateCSVFile(path, entries);
+		if(errorMessage == null) {
+			MessageDialog.openInformation(getShell(), "Success", "The CSV file was successfully exported.");
+		}
+		else {
+			MessageDialog.openError(getShell(), "Error", "The CSV could not be exported:\n\n"+errorMessage);
+		}
 	}
 
 	@Override
